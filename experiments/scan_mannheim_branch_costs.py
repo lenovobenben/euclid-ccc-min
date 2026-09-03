@@ -1,11 +1,11 @@
-"""扫描 Mannheim 四个方向类同时退化时的局部成本分布。
+"""扫描 Mannheim 圆心线程序同时退化时的局部成本分布。
 
 脚本复用 ``scan_mannheim_degeneracies`` 的严格 ``D8`` 判定和 Fraction
-中间对象。共点程序先完整构造 P0、P2，并保证两条 ``tau`` 都已画出；
-每块保守记 13 E，双对合并仍只需 9 E。二者免费给出根心 S。后行的
-P1、P3 若四点不同，只需两条有限对角弦和 ``Line(S,D)``，连两个目标
-后缀至多 11 E；简单或双对合并直接用合并点和 S 画 ``tau``，至多
-9 E。偶然对象重合、公共弦和居中平行的额外节省均忽略。
+中间对象。无有限简单合并时，P0、P2 各用至多 5 E 构造 ``tau`` 核心，
+P1、P3 各用至多 3 E，再让四个方向类各用 7 E 圆心线后缀。有限简单
+合并先行块保守记完整 13 E，但同时扣除一条强制冗余批量线；若两块都
+简单合并，再扣除它们共享的 ``2r3`` 圆。尾部合并块按 1 E ``tau`` 加
+7 E 后缀计。居中分支和其它偶然对象重合的额外节省均忽略。
 
 这是有界扫描，不是连续参数域上“至多两个简单合并”的证明。
 """
@@ -47,11 +47,13 @@ def profile_cost(profile: str, events: set[str]) -> int:
     simple_merge = merge_xz != merge_yw
     if profile in {"P0", "P2"}:
         if double_merge:
-            return 9
-        return 13
+            return 8
+        if simple_merge:
+            return 13
+        return 12
     if double_merge or simple_merge:
-        return 9
-    return 11
+        return 8
+    return 10
 
 
 def scan(max_radius: int, max_coordinate: int) -> None:
@@ -83,10 +85,22 @@ def scan(max_radius: int, max_coordinate: int) -> None:
                             in_domain += 1
                             events = analyze_fixture(*fixture)
                             simple, double, parallel = classify(events)
+                            seed_simple_count = sum(
+                                (
+                                    f"{profile}:merge:a2=a2_prime" in events
+                                )
+                                != (
+                                    f"{profile}:merge:alpha2=alpha2_prime"
+                                    in events
+                                )
+                                for profile in ("P0", "P2")
+                            )
                             branch_cost = 13 + sum(
                                 profile_cost(profile, events)
                                 for profile in PROFILES
                             )
+                            branch_cost -= seed_simple_count
+                            branch_cost -= max(0, seed_simple_count - 1)
                             distribution[
                                 (
                                     len(simple),
