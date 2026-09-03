@@ -1,13 +1,17 @@
-"""精确检查一个位于 D8 内、但固定 O1O2 Mannheim 分支退化的实例。
+"""精确检查 D8 内 Mannheim 批量线相切和定心线重合的实例。
 
-该夹具说明 D8 只排除了目标圆退化，不能自动保证某一固定 Mannheim
-方向程序的全部中间对象非退化。所有判定都使用 Fraction。
+批量线相切时，反对应点与已知端点重合，但四个五线块仍可继续。某个
+目标的两条定心半径重合时，改用另一个输入圆的接触半径即可恢复圆心。
+两种分支都不增加 E。所有正确性判定都使用 Fraction 和实二次扩域。
 """
 
 from __future__ import annotations
 
 from fractions import Fraction
 from itertools import product
+from math import isqrt
+
+from replay_mannheim_fixed import Quadratic
 
 
 F = Fraction
@@ -176,6 +180,8 @@ def second_circle_point(
     source: Point,
     known: Point,
     circle: Circle,
+    *,
+    allow_tangent_alias: bool = False,
 ) -> Point:
     center, radius = circle
     direction = subtract(source, known)
@@ -186,37 +192,13 @@ def second_circle_point(
         -2 * dot(subtract(known, center), direction) / denominator
     )
     if second_parameter == 0:
+        if allow_tangent_alias:
+            return known
         raise ValueError("批量线与第三圆相切，没有不同的第二交点")
     second = add(known, multiply(second_parameter, direction))
     if dot(subtract(second, center), subtract(second, center)) != radius**2:
         raise AssertionError("第二交点不在第三圆上")
     return second
-
-
-def direction_points(
-    order: tuple[int, int, int],
-    direction: Point,
-) -> tuple[dict[str, Point], Circle]:
-    first_index, second_index, third_index = order
-    first_center = CENTERS[first_index]
-    second_center = CENTERS[second_index]
-    third_center = CENTERS[third_index]
-    first_radius = RADII[first_index]
-    second_radius = RADII[second_index]
-    third_radius = RADII[third_index]
-    if dot(direction, direction) != 1:
-        raise AssertionError("公共方向不是单位向量")
-    return (
-        {
-            "alpha": add(first_center, multiply(-first_radius, direction)),
-            "a": add(first_center, multiply(first_radius, direction)),
-            "a1": add(second_center, multiply(-second_radius, direction)),
-            "alpha1": add(second_center, multiply(second_radius, direction)),
-            "A": add(third_center, multiply(-third_radius, direction)),
-            "B": add(third_center, multiply(third_radius, direction)),
-        },
-        (third_center, third_radius),
-    )
 
 
 def assert_tangent_batch(
@@ -246,79 +228,315 @@ def assert_tangent_batch(
     raise AssertionError(f"退化批量线 {key} 不应产生不同的第二交点")
 
 
-def assert_all_center_directions_degenerate() -> None:
-    first_points, first_third = direction_points(
-        (0, 1, 2),
-        (F(1), F(0)),
-    )
-    if (first_points["a"], first_points["B"]) != (
+def same_line(first: Line, second: Line) -> bool:
+    a, b, c = first
+    d, e, f = second
+    return a * e == b * d and a * f == c * d and b * f == c * e
+
+
+def build_primary_taus() -> dict[str, Line]:
+    direction = (F(1), F(0))
+    points = {
+        "alpha": add(CENTERS[0], multiply(-RADII[0], direction)),
+        "a": add(CENTERS[0], multiply(RADII[0], direction)),
+        "a1": add(CENTERS[1], multiply(-RADII[1], direction)),
+        "alpha1": add(CENTERS[1], multiply(RADII[1], direction)),
+        "A": add(CENTERS[2], multiply(-RADII[2], direction)),
+        "B": add(CENTERS[2], multiply(RADII[2], direction)),
+    }
+    third_circle = (CENTERS[2], RADII[2])
+    if (points["a"], points["B"]) != (
         (F(10), F(0)),
         (F(10), F(12)),
     ):
         raise AssertionError("O1O2 方向的退化点与夹具声明不符")
-    assert_tangent_batch(first_points, first_third, "aB")
-
-    second_points, second_third = direction_points(
-        (0, 2, 1),
-        (F(3, 5), F(4, 5)),
-    )
-    if (second_points["a"], second_points["A"]) != (
-        (F(6), F(8)),
-        (F(22), F(-4)),
-    ):
-        raise AssertionError("O1O3 方向的退化点与夹具声明不符")
-    assert_tangent_batch(second_points, second_third, "aA")
-
-    third_points, third_circle = direction_points(
-        (1, 2, 0),
-        (F(-4, 5), F(3, 5)),
-    )
+    assert_tangent_batch(points, third_circle, "aB")
     batch_points = {
         source + end: second_circle_point(
-            third_points[source],
-            third_points[end],
+            points[source],
+            points[end],
             third_circle,
+            allow_tangent_alias=True,
         )
         for source in ("alpha", "a", "a1", "alpha1")
         for end in ("A", "B")
     }
-    repeated = (F(154, 17), F(72, 17))
-    if batch_points["aB"] != repeated or batch_points["a1A"] != repeated:
-        raise AssertionError("O2O3 方向的两个第二交点没有按预期重合")
+    if batch_points["aB"] != points["B"]:
+        raise AssertionError("相切批量线没有把 a2 绑定为既有端点 B")
 
-    alpha2 = batch_points["alphaA"]
-    a2 = batch_points["aB"]
-    a2_prime = batch_points["a1A"]
-    alpha2_prime = batch_points["alpha1B"]
-    k = line_intersection(
-        line_through(a2, alpha2_prime),
-        line_through(alpha2, a2_prime),
+    roles = {
+        "P0": ("alphaA", "aB", "a1A", "alpha1B"),
+        "P1": ("alphaB", "aA", "a1B", "alpha1A"),
+        "P2": ("alphaB", "aA", "alpha1B", "a1A"),
+        "P3": ("alphaA", "aB", "alpha1A", "a1B"),
+    }
+    expected_taus = {
+        "P0": (F(2), F(1), F(-31)),
+        "P1": (F(19), F(12), F(-302)),
+        "P2": (F(736), F(483), F(-11753)),
+        "P3": (F(93), F(44), F(-1434)),
+    }
+    taus = {}
+    for class_id, keys in roles.items():
+        alpha2, a2, a2_prime, alpha2_prime = (
+            batch_points[key] for key in keys
+        )
+        k = line_intersection(
+            line_through(a2, alpha2_prime),
+            line_through(alpha2, a2_prime),
+        )
+        k_prime = line_intersection(
+            line_through(a2, alpha2),
+            line_through(a2_prime, alpha2_prime),
+        )
+        tau = line_through(k, k_prime)
+        if not same_line(tau, expected_taus[class_id]):
+            raise AssertionError(f"{class_id} 的 tau 与夹具精确值不符")
+        a, b, c = tau
+        secant_margin = (
+            RADII[2] ** 2 * (a**2 + b**2)
+            - (a * CENTERS[2][0] + b * CENTERS[2][1] + c) ** 2
+        )
+        if secant_margin <= 0:
+            raise AssertionError(f"{class_id} 的 tau 不割第三圆于两点")
+        taus[class_id] = tau
+    return taus
+
+
+def rational_square_root(value: Fraction) -> Fraction | None:
+    numerator = isqrt(value.numerator)
+    denominator = isqrt(value.denominator)
+    if (
+        numerator * numerator == value.numerator
+        and denominator * denominator == value.denominator
+    ):
+        return F(numerator, denominator)
+    return None
+
+
+def lift(point: Point, discriminant: Fraction | None):
+    if discriminant is None:
+        return point
+    return (
+        Quadratic(point[0], 0, discriminant),
+        Quadratic(point[1], 0, discriminant),
     )
-    k_prime = line_intersection(
-        line_through(a2, alpha2),
-        line_through(a2_prime, alpha2_prime),
+
+
+def similarity_center(first_index: int, second_index: int, kind: str) -> Point:
+    first_center = CENTERS[first_index]
+    second_center = CENTERS[second_index]
+    first_radius = RADII[first_index]
+    second_radius = RADII[second_index]
+    if kind == "ext":
+        denominator = first_radius - second_radius
+        return (
+            (
+                first_radius * second_center[0]
+                - second_radius * first_center[0]
+            )
+            / denominator,
+            (
+                first_radius * second_center[1]
+                - second_radius * first_center[1]
+            )
+            / denominator,
+        )
+    denominator = first_radius + second_radius
+    return (
+        (
+            first_radius * second_center[0]
+            + second_radius * first_center[0]
+        )
+        / denominator,
+        (
+            first_radius * second_center[1]
+            + second_radius * first_center[1]
+        )
+        / denominator,
     )
-    if k != repeated or k_prime != repeated:
-        raise AssertionError("O2O3 方向的 P0 没有按预期退化为 K=K'")
-    try:
-        line_through(k, k_prime)
-    except ValueError:
-        return
-    raise AssertionError("O2O3 方向不应能画出 P0 的 tau")
+
+
+def assert_targets(
+    coefficients: dict[
+        tuple[int, int, int],
+        tuple[Fraction, Fraction, Fraction],
+    ],
+    taus: dict[str, Line],
+) -> dict[str, str]:
+    e2 = subtract(CENTERS[1], CENTERS[0])
+    e3 = subtract(CENTERS[2], CENTERS[0])
+    b_vector = solve_dot_system(
+        e2,
+        e3,
+        (dot(e2, e2) - RADII[1] ** 2 + RADII[0] ** 2) / 2,
+        (dot(e3, e3) - RADII[2] ** 2 + RADII[0] ** 2) / 2,
+    )
+    class_by_sigma = {
+        (1, 1, 1): "P0",
+        (1, 1, -1): "P1",
+        (1, -1, -1): "P2",
+        (1, -1, 1): "P3",
+    }
+    recovery_pairs = {}
+    physical_signs = set()
+    for sigma, (quadratic, linear, discriminant) in coefficients.items():
+        u_vector = solve_dot_system(
+            e2,
+            e3,
+            RADII[0] - sigma[1] * RADII[1],
+            RADII[0] - sigma[2] * RADII[2],
+        )
+        tau = taus[class_by_sigma[sigma]]
+        for root_sign in (-1, 1):
+            discriminant_root = rational_square_root(discriminant)
+            if discriminant_root is None:
+                t = Quadratic(
+                    -linear / (2 * quadratic),
+                    F(root_sign, 2) / quadratic,
+                    discriminant,
+                )
+                t_sign = t.sign()
+                extension_discriminant = discriminant
+            else:
+                t = (
+                    -linear + root_sign * discriminant_root
+                ) / (2 * quadratic)
+                t_sign = (t > 0) - (t < 0)
+                extension_discriminant = None
+            if t_sign == 0:
+                raise AssertionError("D8 根不应为零")
+            radius = t if t_sign > 0 else -t
+            physical = tuple(t_sign * item for item in sigma)
+            sign_name = "".join("+" if item > 0 else "-" for item in physical)
+            physical_signs.add(sign_name)
+            center = add(
+                lift(b_vector, extension_discriminant),
+                multiply(t, lift(u_vector, extension_discriminant)),
+            )
+            contacts = []
+            for index in range(3):
+                input_center = lift(CENTERS[index], extension_discriminant)
+                delta = subtract(center, input_center)
+                center_distance = radius + physical[index] * RADII[index]
+                contact = add(
+                    input_center,
+                    multiply(
+                        physical[index] * RADII[index] / center_distance,
+                        delta,
+                    ),
+                )
+                if (
+                    dot(
+                        subtract(contact, input_center),
+                        subtract(contact, input_center),
+                    )
+                    != RADII[index] ** 2
+                ):
+                    raise AssertionError(f"{sign_name} 的接触点不在输入圆上")
+                expected_distance_squared = center_distance * center_distance
+                if dot(delta, delta) != expected_distance_squared:
+                    raise AssertionError(f"{sign_name} 的切触等式不成立")
+                contacts.append(contact)
+
+            contact_3 = contacts[2]
+            if (
+                tau[0] * contact_3[0]
+                + tau[1] * contact_3[1]
+                + tau[2]
+                != 0
+            ):
+                raise AssertionError(f"{sign_name} 的第三圆接触点不在 tau 上")
+            if (
+                dot(subtract(center, contact_3), subtract(center, contact_3))
+                != radius * radius
+            ):
+                raise AssertionError(f"{sign_name} 的输出圆半径错误")
+
+            chosen_index = None
+            for index in (1, 0):
+                radial_determinant = determinant(
+                    subtract(
+                        contacts[index],
+                        lift(CENTERS[index], extension_discriminant),
+                    ),
+                    subtract(
+                        contact_3,
+                        lift(CENTERS[2], extension_discriminant),
+                    ),
+                )
+                if radial_determinant == 0:
+                    continue
+                kind = "ext" if physical[index] == physical[2] else "int"
+                h = lift(
+                    similarity_center(index, 2, kind),
+                    extension_discriminant,
+                )
+                if determinant(
+                    subtract(contacts[index], h),
+                    subtract(contact_3, h),
+                ) != 0:
+                    raise AssertionError(
+                        f"{sign_name} 的反对应接触点不经过相似中心"
+                    )
+                recovered = line_intersection(
+                    line_through(
+                        lift(CENTERS[index], extension_discriminant),
+                        contacts[index],
+                    ),
+                    line_through(
+                        lift(CENTERS[2], extension_discriminant),
+                        contact_3,
+                    ),
+                )
+                if recovered != center:
+                    raise AssertionError(f"{sign_name} 没有恢复出目标圆心")
+                chosen_index = index
+                break
+            if chosen_index is None:
+                raise AssertionError(f"{sign_name} 的三条接触半径全部重合")
+            recovery_pairs[sign_name] = f"Gamma{chosen_index + 1}/Gamma3"
+
+    if physical_signs != {
+        "+++",
+        "++-",
+        "+-+",
+        "+--",
+        "-++",
+        "-+-",
+        "--+",
+        "---",
+    }:
+        raise AssertionError("没有精确恢复全部八种物理切向符号")
+    expected_recovery_pairs = {
+        "+++": "Gamma1/Gamma3",
+        "++-": "Gamma2/Gamma3",
+        "+-+": "Gamma2/Gamma3",
+        "+--": "Gamma2/Gamma3",
+        "-++": "Gamma2/Gamma3",
+        "-+-": "Gamma2/Gamma3",
+        "--+": "Gamma2/Gamma3",
+        "---": "Gamma2/Gamma3",
+    }
+    if recovery_pairs != expected_recovery_pairs:
+        raise AssertionError("定心圆对分支与夹具的精确结果不符")
+    return recovery_pairs
 
 
 def main() -> None:
     coefficients = assert_d8()
-    assert_all_center_directions_degenerate()
+    taus = build_primary_taus()
+    recovery_pairs = assert_targets(coefficients, taus)
     print(
         "fixture",
         {
             "in_D8": True,
-            "O1O2_branch": "tangent at aB",
-            "O1O3_branch": "tangent at aA",
-            "O2O3_branch": "P0 has K=K'",
+            "batch_aB": "tangent alias B",
+            "five_line_blocks": "four valid secants",
+            "score": "18/65 E unchanged",
         },
     )
+    print("recovery_pairs", dict(sorted(recovery_pairs.items())))
     for sigma in sorted(coefficients, reverse=True):
         quadratic, linear, discriminant = coefficients[sigma]
         print(
