@@ -80,6 +80,23 @@ def main() -> None:
     if p0_p2_intersection != expected_intersection:
         raise AssertionError("P0、P2 的交点没有按相切因子化为 S")
 
+    x_coordinate, y_coordinate, homogeneous = MANNHEIM_POINT_S
+    power_3 = (
+        x_coordinate**2 + y_coordinate**2 - homogeneous**2
+    )
+    power_1 = (
+        (x_coordinate - c * homogeneous) ** 2
+        + (y_coordinate - h * homogeneous) ** 2
+        - (p * homogeneous) ** 2
+    )
+    power_2 = (
+        (x_coordinate - (c + d) * homogeneous) ** 2
+        + (y_coordinate - h * homogeneous) ** 2
+        - (q * homogeneous) ** 2
+    )
+    if power_1 != power_3 or power_2 != power_3:
+        raise AssertionError("Mannheim 共点 S 不是三个输入圆的根心")
+
     print(
         "mannheim_tau_concurrence",
         {
@@ -87,6 +104,7 @@ def main() -> None:
             "incidence_identities": len(lines),
             "triple_determinants": triple_count,
             "guaranteed_distinct_pair": "P0,P2",
+            "radical_center_identities": 2,
             "point_maximum_degree": max(
                 coordinate.total_degree for coordinate in MANNHEIM_POINT_S
             ),
