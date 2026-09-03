@@ -123,6 +123,7 @@ def verify_target_pair(
     tau,
     sigma=(1, 1, 1),
     expected_discriminant=None,
+    allow_repeated_physical_signs=False,
 ):
     e2 = subtract(centers[1], centers[0])
     e3 = subtract(centers[2], centers[0])
@@ -249,7 +250,13 @@ def verify_target_pair(
         paid_lines = (recovery_line, radial_2)
         if not same_line(radial_3, lifted_tau):
             paid_lines += (radial_3,)
-        targets[sign_name] = {
+        target_key = (
+            f"{sign_name}@{root_sign:+d}"
+            if allow_repeated_physical_signs
+            else sign_name
+        )
+        targets[target_key] = {
+            "physical_sign": sign_name,
             "center": center,
             "radius": radius,
             "contact_3": contact_3,
@@ -257,12 +264,16 @@ def verify_target_pair(
             "output_circle": (center, radius_squared),
         }
 
-    expected_signs = {
-        "".join("+" if item > 0 else "-" for item in sigma),
-        "".join("+" if item < 0 else "-" for item in sigma),
-    }
-    if set(targets) != expected_signs:
-        raise AssertionError("没有恢复预期的一对物理切向符号")
+    if allow_repeated_physical_signs:
+        if len(targets) != 2:
+            raise AssertionError("有向二次式没有恢复两个目标根")
+    else:
+        expected_signs = {
+            "".join("+" if item > 0 else "-" for item in sigma),
+            "".join("+" if item < 0 else "-" for item in sigma),
+        }
+        if set(targets) != expected_signs:
+            raise AssertionError("没有恢复预期的一对物理切向符号")
     tau_through_center = on_line(lifted_centers[2], lifted_tau)
     contacts_are_antipodal = add(
         *(target["contact_3"] for target in targets.values()),

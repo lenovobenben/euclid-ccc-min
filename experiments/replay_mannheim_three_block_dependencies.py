@@ -45,6 +45,10 @@ F = Fraction
 Point = tuple[Fraction, Fraction]
 Line = tuple[Fraction, Fraction, Fraction]
 Circle = tuple[Point, Fraction]
+Algebraic = Fraction | Quadratic
+AlgebraicPoint = tuple[Algebraic, Algebraic]
+AlgebraicLine = tuple[Algebraic, Algebraic, Algebraic]
+AlgebraicCircle = tuple[AlgebraicPoint, Algebraic]
 
 CENTERS: tuple[Point, Point, Point] = (
     (F(0), F(0)),
@@ -71,24 +75,61 @@ def point_key(point) -> tuple:
     return tuple(scalar_key(value) for value in point)
 
 
-def collapse_scalar(value) -> Fraction:
+def collapse_scalar(value) -> Algebraic:
     if not isinstance(value, Quadratic):
         return F(value)
-    square_root = fraction_square_root(value.discriminant)
+    try:
+        square_root = fraction_square_root(value.discriminant)
+    except ValueError:
+        return value
     return value.a + value.b * square_root
 
 
-def collapse_point(point) -> Point:
+def collapse_point(point) -> AlgebraicPoint:
     return tuple(collapse_scalar(value) for value in point)  # type: ignore[return-value]
 
 
-def collapse_line(line) -> Line:
+def collapse_line(line) -> AlgebraicLine:
     return tuple(collapse_scalar(value) for value in line)  # type: ignore[return-value]
 
 
-def collapse_circle(circle) -> Circle:
+def collapse_circle(circle) -> AlgebraicCircle:
     center, radius_squared = circle
     return (collapse_point(center), collapse_scalar(radius_squared))
+
+
+def algebraic_line_key(line) -> tuple:
+    simplified = tuple(collapse_scalar(value) for value in line)
+    discriminants = {
+        value.discriminant
+        for value in simplified
+        if isinstance(value, Quadratic)
+    }
+    if not discriminants:
+        return ("rational", canonical_line(simplified))
+    if len(discriminants) != 1:
+        raise ValueError("一条直线不能混合不同的二次扩域")
+    discriminant = next(iter(discriminants))
+    lifted = tuple(
+        value
+        if isinstance(value, Quadratic)
+        else Quadratic(value, 0, discriminant)
+        for value in simplified
+    )
+    pivot = next((value for value in lifted if value != 0), None)
+    if pivot is None:
+        raise ValueError("齐次直线系数不能全为零")
+    normalized = tuple(value / pivot for value in lifted)
+    if all(value.b == 0 for value in normalized):
+        return (
+            "rational",
+            canonical_line(tuple(value.a for value in normalized)),
+        )
+    return (
+        "quadratic",
+        discriminant,
+        tuple((value.a, value.b) for value in normalized),
+    )
 
 
 def circle(center: Point, through: Point) -> Circle:
@@ -116,16 +157,20 @@ def role_batch_keys(profile: str) -> dict[str, str]:
 class ExactObjectGraph:
     """带几何对象去重和逻辑别名的依赖图。"""
 
-    def __init__(self) -> None:
+    def __init__(
+        self,
+        centers: tuple[Point, Point, Point],
+        radii: tuple[Fraction, Fraction, Fraction],
+    ) -> None:
         self.graph = DependencyGraph.initial()
         self.aliases: dict[str, str] = {}
         self.paid_aliases: dict[str, str] = {}
         self.point_registry = {
-            point_key(CENTERS[index]): f"O{index + 1}" for index in range(3)
+            point_key(centers[index]): f"O{index + 1}" for index in range(3)
         }
         self.object_registry: dict[tuple, str] = {}
         for index, (center, radius) in enumerate(
-            zip(CENTERS, RADII, strict=True),
+            zip(centers, radii, strict=True),
             start=1,
         ):
             self.object_registry[
@@ -168,21 +213,21 @@ class ExactObjectGraph:
     def line(
         self,
         node_id: str,
-        value: Line,
+        value: AlgebraicLine,
         *dependencies: str,
         special_key: str | None = None,
     ) -> str:
         key = (
             ("special-line", special_key)
             if special_key is not None
-            else ("line", canonical_line(value))
+            else ("line", algebraic_line_key(value))
         )
         return self._draw(node_id, "line", key, tuple(dependencies))
 
     def circle(
         self,
         node_id: str,
-        value: Circle | None,
+        value: AlgebraicCircle | None,
         *dependencies: str,
         special_key: str | None = None,
     ) -> str:
@@ -199,10 +244,16 @@ class ExactObjectGraph:
 
 
 class ThreeBlockReplay:
-    def __init__(self) -> None:
-        self.objects = ExactObjectGraph()
-        self.o1, self.o2, self.o3 = CENTERS
-        self.r1, self.r2, self.r3 = RADII
+    def __init__(
+        self,
+        centers: tuple[Point, Point, Point] = CENTERS,
+        radii: tuple[Fraction, Fraction, Fraction] = RADII,
+    ) -> None:
+        self.centers = centers
+        self.radii = radii
+        self.objects = ExactObjectGraph(centers, radii)
+        self.o1, self.o2, self.o3 = centers
+        self.r1, self.r2, self.r3 = radii
         self.gamma3 = (self.o3, self.r3**2)
         self.named_points: dict[str, Point] = {}
         self.named_point_ids: dict[str, str] = {}
@@ -395,7 +446,10 @@ class ThreeBlockReplay:
         contact_3 = collapse_point(target["contact_3"])
         target_center = collapse_point(target["center"])
 
-        similarity_kind = "ext" if sign[1] == sign[2] else "int"
+        physical_sign = target.get("physical_sign", sign)
+        similarity_kind = (
+            "ext" if physical_sign[1] == physical_sign[2] else "int"
+        )
         _, similarity_id = self.bind_similarity_center(similarity_kind)
         contact_line_id = self.objects.line(
             f"{profile}_{sign}_contact_line",
@@ -447,18 +501,31 @@ class ThreeBlockReplay:
             "draw_index": self.objects.graph.paid_order.index(output_id) + 1,
         }
 
-    def verify_pair(self, profile: str, tau: Line) -> dict[str, dict]:
+    def verify_pair(
+        self,
+        profile: str,
+        tau: Line,
+        *,
+        allow_repeated_physical_signs: bool = False,
+    ) -> dict[str, dict]:
         targets, _ = verify_target_pair(
-            CENTERS,
-            RADII,
+            self.centers,
+            self.radii,
             tau,
             sigma=SIGMAS[profile],
+            allow_repeated_physical_signs=allow_repeated_physical_signs,
         )
         return targets
 
-    def build_regular_pair(self, profile: str, target_order: tuple[str, str]) -> None:
+    def build_regular_pair(
+        self,
+        profile: str,
+        target_order: tuple[str, str] | None,
+        *,
+        allow_repeated_physical_signs: bool = False,
+    ) -> None:
         keys = role_batch_keys(profile)
-        roles = build_roles(CENTERS, RADII, profile)
+        roles = build_roles(self.centers, self.radii, profile)
         x, y, z, w = (roles[name] for name in "xyzw")
         role_ids = {
             name: self.batch_point_ids[key] for name, key in keys.items()
@@ -510,7 +577,11 @@ class ThreeBlockReplay:
             kp_id,
         )
 
-        targets = self.verify_pair(profile, tau)
+        targets = self.verify_pair(
+            profile,
+            tau,
+            allow_repeated_physical_signs=allow_repeated_physical_signs,
+        )
         contact_ids = {}
         for sign, target in targets.items():
             contact = collapse_point(target["contact_3"])
@@ -520,8 +591,146 @@ class ThreeBlockReplay:
                 tau_id,
                 "Gamma3",
             )
-        for sign in target_order:
-            self.build_target(profile, sign, targets[sign], contact_ids[sign])
+        ordered_targets = tuple(targets) if target_order is None else target_order
+        for sign in ordered_targets:
+            logical_sign = (
+                f"{profile}:{sign}" if allow_repeated_physical_signs else sign
+            )
+            self.build_target(
+                profile,
+                logical_sign,
+                targets[sign],
+                contact_ids[sign],
+            )
+
+    def build_parallel_pair(
+        self,
+        profile: str,
+        infinite_diagonal: str,
+        target_order: tuple[str, str] | None,
+        *,
+        allow_repeated_physical_signs: bool = False,
+    ) -> None:
+        """重放第 8.8 节的一般两圆一线平行修复。"""
+
+        if infinite_diagonal not in {"K", "Kp"}:
+            raise ValueError("无穷远对角点只能是 K 或 Kp")
+        keys = role_batch_keys(profile)
+        roles = build_roles(self.centers, self.radii, profile)
+        role_ids = {
+            name: self.batch_point_ids[key] for name, key in keys.items()
+        }
+        x, y, z, w = (roles[name] for name in "xyzw")
+
+        if infinite_diagonal == "Kp":
+            finite_pairs = (("x", "w"), ("y", "z"))
+            infinite_pairs = (("x", "y"), ("z", "w"))
+            first_name, second_name = "x", "y"
+        else:
+            finite_pairs = (("x", "y"), ("z", "w"))
+            infinite_pairs = (("x", "w"), ("y", "z"))
+            first_name, second_name = "x", "w"
+
+        finite_lines = tuple(
+            line_through(*(roles[name] for name in pair))
+            for pair in finite_pairs
+        )
+        finite_line_ids = tuple(
+            self.objects.line(
+                f"{profile}_{infinite_diagonal}_finite_line_{index}",
+                value,
+                *(role_ids[name] for name in pair),
+            )
+            for index, (value, pair) in enumerate(
+                zip(finite_lines, finite_pairs, strict=True),
+                start=1,
+            )
+        )
+        finite_point = line_intersection(*finite_lines)
+        finite_point_id = self.objects.point(
+            f"{profile}_{infinite_diagonal}_finite_point",
+            finite_point,
+            *finite_line_ids,
+        )
+
+        infinite_lines = tuple(
+            line_through(*(roles[name] for name in pair))
+            for pair in infinite_pairs
+        )
+        if same_line(*infinite_lines):
+            raise AssertionError("平行分支的两条定义弦意外重合")
+        if determinant(infinite_lines[0][:2], infinite_lines[1][:2]) != 0:
+            raise AssertionError("声明的对角点没有位于无穷远")
+
+        first_point = roles[first_name]
+        first_point_id = role_ids[first_name]
+        second_point = roles[second_name]
+        second_point_id = role_ids[second_name]
+        first_circle = circle(first_point, finite_point)
+        first_circle_id = self.objects.circle(
+            f"{profile}_{infinite_diagonal}_circle_first",
+            first_circle,
+            first_point_id,
+            finite_point_id,
+        )
+        reflected = add(first_point, subtract(first_point, finite_point))
+        reflected_id = self.objects.point(
+            f"{profile}_{infinite_diagonal}_reflected",
+            reflected,
+            first_circle_id,
+            finite_line_ids[0],
+        )
+        second_circle = circle(second_point, reflected)
+        second_circle_id = self.objects.circle(
+            f"{profile}_{infinite_diagonal}_circle_second",
+            second_circle,
+            second_point_id,
+            reflected_id,
+        )
+        q = add(finite_point, subtract(first_point, second_point))
+        if not on_circle(q, first_circle) or not on_circle(q, second_circle):
+            raise AssertionError("两圆一线修复的第二公共点错误")
+        q_id = self.objects.point(
+            f"{profile}_{infinite_diagonal}_Q",
+            q,
+            first_circle_id,
+            second_circle_id,
+        )
+        tau = line_through(finite_point, q)
+        if determinant(tau[:2], infinite_lines[0][:2]) != 0:
+            raise AssertionError("修复所得 tau 没有通过无穷远对角点")
+        tau_id = self.objects.line(
+            f"{profile}_tau",
+            tau,
+            finite_point_id,
+            q_id,
+        )
+
+        targets = self.verify_pair(
+            profile,
+            tau,
+            allow_repeated_physical_signs=allow_repeated_physical_signs,
+        )
+        contact_ids = {}
+        for sign, target in targets.items():
+            contact = collapse_point(target["contact_3"])
+            contact_ids[sign] = self.objects.point(
+                f"{profile}_{sign}_M3",
+                contact,
+                tau_id,
+                "Gamma3",
+            )
+        ordered_targets = tuple(targets) if target_order is None else target_order
+        for sign in ordered_targets:
+            logical_sign = (
+                f"{profile}:{sign}" if allow_repeated_physical_signs else sign
+            )
+            self.build_target(
+                profile,
+                logical_sign,
+                targets[sign],
+                contact_ids[sign],
+            )
 
     def build_merge_pair(
         self,
@@ -530,7 +739,7 @@ class ThreeBlockReplay:
         preferred_merged_key: str | None = None,
     ) -> None:
         keys = role_batch_keys(profile)
-        roles = build_roles(CENTERS, RADII, profile)
+        roles = build_roles(self.centers, self.radii, profile)
         equal_pairs = [
             (first, second)
             for index, first in enumerate("xyzw")
@@ -689,7 +898,7 @@ class ThreeBlockReplay:
             self.build_target(profile, sign, targets[sign], contact_ids[sign])
 
     def run(self) -> None:
-        if not is_d8(CENTERS, RADII):
+        if not is_d8(self.centers, self.radii):
             raise AssertionError("三块合并夹具不属于 D8")
         self.build_prefix()
 
