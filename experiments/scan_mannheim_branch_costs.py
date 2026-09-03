@@ -1,11 +1,11 @@
 """扫描 Mannheim 四个方向类同时退化时的局部成本分布。
 
 脚本复用 ``scan_mannheim_degeneracies`` 的严格 ``D8`` 判定和 Fraction
-中间对象。对每个方向类，正规或简单平行块记 13 E，简单对向合并记
-14 E，双对合并按一般上界记 9 E。所有简单合并修复都复用同一个以
-``O3`` 为圆心、半径为 ``2*r3`` 的圆，所以由 65 E 正规程序出发，只要
-存在简单合并就总共加 1；每个双对合并减 4。偶然对象重合与居中平行的
-额外节省均忽略，因此所得数值是该分支模型中的保守上界。
+中间对象。对每个方向类，正规或简单平行块记 13 E；简单对向合并的
+早期 14 E 台账再扣除目标恢复线与第二圆半径线的两次强制复用，记
+12 E；双对合并按一般上界记 9 E。因此由 65 E 的逐块程序出发，每个
+简单合并减 1，每个双对合并减 4。偶然对象重合、跨块公共弦与居中
+平行的额外节省均忽略，所以所得数值是该分支模型中的保守上界。
 
 这是有界扫描，不是连续参数域上“至多两个简单合并”的证明。
 """
@@ -70,9 +70,7 @@ def scan(max_radius: int, max_coordinate: int) -> None:
                             events = analyze_fixture(*fixture)
                             simple, double, parallel = classify(events)
                             branch_cost = (
-                                65
-                                + int(bool(simple))
-                                - 4 * len(double)
+                                65 - len(simple) - 4 * len(double)
                             )
                             distribution[
                                 (

@@ -735,8 +735,10 @@ class ThreeBlockReplay:
     def build_merge_pair(
         self,
         profile: str,
-        target_order: tuple[str, str],
+        target_order: tuple[str, str] | None,
         preferred_merged_key: str | None = None,
+        *,
+        allow_repeated_physical_signs: bool = False,
     ) -> None:
         keys = role_batch_keys(profile)
         roles = build_roles(self.centers, self.radii, profile)
@@ -866,7 +868,11 @@ class ThreeBlockReplay:
             - tangent_center[1] ** 2
             + radius_squared,
         )
-        targets = self.verify_pair(profile, tau)
+        targets = self.verify_pair(
+            profile,
+            tau,
+            allow_repeated_physical_signs=allow_repeated_physical_signs,
+        )
         contacts = {
             sign: collapse_point(target["contact_3"])
             for sign, target in targets.items()
@@ -894,8 +900,17 @@ class ThreeBlockReplay:
             sign: merged_id if contact == merged else second_contact_id
             for sign, contact in contacts.items()
         }
-        for sign in target_order:
-            self.build_target(profile, sign, targets[sign], contact_ids[sign])
+        ordered_targets = tuple(targets) if target_order is None else target_order
+        for sign in ordered_targets:
+            logical_sign = (
+                f"{profile}:{sign}" if allow_repeated_physical_signs else sign
+            )
+            self.build_target(
+                profile,
+                logical_sign,
+                targets[sign],
+                contact_ids[sign],
+            )
 
     def run(self) -> None:
         if not is_d8(self.centers, self.radii):
