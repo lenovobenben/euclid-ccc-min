@@ -533,7 +533,7 @@ def main() -> None:
             "in_D8": True,
             "batch_aB": "tangent alias B",
             "five_line_blocks": "four valid secants",
-            "score": "18/65 E unchanged",
+            "score": "18/65 E upper bound unchanged",
         },
     )
     print("recovery_pairs", dict(sorted(recovery_pairs.items())))
