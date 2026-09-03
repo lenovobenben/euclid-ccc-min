@@ -7,7 +7,9 @@
     Gamma3=((155, 120), 3)
 
 其 ``P0``、``P2``、``P3`` 分别发生一个简单对向角色合并，``P1``
-保持四点不同。全部判定均使用 Fraction 和精确 ``D8`` 根符号检查。
+保持四点不同。三个修复共享同一个以 ``O3`` 为圆心、半径为 ``2*r3``
+的圆，所以联合保守成本是 66 E。全部判定均使用 Fraction 和精确
+``D8`` 根符号检查。
 """
 
 from __future__ import annotations
@@ -49,11 +51,15 @@ def main() -> None:
         "P3": {("y", "w")},
     }
     actual = {}
+    merged_points = {}
     for profile in PROFILES:
         roles = build_roles(centers, radii, profile=profile)
         actual[profile] = equal_pairs(roles)
         if actual[profile] != expected[profile]:
             raise AssertionError(f"{profile} 的角色合并型错误")
+        if actual[profile]:
+            first_name, _ = next(iter(actual[profile]))
+            merged_points[profile] = roles[first_name]
 
     events = analyze_fixture(centers, radii)
     expected_events = {
@@ -100,8 +106,28 @@ def main() -> None:
         raise AssertionError("归一化参数错误")
 
     simple_blocks = sum(bool(pairs) for pairs in actual.values())
-    branch_cost_upper = 65 + simple_blocks
-    if simple_blocks != 3 or branch_cost_upper != 68:
+    shared_circles = set()
+    for merged in merged_points.values():
+        reflected = (
+            2 * merged[0] - centers[2][0],
+            2 * merged[1] - centers[2][1],
+        )
+        radius_squared = (
+            (reflected[0] - centers[2][0]) ** 2
+            + (reflected[1] - centers[2][1]) ** 2
+        )
+        shared_circles.add((centers[2], radius_squared))
+    expected_shared_circle = {(centers[2], F(36))}
+    if shared_circles != expected_shared_circle:
+        raise AssertionError("三个简单合并修复没有复用半径 2*r3 的圆")
+
+    per_block_upper = 65 + simple_blocks
+    shared_branch_upper = 65 + int(bool(simple_blocks))
+    if (
+        simple_blocks != 3
+        or per_block_upper != 68
+        or shared_branch_upper != 66
+    ):
         raise AssertionError("三块合并的保守模块成本错误")
 
     print(
@@ -112,7 +138,9 @@ def main() -> None:
             "normalized": normalized,
             "equal_pairs": actual,
             "simple_blocks": simple_blocks,
-            "branch_cost_upper": branch_cost_upper,
+            "per_block_upper": per_block_upper,
+            "shared_circle": next(iter(shared_circles)),
+            "shared_branch_upper": shared_branch_upper,
         },
     )
 
