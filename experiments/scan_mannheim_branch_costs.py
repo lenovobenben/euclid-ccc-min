@@ -1,13 +1,13 @@
-"""扫描 Mannheim 圆心线程序同时退化时的局部成本分布。
+"""扫描 Mannheim 有限 ``K'`` 圆心线程序的分支成本分布。
 
 脚本复用 ``scan_mannheim_degeneracies`` 的严格 ``D8`` 判定和 Fraction
-中间对象。无有限简单合并时，P0、P2 各用至多 5 E 构造 ``tau`` 核心，
-P1、P3 各用至多 3 E，再让四个方向类各用 7 E 圆心线后缀。有限简单
-合并先行块保守记完整 13 E，但同时扣除一条强制冗余批量线；若两块都
-简单合并，再扣除它们共享的 ``2r3`` 圆。尾部合并块按 1 E ``tau`` 加
-7 E 后缀计。居中分支和其它偶然对象重合的额外节省均忽略。
+中间对象。有限 ``K'`` 且根心不在 ``O1O2`` 上时，每个双目标后缀由
+7 E 降为 6 E。若 P0 或 P2 有有限简单合并，则先独立完成该解对，再由
+两个目标圆心的连线与接触弦取得根心；其余方向类全部按后行块计数。
+若根心位于 ``O1O2``，四个非退化 ``K'`` 会合到根心，改用一个 5 E
+接触弦核心和三个至多 3 E 后行核心。其它偶然对象重合均忽略。
 
-这是有界扫描，不是连续参数域上“至多两个简单合并”的证明。
+这是有界扫描，不代替连续参数域上的分支证明。
 """
 
 from __future__ import annotations
@@ -56,6 +56,74 @@ def profile_cost(profile: str, events: set[str]) -> int:
     return 10
 
 
+def merge_kind(profile: str, events: set[str]) -> str:
+    merge_xz = f"{profile}:merge:a2=a2_prime" in events
+    merge_yw = f"{profile}:merge:alpha2=alpha2_prime" in events
+    if merge_xz and merge_yw:
+        return "double"
+    if merge_xz or merge_yw:
+        return "simple"
+    return "none"
+
+
+def root_center_on_ell(fixture) -> bool:
+    centers, radii = fixture
+    o1, o2, o3 = centers
+    r1, r2, r3 = radii
+    distance = o2[0] - o1[0]
+    root_x = (
+        o2[0] ** 2
+        + o2[1] ** 2
+        - r2**2
+        - o1[0] ** 2
+        - o1[1] ** 2
+        + r1**2
+    ) / (2 * distance)
+    root_y = (
+        o3[0] ** 2
+        + o3[1] ** 2
+        - r3**2
+        - o1[0] ** 2
+        - o1[1] ** 2
+        + r1**2
+        - 2 * (o3[0] - o1[0]) * root_x
+    ) / (2 * (o3[1] - o1[1]))
+    return root_y == o1[1]
+
+
+def optimized_cost(fixture, events: set[str]) -> int:
+    seed_simple = tuple(
+        profile
+        for profile in ("P0", "P2")
+        if merge_kind(profile, events) == "simple"
+    )
+    if seed_simple:
+        selected = seed_simple[0]
+        # 13 E 公共前缀，13 E 完整合并块，1 E 圆心线；合并又强制
+        # 删除一条批量线。其余方向类作为后行块。
+        cost = 13 + 13 + 1 - 1
+        for profile in PROFILES:
+            if profile == selected:
+                continue
+            if merge_kind(profile, events) != "none":
+                cost += 8
+            elif f"{profile}:parallel:Kp" in events:
+                cost += 10
+            else:
+                cost += 9
+        return cost
+
+    base = 13 + sum(profile_cost(profile, events) for profile in PROFILES)
+    if root_center_on_ell(fixture):
+        return min(base, 55)
+    finite_kp_savings = sum(
+        merge_kind(profile, events) == "none"
+        and f"{profile}:parallel:Kp" not in events
+        for profile in PROFILES
+    )
+    return base - finite_kp_savings
+
+
 def scan(max_radius: int, max_coordinate: int) -> None:
     tested = 0
     in_domain = 0
@@ -85,22 +153,7 @@ def scan(max_radius: int, max_coordinate: int) -> None:
                             in_domain += 1
                             events = analyze_fixture(*fixture)
                             simple, double, parallel = classify(events)
-                            seed_simple_count = sum(
-                                (
-                                    f"{profile}:merge:a2=a2_prime" in events
-                                )
-                                != (
-                                    f"{profile}:merge:alpha2=alpha2_prime"
-                                    in events
-                                )
-                                for profile in ("P0", "P2")
-                            )
-                            branch_cost = 13 + sum(
-                                profile_cost(profile, events)
-                                for profile in PROFILES
-                            )
-                            branch_cost -= seed_simple_count
-                            branch_cost -= max(0, seed_simple_count - 1)
+                            branch_cost = optimized_cost(fixture, events)
                             distribution[
                                 (
                                     len(simple),

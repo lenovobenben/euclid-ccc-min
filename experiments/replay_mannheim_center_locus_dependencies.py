@@ -394,6 +394,26 @@ def build_tail_tau(
 
 
 class CenterLocusReplay(OrderedBranchReplay):
+    first_ext_limit = 19
+
+    def build_pair(
+        self,
+        profile,
+        data,
+        tau,
+        tau_id,
+        mannheim_point,
+        mannheim_point_id,
+    ) -> None:
+        build_targets_7e(
+            self,
+            profile,
+            tau,
+            tau_id,
+            mannheim_point,
+            mannheim_point_id,
+        )
+
     def run(self) -> dict:
         if not is_d8(self.centers, self.radii):
             raise AssertionError(f"{self.fixture_name} 不属于严格 D8")
@@ -464,9 +484,9 @@ class CenterLocusReplay(OrderedBranchReplay):
                 continue
             tau, tau_id = tau_results[profile]
             before = paid_count(self)
-            build_targets_7e(
-                self,
+            self.build_pair(
                 profile,
+                data[profile],
                 tau,
                 tau_id,
                 mannheim_point,
@@ -508,8 +528,11 @@ class CenterLocusReplay(OrderedBranchReplay):
             key for key in self.targets if key.startswith("P0:+++@")
         )
         first_ext = min(len(ancestor_sets[key]) for key in ext_keys)
-        if first_ext > 19:
-            raise AssertionError("圆心线程序的三重外切目标超过 19 E")
+        if first_ext > self.first_ext_limit:
+            raise AssertionError(
+                "圆心线程序的三重外切目标超过"
+                f" {self.first_ext_limit} E"
+            )
         report = {
             "fixture": self.fixture_name,
             "branches": {
