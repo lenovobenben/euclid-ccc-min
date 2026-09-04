@@ -229,13 +229,23 @@ Mannheim 正规程序的具体一般位置域记作 \(D_8^{\mathrm{M-reg}}\)；�
 零点集。当前两个覆盖口径的已验证上界是
 
 \[
-\mathrm{UB}_{\mathrm{gen}}=(18,49),
+\mathrm{UB}_{\mathrm{gen}}
+=
+\bigl(\mathrm{UB}^{\mathrm{gen}}_{\mathrm{ext}},
+\mathrm{UB}^{\mathrm{gen}}_{\mathrm{all}}\bigr)
+=(18,49),
 \qquad
-\mathrm{UB}_{\mathrm{rob}}=(18,55).
+\mathrm{UB}_{\mathrm{rob}}
+=
+\bigl(\mathrm{UB}^{\mathrm{rob}}_{\mathrm{ext}},
+\mathrm{UB}^{\mathrm{rob}}_{\mathrm{all}}\bigr)
+=(18,55).
 \]
 
-每个有序对依次记录 \((\mathrm{ext},\mathrm{all})\)；\(\mathrm{UB}\)
-表示仓库目前最好的已验证构造上界，不表示 \(\operatorname{OPT}\)。
+每个有序对依次记录 \((\mathrm{ext},\mathrm{all})\)。两个分量分别取
+当前仓库中相应 profile 的最好已验证程序，可以来自不同程序；
+\(\mathrm{UB}\) 不表示同一条程序的执行轨迹，也不表示
+\(\operatorname{OPT}\)。
 “测度非零”也不足以成为一般
 位置定义，因为一个容易的小区域同样可能有正测度；正式要求是上面的
 开稠密、满测度覆盖。
@@ -334,17 +344,34 @@ K=(X,R):R>0,
 \(c\in\{\mathrm{gen},\mathrm{rob}\}\)，记录
 
 \[
-\bigl(E^c_{\mathrm{ext}}(P),E^c_{\mathrm{all}}(P)\bigr),
+\bigl(E^c_{\mathrm{ext}}(P),E^c_{\mathrm{all}}(P)\bigr)
 \]
 
-其中：
+称为 \(P\) 的程序轨迹分数。其中：
 
 - \(E^c_{\mathrm{ext}}(P)\) 是首次画出 \(K_{\mathrm{ext}}\) 的 E 步；
 - \(E^c_{\mathrm{all}}(P)\) 是 \(\mathcal K_8\) 的八个目标圆首次全部出现的 E 步，未完成时记为空；
 - `gen` 成本取程序在其显式一般位置域上的最坏值；
 - `rob` 成本取覆盖完整 \(D_8\) 的精确分支族中的最坏值。
 
-发布单解构造时，程序应在 \(E^c_{\mathrm{ext}}\) 处截断。发布八解构造时，以 \(E^c_{\mathrm{all}}\) 为总分，同时报告其中首次得到外切圆的时刻。项目对两个覆盖口径分别维护
+发布单解构造时，程序应在 \(E^c_{\mathrm{ext}}\) 处截断。发布八解构造时，以 \(E^c_{\mathrm{all}}\) 为总分，同时报告其中首次得到外切圆的时刻。
+
+令 \(\mathcal V^c_q\) 为仓库中已经通过相应覆盖证明的 profile
+\(q\) 程序集合。项目当前的逐 profile 上界定义为
+
+\[
+\mathrm{UB}^c_q
+=
+\min_{P\in\mathcal V^c_q} E^c_q(P),
+\qquad
+\mathrm{UB}_c
+=
+\bigl(\mathrm{UB}^c_{\mathrm{ext}},
+\mathrm{UB}^c_{\mathrm{all}}\bigr).
+\]
+
+\(\mathrm{UB}_c\) 的两个分量可以由不同程序取得，不能把它误读为某条
+八解程序的轨迹分数。项目还对两个覆盖口径分别维护理论最优值
 
 \[
 \operatorname{OPT}^{c}_{\mathrm{ext}}
