@@ -24,7 +24,7 @@
 4. 记录每个完整构造的 `(首次外切解 E, 全部八解 E)`，分析八个目标之间的复用；
 5. 在两个 profile 和两个覆盖口径上分别寻找能够减少至少 1 E 的替换。
 
-E 步规则完全采用 [Euclid-Min E 步计分规范](https://github.com/lenovobenben/euclid-min/blob/main/docs/METRICS.md)。文献中的“步骤数”、宏操作数和其他历史指标不能直接当作本项目的 E 分数。
+E 步规则完全采用 [Euclid-Min E 步计分规范（固定版本）](https://github.com/lenovobenben/euclid-min/blob/792619b38d749643bc9d80da8110dc9cff5b4877/docs/METRICS.md)。文献中的“步骤数”、宏操作数和其他历史指标不能直接当作本项目的 E 分数。
 
 ## 阶段 1：互联网与文献检索
 

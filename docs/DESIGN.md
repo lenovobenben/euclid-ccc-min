@@ -30,8 +30,8 @@ Euclid-CCC-Min 研究阿波罗尼乌斯问题的 CCC 情形：给定三个圆，
 
 E 步计数法与 Euclid-Min **完全一致**，规范入口为：
 
-- [Euclid-Min E 步计分规范](https://github.com/lenovobenben/euclid-min/blob/main/docs/METRICS.md)
-- [Euclid-Min 正式模型](https://github.com/lenovobenben/euclid-min/blob/main/docs/FORMAL_MODEL.md)
+- [Euclid-Min E 步计分规范（固定版本）](https://github.com/lenovobenben/euclid-min/blob/792619b38d749643bc9d80da8110dc9cff5b4877/docs/METRICS.md)
+- [Euclid-Min 正式模型（固定版本）](https://github.com/lenovobenben/euclid-min/blob/792619b38d749643bc9d80da8110dc9cff5b4877/docs/FORMAL_MODEL.md)
 
 其中与具体正十七边形实例有关的初始对象和目标定义不适用于本项目；基础工具、计费公式、确定点限制、重复绘制规则和自动交点闭包语义保持一致。
 
