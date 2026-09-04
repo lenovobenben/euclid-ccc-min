@@ -12,8 +12,8 @@
 绑定交点。
 
 这是多实例浮点筛查，不是 3 E 下界。它不覆盖第二步依赖首步新点的
-动态形状，也不覆盖需要四个新对象的直接接触点程序。任何命中仍须用
-精确算术独立重放。
+动态形状，不覆盖第三步使用两个派生点的形状，也不覆盖需要四个新对象
+的直接接触点程序。任何命中仍须用精确算术独立重放。
 """
 
 from __future__ import annotations
@@ -143,13 +143,15 @@ def contains_targets(drawable, targets) -> bool:
     for value, target in zip(drawable.values, targets, strict=True):
         if drawable.kind == "line":
             residual = abs(value[0] * target[0] + value[1] * target[1] + value[2])
+            scale = max(1.0, abs(value[2]), abs(target[0]), abs(target[1]))
         else:
-            residual = abs(
+            distance_squared = (
                 (target[0] - value[0]) ** 2
                 + (target[1] - value[1]) ** 2
-                - value[2]
             )
-        if residual > TARGET_TOLERANCE:
+            residual = abs(distance_squared - value[2])
+            scale = max(1.0, distance_squared, abs(value[2]))
+        if residual > TARGET_TOLERANCE * scale:
             return False
     return True
 
