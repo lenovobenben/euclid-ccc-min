@@ -4,9 +4,9 @@
 产生该圆心，从而支持 5 E 交错后缀。本脚本在三个严格正规 ``D8``
 夹具上检查全部 56 个有向“目标圆—其它目标圆心”关系。
 
-不同目标根位于不同二次扩域，当前轻量精确数类不能直接混合它们；因此
-本脚本只做多夹具浮点筛查。零结果排除这三个夹具上的直接圆心入射，
-不是一般参数证明，也不排除利用目标圆新交点的间接构造。
+同一方向类的两个根位于同一个实二次域，本脚本对这 8 个有向关系作精确
+判定；不同方向类通常位于不同二次扩域，当前轻量精确数类不能直接混合
+它们，仍只做多夹具浮点筛查。跨方向零结果不是一般参数证明。
 """
 
 from __future__ import annotations
@@ -44,6 +44,13 @@ def on_circle(point, value) -> bool:
     return residual <= TOLERANCE * max(1.0, radius_squared)
 
 
+def on_circle_exact(point, value) -> bool:
+    center, radius_squared = value
+    delta_x = point[0] - center[0]
+    delta_y = point[1] - center[1]
+    return delta_x * delta_x + delta_y * delta_y == radius_squared
+
+
 def targets_for_fixture(index, centers, radii):
     replay = CoreOnlyReplay(
         f"target_circle_center_incidence_{index}",
@@ -61,14 +68,20 @@ def targets_for_fixture(index, centers, radii):
             allow_repeated_physical_signs=True,
         ).items():
             targets[f"{profile}:{key}"] = {
-                "center": float_point(collapse_point(target["center"])),
-                "circle": float_circle(
-                    collapse_circle(target["output_circle"])
-                ),
+                "profile": profile,
+                "exact_center": collapse_point(target["center"]),
+                "exact_circle": collapse_circle(target["output_circle"]),
             }
     if len(targets) != 8:
         raise AssertionError("严格正规夹具没有恰好八个目标")
-    return targets
+    return {
+        key: {
+            **target,
+            "center": float_point(target["exact_center"]),
+            "circle": float_circle(target["exact_circle"]),
+        }
+        for key, target in targets.items()
+    }
 
 
 def main() -> None:
@@ -82,6 +95,7 @@ def main() -> None:
 
     hits = []
     fixture_incidences = []
+    exact_same_profile_incidences = []
     for sample in samples:
         incidences = tuple(
             (source, target)
@@ -91,6 +105,19 @@ def main() -> None:
             and on_circle(sample[target]["center"], sample[source]["circle"])
         )
         fixture_incidences.append(incidences)
+        exact_same_profile_incidences.append(
+            tuple(
+                (source, target)
+                for source in keys
+                for target in keys
+                if source != target
+                and sample[source]["profile"] == sample[target]["profile"]
+                and on_circle_exact(
+                    sample[target]["exact_center"],
+                    sample[source]["exact_circle"],
+                )
+            )
+        )
 
     for source in keys:
         for target in keys:
@@ -107,6 +134,17 @@ def main() -> None:
         {
             "samples": len(samples),
             "directed_pairs": len(keys) * (len(keys) - 1),
+            "exact_same_profile_pairs": sum(
+                1
+                for source in keys
+                for target in keys
+                if source != target
+                and samples[0][source]["profile"]
+                == samples[0][target]["profile"]
+            ),
+            "exact_same_profile_incidences": tuple(
+                len(rows) for rows in exact_same_profile_incidences
+            ),
             "fixture_incidences": tuple(
                 len(rows) for rows in fixture_incidences
             ),
