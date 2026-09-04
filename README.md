@@ -478,6 +478,7 @@ Linux 或 macOS 可把 `py -3` 换成环境中的 `python3`。
 | Mannheim 构造、一般参数证明、分支与计数台账 | [Mannheim 复原](docs/MANNHEIM.md) |
 | 当前突破口和已完成搜索的边界 | [研究路线](docs/ROADMAP.md) |
 | 历史来源、检索记录和规则可比性 | [文献台账](docs/LITERATURE.md) |
+| 初始见证点与任意点模型的未决问题 | [问题备忘](docs/POINT_MODEL_QUESTION.md) |
 | 精确重放、符号验证和局部搜索 | [experiments](experiments/) |
 
 若 README 的概述与详细定义发生歧义，以
