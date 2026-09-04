@@ -1,11 +1,11 @@
 """扫描 Mannheim 四个方向类同时退化时的局部成本分布。
 
 脚本复用 ``scan_mannheim_degeneracies`` 的严格 ``D8`` 判定和 Fraction
-中间对象。对每个方向类，正规或简单平行块记 13 E；简单对向合并的
-早期 14 E 台账再扣除目标恢复线与第二圆半径线的两次强制复用，记
-12 E；双对合并按一般上界记 9 E。因此由 65 E 的逐块程序出发，每个
-简单合并减 1，每个双对合并减 4。偶然对象重合、跨块公共弦与居中
-平行的额外节省均忽略，所以所得数值是该分支模型中的保守上界。
+中间对象。共点程序先完整构造 P0、P2，并保证两条 ``tau`` 都已画出；
+每块保守记 13 E，双对合并仍只需 9 E。二者免费给出根心 S。后行的
+P1、P3 若四点不同，只需两条有限对角弦和 ``Line(S,D)``，连两个目标
+后缀至多 11 E；简单或双对合并直接用合并点和 S 画 ``tau``，至多
+9 E。偶然对象重合、公共弦和居中平行的额外节省均忽略。
 
 这是有界扫描，不是连续参数域上“至多两个简单合并”的证明。
 """
@@ -40,6 +40,20 @@ def classify(events: set[str]) -> tuple[tuple[str, ...], ...]:
     return tuple(simple), tuple(double), tuple(parallel)
 
 
+def profile_cost(profile: str, events: set[str]) -> int:
+    merge_xz = f"{profile}:merge:a2=a2_prime" in events
+    merge_yw = f"{profile}:merge:alpha2=alpha2_prime" in events
+    double_merge = merge_xz and merge_yw
+    simple_merge = merge_xz != merge_yw
+    if profile in {"P0", "P2"}:
+        if double_merge:
+            return 9
+        return 13
+    if double_merge or simple_merge:
+        return 9
+    return 11
+
+
 def scan(max_radius: int, max_coordinate: int) -> None:
     tested = 0
     in_domain = 0
@@ -69,8 +83,9 @@ def scan(max_radius: int, max_coordinate: int) -> None:
                             in_domain += 1
                             events = analyze_fixture(*fixture)
                             simple, double, parallel = classify(events)
-                            branch_cost = (
-                                65 - len(simple) - 4 * len(double)
+                            branch_cost = 13 + sum(
+                                profile_cost(profile, events)
+                                for profile in PROFILES
                             )
                             distribution[
                                 (

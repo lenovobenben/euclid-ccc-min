@@ -287,14 +287,12 @@ class ThreeBlockReplay:
             subtract(self.o3, self.o1),
         )
         try:
-            fraction_square_root(distance_squared)
+            root = fraction_square_root(distance_squared)
+            zero = F(0)
         except ValueError:
-            pass
-        else:
-            raise AssertionError("夹具的平行前缀应进入非有理二次域")
-
-        root = Quadratic(0, 1, distance_squared)
-        x = (root, Quadratic(0, 0, distance_squared))
+            root = Quadratic(0, 1, distance_squared)
+            zero = Quadratic(0, 0, distance_squared)
+        x = (root, zero)
         self.objects.circle(
             "parallel_c0",
             (self.o1, distance_squared),
@@ -323,10 +321,7 @@ class ThreeBlockReplay:
             q_id,
             special_key="irrational-XQ",
         )
-        r = (
-            2 * root - reflected_o3[0],
-            Quadratic(self.o3[1], 0, distance_squared),
-        )
+        r = (2 * root - reflected_o3[0], zero + self.o3[1])
         r_id = self.objects.point(
             "parallel_R",
             r,
@@ -440,11 +435,16 @@ class ThreeBlockReplay:
         contact_3_id: str,
     ) -> None:
         paid_lines = tuple(collapse_line(value) for value in target["paid_lines"])
-        if len(paid_lines) != 3:
-            raise AssertionError("三块合并夹具的目标后缀应有三条候选线")
-        contact_line, radius_2, radius_3 = paid_lines
+        if len(paid_lines) not in {2, 3}:
+            raise AssertionError("目标后缀应有两条或三条候选线")
+        contact_line, radius_2 = paid_lines[:2]
         contact_3 = collapse_point(target["contact_3"])
         target_center = collapse_point(target["center"])
+        radius_3 = (
+            paid_lines[2]
+            if len(paid_lines) == 3
+            else collapse_line(line_through(self.o3, contact_3))
+        )
 
         physical_sign = target.get("physical_sign", sign)
         similarity_kind = (
