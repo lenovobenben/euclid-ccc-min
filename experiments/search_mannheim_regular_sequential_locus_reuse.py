@@ -144,6 +144,7 @@ def build_state(selected_profiles: frozenset[str]):
         for replay in replays
     )
     target_lines = {}
+    target_centers = {}
     required_radii = {}
     kp_auxiliaries = {}
     for profile in PROFILES:
@@ -170,6 +171,16 @@ def build_state(selected_profiles: frozenset[str]):
         target_keys = tuple(sorted(sample_targets[0]))
         if any(tuple(sorted(targets)) != target_keys for targets in sample_targets):
             raise AssertionError(f"{profile} 的目标键在夹具间不一致")
+        target_centers[profile] = {
+            key: tuple(
+                tuple(
+                    float_scalar(coordinate)
+                    for coordinate in collapse_point(targets[key]["center"])
+                )
+                for targets in sample_targets
+            )
+            for key in target_keys
+        }
         required_radii[profile] = {}
         for key in target_keys:
             contacts = tuple(
@@ -253,6 +264,7 @@ def build_state(selected_profiles: frozenset[str]):
     return (
         state,
         target_lines,
+        target_centers,
         required_radii,
         kp_auxiliaries,
         root_centers,
@@ -461,6 +473,7 @@ def main() -> None:
             (
                 state,
                 target_lines,
+                _,
                 required_radii,
                 kp_auxiliaries,
                 root_centers,

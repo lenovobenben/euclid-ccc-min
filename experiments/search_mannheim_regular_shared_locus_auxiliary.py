@@ -36,6 +36,7 @@ def search_state(selected_tuple, *, progress_interval: int):
         target_lines,
         _,
         _,
+        _,
         root_centers,
         _,
     ) = build_state(selected)
