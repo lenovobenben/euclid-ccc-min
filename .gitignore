@@ -1,3 +1,4 @@
 __pycache__/
 *.py[cod]
-animations/e49/media/
+animations/e49/media/*
+!animations/e49/media/E49Progress_4k60.mp4

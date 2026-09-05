@@ -100,6 +100,9 @@ python3 -m unittest discover -v
 
 ## 49 E 八解动画
 
+[下载 4K60 成片](animations/e49/media/E49Progress_4k60.mp4?raw=true)
+（3840 × 2160，60 fps，约 1 分 39 秒）。
+
 [`animations/e49`](animations/e49) 使用与 Euclid-Min 正十七边形演示一致的
 Manim 视觉风格，逐步播放 `CCC-ALL-8 / gen` 的正规 49 E 程序。动画几何
 由正式精确重放导出，不在场景代码中手填构造结果；开场分别说明 CCC 八解
