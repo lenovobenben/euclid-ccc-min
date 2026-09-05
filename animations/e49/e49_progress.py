@@ -17,6 +17,7 @@ from manim import (
     LaggedStart,
     Line,
     MovingCameraScene,
+    Rectangle,
     Text,
     Transform,
     VGroup,
@@ -44,10 +45,10 @@ INPUT_CIRCLE = "#F45BFF"
 
 LOGICAL_BOUNDS = (-42.0, 38.0, -23.0, 25.0)
 GEOMETRY_SCALE = 0.32
-GEOMETRY_ORIGIN = (6.5, 6.5)
-INPUT_FRAME_CENTER = (6.5, 6.5)
+GEOMETRY_ORIGIN = (5.5, 4.75)
+INPUT_FRAME_CENTER = (5.0, 4.75)
 INPUT_FRAME_WIDTH = 11.7
-TARGET_FRAME_CENTER = (7.0, 6.5)
+TARGET_FRAME_CENTER = (5.45, 4.65)
 TARGET_FRAME_WIDTH = 15.8
 
 SUBSCRIPTS = "₀₁₂₃₄₅₆₇₈₉"
@@ -72,24 +73,25 @@ KEY_POINTS = {
 }
 
 CAMERA_CUES = {
-    2: ((9.0, 0.0), 22.0),
+    2: ((6.7, 0.0), 16.2),
     5: (INPUT_FRAME_CENTER, INPUT_FRAME_WIDTH),
-    14: ((4.2, 13.3), 8.0),
-    18: ((4.0, 15.4), 4.9),
-    19: ((4.2, 14.0), 5.8),
-    22: ((4.2, 14.0), 5.8),
-    24: ((5.2, 10.5), 6.2),
-    26: ((4.5, 11.2), 6.2),
-    27: ((3.8, 3.4), 5.5),
+    14: ((6.0, 12.2), 3.2),
+    18: ((6.45, 15.55), 4.3),
+    19: ((5.8, 11.8), 3.2),
+    22: ((5.3, 9.8), 2.7),
+    23: ((6.75, 11.1), 2.7),
+    24: ((6.0, 8.3), 4.6),
+    26: ((6.2, 12.3), 3.0),
+    27: ((2.2, 2.55), 5.5),
     28: (TARGET_FRAME_CENTER, TARGET_FRAME_WIDTH),
-    32: ((4.2, 12.0), 5.7),
-    33: ((-0.4, 3.4), 6.4),
+    32: ((5.5, 11.5), 3.0),
+    33: ((-1.15, 2.55), 5.6),
     34: (TARGET_FRAME_CENTER, TARGET_FRAME_WIDTH),
-    38: ((4.2, 12.0), 5.7),
-    39: ((5.2, 3.4), 4.7),
+    38: ((5.85, 11.1), 3.0),
+    39: ((5.1, 2.55), 3.6),
     40: (TARGET_FRAME_CENTER, TARGET_FRAME_WIDTH),
-    44: ((4.2, 12.0), 5.7),
-    45: ((-13.0, 3.4), 14.4),
+    44: ((6.6, 11.75), 3.0),
+    45: ((20.95, 2.55), 10.4),
     46: (TARGET_FRAME_CENTER, TARGET_FRAME_WIDTH),
 }
 
@@ -212,7 +214,7 @@ class E49Progress(MovingCameraScene):
             old_score.get_right() + RIGHT * 0.12,
             new_score.get_left() + LEFT * 0.12,
             color=CIRCLE_BLUE,
-            stroke_width=4.5,
+            stroke_width=3.0,
             buff=0,
         )
         saving = self.make_text("减少 16 E", font_size=24, color=TARGET, weight="MEDIUM")
@@ -240,6 +242,15 @@ class E49Progress(MovingCameraScene):
         )
         self.counter_base_width = self.counter.width
         self.counter.set_stroke(BACKGROUND, width=7, background=True).set_z_index(20)
+        self.counter_backdrop = Rectangle(
+            width=self.counter.width + 0.42,
+            height=self.counter.height + 0.24,
+            stroke_width=0,
+            fill_color=BACKGROUND,
+            fill_opacity=0.88,
+        ).set_z_index(19)
+        backdrop_base_width = self.counter_backdrop.width
+        backdrop_base_height = self.counter_backdrop.height
 
         def pin_counter(counter: Text) -> None:
             scale = self.camera.frame.width / self.base_frame_width
@@ -251,16 +262,27 @@ class E49Progress(MovingCameraScene):
             )
 
         self.counter.add_updater(pin_counter)
+
+        def pin_counter_backdrop(backdrop: Rectangle) -> None:
+            scale = self.camera.frame.width / self.base_frame_width
+            backdrop.set(
+                width=backdrop_base_width * scale,
+                height=backdrop_base_height * scale,
+            )
+            backdrop.move_to(self.counter)
+
+        self.counter_backdrop.add_updater(pin_counter_backdrop)
         input_circles = VGroup()
         input_centers = VGroup()
         for index, record in enumerate(self.data["initial"]["circles"], start=1):
             circle = Circle(
                 radius=record["radius"] * GEOMETRY_SCALE,
                 color=INPUT_CIRCLE,
-                stroke_width=3.7,
+                stroke_width=self.screen_stroke_width(2.4),
                 fill_opacity=0.025,
                 fill_color=INPUT_CIRCLE,
             ).move_to(logical_to_scene(record["center"]))
+            self.keep_screen_stroke(circle, 2.4)
             circle.set_z_index(3)
             center = Dot(logical_to_scene(record["center"]), radius=0.052, color=FOREGROUND)
             direction = DOWN if index < 3 else UP
@@ -273,7 +295,7 @@ class E49Progress(MovingCameraScene):
         self.input_circles = input_circles
         self.input_centers = input_centers
         self.play(
-            FadeIn(self.counter),
+            FadeIn(VGroup(self.counter_backdrop, self.counter)),
             LaggedStart(*(Create(item) for item in input_circles[::2]), lag_ratio=0.15),
             FadeIn(VGroup(*input_circles[1::2], *input_centers)),
             run_time=1.0,
@@ -283,30 +305,52 @@ class E49Progress(MovingCameraScene):
     def point_at(self, point_id: str):
         return logical_to_scene(self.data["points"][point_id]["at"])
 
+    def screen_stroke_width(self, width: float) -> float:
+        """把屏幕线宽换算成当前移动镜头中的场景线宽。"""
+
+        return width * self.camera.frame.width / self.base_frame_width
+
+    def keep_screen_stroke(self, drawable, width: float) -> None:
+        """缩放镜头时保持线在屏幕上的粗细稳定。"""
+
+        drawable.screen_stroke_width = width
+        drawable.add_updater(
+            lambda item: item.set_stroke(
+                width=self.screen_stroke_width(item.screen_stroke_width)
+            )
+        )
+
     def make_drawable(self, event: dict):
         is_target = "target" in event
         color = TARGET if is_target else GOLD
-        width = 4.2 if is_target else 3.0
+        width = 3.0 if is_target else 1.8
         if event["op"] == "line":
             start, end = clipped_line(event["geometry"])
-            return Line(
+            drawable = Line(
                 logical_to_scene(start),
                 logical_to_scene(end),
                 color=color,
-                stroke_width=width,
+                stroke_width=self.screen_stroke_width(width),
             )
-        geometry = event["geometry"]
-        return Circle(
-            radius=geometry["radius"] * GEOMETRY_SCALE,
-            color=color,
-            stroke_width=width,
-            fill_opacity=0,
-        ).move_to(logical_to_scene(geometry["center"]))
+        else:
+            geometry = event["geometry"]
+            drawable = Circle(
+                radius=geometry["radius"] * GEOMETRY_SCALE,
+                color=color,
+                stroke_width=self.screen_stroke_width(width),
+                fill_opacity=0,
+            ).move_to(logical_to_scene(geometry["center"]))
+        self.keep_screen_stroke(drawable, width)
+        return drawable
 
     def reference_marker(self, point_id: str, color: str) -> VGroup:
         position = self.point_at(point_id)
         return VGroup(
-            Circle(radius=0.105, color=color, stroke_width=3.2).move_to(position),
+            Circle(
+                radius=0.105,
+                color=color,
+                stroke_width=self.screen_stroke_width(1.8),
+            ).move_to(position),
             Dot(position, radius=0.044, color=color),
         ).set_z_index(15)
 
@@ -320,7 +364,12 @@ class E49Progress(MovingCameraScene):
         else:
             center = self.point_at(first_id)
             through = self.point_at(second_id)
-            radius = Line(center, through, color=ALERT, stroke_width=2.5).set_z_index(14)
+            radius = Line(
+                center,
+                through,
+                color=ALERT,
+                stroke_width=self.screen_stroke_width(1.4),
+            ).set_z_index(14)
             overlay = VGroup(
                 radius,
                 self.reference_marker(first_id, ALERT),
@@ -350,6 +399,23 @@ class E49Progress(MovingCameraScene):
             self.camera.frame.animate.move_to(logical_to_scene(center)).set(width=width),
             run_time=0.42,
         )
+
+    def assert_references_visible(self, event: dict) -> None:
+        """渲染时验证本步的两个尺规定位点没有被局部镜头裁掉。"""
+
+        frame = self.camera.frame
+        center = frame.get_center()
+        half_width = frame.width * 0.46
+        half_height = frame.height * 0.43
+        for point_id in event["references"]:
+            point = self.point_at(point_id)
+            if (
+                abs(point[0] - center[0]) > half_width
+                or abs(point[1] - center[1]) > half_height
+            ):
+                raise ValueError(
+                    f"E{event['e_move']:02d} 的定位点 {point_id} 位于镜头安全区外"
+                )
 
     def reveal_key_points(self, e_move: int) -> None:
         for point_id, (label_text, direction) in KEY_POINTS.items():
@@ -395,6 +461,7 @@ class E49Progress(MovingCameraScene):
                     self.play(FadeOut(endpoint_groups), run_time=0.2)
 
             self.adjust_camera(e_move)
+            self.assert_references_visible(event)
             references = self.show_references(event)
             drawable = self.make_drawable(event)
             is_target = "target" in event
@@ -415,10 +482,10 @@ class E49Progress(MovingCameraScene):
             else:
                 self.aux_drawables.add(drawable)
                 faded_color = CIRCLE_BLUE if event["op"] == "circle" else LINE_BLUE
+                drawable.screen_stroke_width = 0.8
                 self.play(
                     drawable.animate.set_stroke(
                         color=faded_color,
-                        width=1.45,
                         opacity=0.22,
                     ),
                     FadeOut(references),
@@ -437,9 +504,13 @@ class E49Progress(MovingCameraScene):
         root_center_id = "Mannheim_S_center_locus"
         if root_center_id in self.key_point_groups:
             remaining_points.add(self.key_point_groups[root_center_id])
+        for drawable in self.aux_drawables:
+            drawable.screen_stroke_width = 0.55
+        for drawable in self.target_drawables:
+            drawable.screen_stroke_width = 2.8
         finish_animations = [
-            self.aux_drawables.animate.set_stroke(opacity=0.045, width=1.0),
-            self.target_drawables.animate.set_stroke(color=TARGET, width=4.0, opacity=0.95),
+            self.aux_drawables.animate.set_stroke(opacity=0.045),
+            self.target_drawables.animate.set_stroke(color=TARGET, opacity=0.95),
         ]
         if len(remaining_points):
             finish_animations.append(FadeOut(remaining_points))
@@ -450,7 +521,7 @@ class E49Progress(MovingCameraScene):
             pulse = Circle(
                 radius=0.12,
                 color=TARGET,
-                stroke_width=3.0,
+                stroke_width=self.screen_stroke_width(2.0),
                 fill_opacity=0,
             ).move_to(logical_to_scene(target["center"]))
             pulses.append(pulse.animate.scale(3.0).set_stroke(opacity=0))

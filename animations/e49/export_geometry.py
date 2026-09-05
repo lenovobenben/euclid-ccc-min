@@ -6,6 +6,7 @@ import hashlib
 import json
 import math
 import sys
+from fractions import Fraction
 from pathlib import Path
 
 
@@ -24,7 +25,13 @@ from search_mannheim_center_locus_2e import (  # noqa: E402
 
 
 OUTPUT_PATH = Path(__file__).with_name("geometry.json")
-FIXTURE_NAME = "regular"
+FIXTURE_NAME = "animation_regular_large_gamma3"
+ANIMATION_CENTERS = (
+    (Fraction(0), Fraction(0)),
+    (Fraction(11), Fraction(0)),
+    (Fraction(6), Fraction(12)),
+)
+ANIMATION_RADII = (Fraction(9, 2), Fraction(5, 2), Fraction(2))
 TARGET_STEPS = (29, 31, 35, 37, 41, 43, 47, 49)
 
 
@@ -53,7 +60,12 @@ def _trace_sha256(payload: dict) -> str:
 
 
 def build_export() -> dict:
-    replay = KpCenterLocusReplay(FIXTURE_NAME, emit=False)
+    replay = KpCenterLocusReplay(
+        FIXTURE_NAME,
+        centers=ANIMATION_CENTERS,
+        radii=ANIMATION_RADII,
+        emit=False,
+    )
     report = replay.run()
     graph = replay.objects.graph
 
