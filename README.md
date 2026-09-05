@@ -488,6 +488,7 @@ Linux 或 macOS 可把 `py -3` 换成环境中的 `python3`。
 | 输入域、目标、覆盖口径、E 规则和声明等级 | [研究设计](docs/DESIGN.md) |
 | Mannheim 构造、一般参数证明、分支与计数台账 | [Mannheim 复原](docs/MANNHEIM.md) |
 | 当前突破口和已完成搜索的边界 | [研究路线](docs/ROADMAP.md) |
+| 继续降步数的机会、投入成本与粗略耗时判断 | [研究展望](docs/RESEARCH_OUTLOOK.md) |
 | 历史来源、检索记录和规则可比性 | [文献台账](docs/LITERATURE.md) |
 | 精确重放、符号验证和局部搜索 | [experiments](experiments/) |
 
