@@ -1,0 +1,1476 @@
+{
+  "schema": "euclid-ccc-min-manim-e49/v1",
+  "source": {
+    "replay": "experiments/replay_mannheim_kp_center_locus_dependencies.py",
+    "replay_class": "KpCenterLocusReplay",
+    "fixture": {
+      "name": "regular",
+      "centers_exact": [
+        [
+          "0",
+          "0"
+        ],
+        [
+          "13",
+          "0"
+        ],
+        [
+          "4",
+          "15"
+        ]
+      ],
+      "radii_exact": [
+        "4",
+        "2",
+        "1"
+      ]
+    },
+    "trace_sha256": "d36fd14914159ed0fa1d912a9acb9ccbcf80b8e2c351f3d79a5a1c0492e76864"
+  },
+  "verified_result": {
+    "profile": "CCC-ALL-8",
+    "coverage": "gen",
+    "e_move": 49,
+    "line_draws": 39,
+    "circle_draws": 10,
+    "target_draws": 8,
+    "target_steps": [
+      29,
+      31,
+      35,
+      37,
+      41,
+      43,
+      47,
+      49
+    ]
+  },
+  "initial": {
+    "circles": [
+      {
+        "id": "Gamma1",
+        "center_id": "O1",
+        "center": [
+          0.0,
+          0.0
+        ],
+        "radius": 4.0
+      },
+      {
+        "id": "Gamma2",
+        "center_id": "O2",
+        "center": [
+          13.0,
+          0.0
+        ],
+        "radius": 2.0
+      },
+      {
+        "id": "Gamma3",
+        "center_id": "O3",
+        "center": [
+          4.0,
+          15.0
+        ],
+        "radius": 1.0
+      }
+    ]
+  },
+  "points": {
+    "A": {
+      "at": [
+        3.0,
+        15.0
+      ],
+      "available_after": 5,
+      "dependencies": [
+        "ell3",
+        "Gamma3"
+      ]
+    },
+    "B": {
+      "at": [
+        5.0,
+        15.0
+      ],
+      "available_after": 5,
+      "dependencies": [
+        "ell3",
+        "Gamma3"
+      ]
+    },
+    "Mannheim_S_center_locus": {
+      "at": [
+        6.961538461538462,
+        6.676923076923077
+      ],
+      "available_after": 22,
+      "dependencies": [
+        "P0_tau",
+        "P2_tau"
+      ]
+    },
+    "O1": {
+      "at": [
+        0.0,
+        0.0
+      ],
+      "available_after": 0,
+      "dependencies": []
+    },
+    "O2": {
+      "at": [
+        13.0,
+        0.0
+      ],
+      "available_after": 0,
+      "dependencies": []
+    },
+    "O3": {
+      "at": [
+        4.0,
+        15.0
+      ],
+      "available_after": 0,
+      "dependencies": []
+    },
+    "P0_+++@-1_M3_Kp_locus": {
+      "at": [
+        4.494231222798643,
+        14.130669511399171
+      ],
+      "available_after": 18,
+      "dependencies": [
+        "P0_tau",
+        "Gamma3"
+      ]
+    },
+    "P0_---@+1_M3_Kp_locus": {
+      "at": [
+        3.877928990492716,
+        15.992521369360817
+      ],
+      "available_after": 18,
+      "dependencies": [
+        "P0_tau",
+        "Gamma3"
+      ]
+    },
+    "P0_K_core_point": {
+      "at": [
+        3.2432432432432434,
+        17.90990990990991
+      ],
+      "available_after": 15,
+      "dependencies": [
+        "P0_K_core_line_1",
+        "P0_K_core_line_2"
+      ]
+    },
+    "P0_Kp_core_point": {
+      "at": [
+        4.085365853658536,
+        15.365853658536585
+      ],
+      "available_after": 17,
+      "dependencies": [
+        "P0_Kp_core_line_1",
+        "P0_Kp_core_line_2"
+      ]
+    },
+    "P0_P0:+++@-1_center_from_Kp_locus": {
+      "at": [
+        8.07670408911738,
+        7.829260892087959
+      ],
+      "available_after": 28,
+      "dependencies": [
+        "P0_center_locus_from_Kp",
+        "P0_P0:+++@-1_radius_3_from_Kp_locus"
+      ]
+    },
+    "P0_P0:---@+1_center_from_Kp_locus": {
+      "at": [
+        5.242176565677444,
+        4.900249117866693
+      ],
+      "available_after": 30,
+      "dependencies": [
+        "P0_center_locus_from_Kp",
+        "P0_P0:---@+1_radius_3_from_Kp_locus"
+      ]
+    },
+    "P0_center_locus_J": {
+      "at": [
+        0.5,
+        0.0
+      ],
+      "available_after": 26,
+      "dependencies": [
+        "P0_O3_Kp",
+        "ell"
+      ]
+    },
+    "P1_++-@-1_M3_Kp_locus": {
+      "at": [
+        3.4174502086879954,
+        15.812795017604278
+      ],
+      "available_after": 24,
+      "dependencies": [
+        "P1_tau_from_S",
+        "Gamma3"
+      ]
+    },
+    "P1_--+@+1_M3_Kp_locus": {
+      "at": [
+        4.1179803190556905,
+        14.00698406643422
+      ],
+      "available_after": 24,
+      "dependencies": [
+        "P1_tau_from_S",
+        "Gamma3"
+      ]
+    },
+    "P1_Kp_locus_point": {
+      "at": [
+        3.9768211920529803,
+        14.370860927152318
+      ],
+      "available_after": 23,
+      "dependencies": [
+        "P2_Kp_core_line_1",
+        "P1_Kp_locus_line_2"
+      ]
+    },
+    "P1_P1:++-@-1_center_from_Kp_locus": {
+      "at": [
+        8.233382922237286,
+        9.093427552250844
+      ],
+      "available_after": 40,
+      "dependencies": [
+        "P1_center_locus_from_Kp",
+        "P1_P1:++-@-1_radius_3_from_Kp_locus"
+      ]
+    },
+    "P1_P1:--+@+1_center_from_Kp_locus": {
+      "at": [
+        5.352164367879611,
+        3.61911229897126
+      ],
+      "available_after": 42,
+      "dependencies": [
+        "P1_center_locus_from_Kp",
+        "P1_P1:--+@+1_radius_3_from_Kp_locus"
+      ]
+    },
+    "P1_center_locus_J": {
+      "at": [
+        3.4473684210526314,
+        0.0
+      ],
+      "available_after": 38,
+      "dependencies": [
+        "P1_O3_Kp",
+        "ell"
+      ]
+    },
+    "P2_+--@-1_M3_Kp_locus": {
+      "at": [
+        3.197818523041756,
+        15.597080294453846
+      ],
+      "available_after": 22,
+      "dependencies": [
+        "P2_tau",
+        "Gamma3"
+      ]
+    },
+    "P2_-++@+1_M3_Kp_locus": {
+      "at": [
+        3.8679887386661496,
+        14.008751783415956
+      ],
+      "available_after": 22,
+      "dependencies": [
+        "P2_tau",
+        "Gamma3"
+      ]
+    },
+    "P2_K_core_point": {
+      "at": [
+        4.553093964858671,
+        12.385026737967914
+      ],
+      "available_after": 20,
+      "dependencies": [
+        "P2_K_core_line_1",
+        "P2_K_core_line_2"
+      ]
+    },
+    "P2_Kp_core_point": {
+      "at": [
+        3.642963514519732,
+        14.542069992553984
+      ],
+      "available_after": 21,
+      "dependencies": [
+        "P2_Kp_core_line_1",
+        "P0_Kp_core_line_2"
+      ]
+    },
+    "P2_P2:+--@-1_center_from_Kp_locus": {
+      "at": [
+        12.061016306210345,
+        9.000018539495823
+      ],
+      "available_after": 34,
+      "dependencies": [
+        "P2_center_locus_from_Kp",
+        "P2_P2:+--@-1_radius_3_from_Kp_locus"
+      ]
+    },
+    "P2_P2:-++@+1_center_from_Kp_locus": {
+      "at": [
+        2.6286877017205432,
+        4.703068841894914
+      ],
+      "available_after": 36,
+      "dependencies": [
+        "P2_center_locus_from_Kp",
+        "P2_P2:-++@+1_radius_3_from_Kp_locus"
+      ]
+    },
+    "P2_center_locus_J": {
+      "at": [
+        -7.695121951219512,
+        0.0
+      ],
+      "available_after": 32,
+      "dependencies": [
+        "P2_O3_Kp",
+        "ell"
+      ]
+    },
+    "P3_+-+@-1_M3_Kp_locus": {
+      "at": [
+        4.69765624262911,
+        14.283567332458498
+      ],
+      "available_after": 25,
+      "dependencies": [
+        "P3_tau_from_S",
+        "Gamma3"
+      ]
+    },
+    "P3_-+-@+1_M3_Kp_locus": {
+      "at": [
+        4.192372099033134,
+        15.98132205494098
+      ],
+      "available_after": 25,
+      "dependencies": [
+        "P3_tau_from_S",
+        "Gamma3"
+      ]
+    },
+    "P3_Kp_locus_point": {
+      "at": [
+        4.432400932400933,
+        15.174825174825175
+      ],
+      "available_after": 23,
+      "dependencies": [
+        "P0_Kp_core_line_1",
+        "P1_Kp_locus_line_2"
+      ]
+    },
+    "P3_P3:+-+@-1_center_from_Kp_locus": {
+      "at": [
+        11.386739780953551,
+        7.414456630158925
+      ],
+      "available_after": 46,
+      "dependencies": [
+        "P3_center_locus_from_Kp",
+        "P3_P3:+-+@-1_radius_3_from_Kp_locus"
+      ]
+    },
+    "P3_P3:-+-@+1_center_from_Kp_locus": {
+      "at": [
+        2.2132602190464494,
+        5.885543369841075
+      ],
+      "available_after": 48,
+      "dependencies": [
+        "P3_center_locus_from_Kp",
+        "P3_P3:-+-@+1_radius_3_from_Kp_locus"
+      ]
+    },
+    "P3_center_locus_J": {
+      "at": [
+        -33.1,
+        0.0
+      ],
+      "available_after": 44,
+      "dependencies": [
+        "P3_O3_Kp",
+        "ell"
+      ]
+    },
+    "a": {
+      "at": [
+        4.0,
+        0.0
+      ],
+      "available_after": 1,
+      "dependencies": [
+        "ell",
+        "Gamma1"
+      ]
+    },
+    "a1": {
+      "at": [
+        11.0,
+        0.0
+      ],
+      "available_after": 1,
+      "dependencies": [
+        "ell",
+        "Gamma2"
+      ]
+    },
+    "alpha": {
+      "at": [
+        -4.0,
+        0.0
+      ],
+      "available_after": 1,
+      "dependencies": [
+        "ell",
+        "Gamma1"
+      ]
+    },
+    "alpha1": {
+      "at": [
+        15.0,
+        0.0
+      ],
+      "available_after": 1,
+      "dependencies": [
+        "ell",
+        "Gamma2"
+      ]
+    },
+    "parallel_Q": {
+      "at": [
+        4.0,
+        -15.0
+      ],
+      "available_after": 3,
+      "dependencies": [
+        "parallel_c0",
+        "parallel_cX"
+      ]
+    },
+    "parallel_R": {
+      "at": [
+        27.04834939252005,
+        15.0
+      ],
+      "available_after": 4,
+      "dependencies": [
+        "parallel_diameter",
+        "parallel_cX"
+      ]
+    },
+    "parallel_X": {
+      "at": [
+        15.524174696260024,
+        0.0
+      ],
+      "available_after": 2,
+      "dependencies": [
+        "parallel_c0",
+        "ell"
+      ]
+    },
+    "second_a1A": {
+      "at": [
+        3.442906574394464,
+        14.16955017301038
+      ],
+      "available_after": 8,
+      "dependencies": [
+        "batch_a1A",
+        "Gamma3"
+      ]
+    },
+    "second_a1B": {
+      "at": [
+        4.724137931034483,
+        15.689655172413794
+      ],
+      "available_after": 12,
+      "dependencies": [
+        "batch_a1B",
+        "Gamma3"
+      ]
+    },
+    "second_aA": {
+      "at": [
+        3.0088495575221237,
+        14.867256637168142
+      ],
+      "available_after": 11,
+      "dependencies": [
+        "batch_aA",
+        "Gamma3"
+      ]
+    },
+    "second_aB": {
+      "at": [
+        4.991150442477876,
+        14.867256637168142
+      ],
+      "available_after": 7,
+      "dependencies": [
+        "batch_aB",
+        "Gamma3"
+      ]
+    },
+    "second_alpha1A": {
+      "at": [
+        3.7804878048780486,
+        14.024390243902438
+      ],
+      "available_after": 13,
+      "dependencies": [
+        "batch_alpha1A",
+        "Gamma3"
+      ]
+    },
+    "second_alpha1B": {
+      "at": [
+        4.384615384615385,
+        15.923076923076923
+      ],
+      "available_after": 9,
+      "dependencies": [
+        "batch_alpha1B",
+        "Gamma3"
+      ]
+    },
+    "second_alphaA": {
+      "at": [
+        3.3576642335766422,
+        15.766423357664234
+      ],
+      "available_after": 6,
+      "dependencies": [
+        "batch_alphaA",
+        "Gamma3"
+      ]
+    },
+    "second_alphaB": {
+      "at": [
+        4.470588235294118,
+        14.117647058823529
+      ],
+      "available_after": 10,
+      "dependencies": [
+        "batch_alphaB",
+        "Gamma3"
+      ]
+    }
+  },
+  "events": [
+    {
+      "e_move": 1,
+      "id": "ell",
+      "op": "line",
+      "phase": "parallel_prefix",
+      "references": [
+        "O1",
+        "O2"
+      ],
+      "geometry": {
+        "a": 0.0,
+        "b": 1.0,
+        "c": 0.0
+      }
+    },
+    {
+      "e_move": 2,
+      "id": "parallel_c0",
+      "op": "circle",
+      "phase": "parallel_prefix",
+      "references": [
+        "O1",
+        "O3"
+      ],
+      "geometry": {
+        "center": [
+          0.0,
+          0.0
+        ],
+        "radius": 15.524174696260024
+      }
+    },
+    {
+      "e_move": 3,
+      "id": "parallel_cX",
+      "op": "circle",
+      "phase": "parallel_prefix",
+      "references": [
+        "parallel_X",
+        "O3"
+      ],
+      "geometry": {
+        "center": [
+          15.524174696260024,
+          0.0
+        ],
+        "radius": 18.91577654842433
+      }
+    },
+    {
+      "e_move": 4,
+      "id": "parallel_diameter",
+      "op": "line",
+      "phase": "parallel_prefix",
+      "references": [
+        "parallel_X",
+        "parallel_Q"
+      ],
+      "geometry": {
+        "a": 0.7929888557099438,
+        "b": -0.6092361403592484,
+        "c": -12.310497528228503
+      }
+    },
+    {
+      "e_move": 5,
+      "id": "ell3",
+      "op": "line",
+      "phase": "parallel_prefix",
+      "references": [
+        "O3",
+        "parallel_R"
+      ],
+      "geometry": {
+        "a": 0.0,
+        "b": 1.0,
+        "c": -15.0
+      }
+    },
+    {
+      "e_move": 6,
+      "id": "batch_alphaA",
+      "op": "line",
+      "phase": "batch_lines",
+      "references": [
+        "alpha",
+        "A"
+      ],
+      "geometry": {
+        "a": 0.9061831399952655,
+        "b": -0.42288546533112387,
+        "c": 3.624732559981062
+      }
+    },
+    {
+      "e_move": 7,
+      "id": "batch_aB",
+      "op": "line",
+      "phase": "batch_lines",
+      "references": [
+        "a",
+        "B"
+      ],
+      "geometry": {
+        "a": 0.9977851578566089,
+        "b": -0.06651901052377393,
+        "c": -3.9911406314264357
+      }
+    },
+    {
+      "e_move": 8,
+      "id": "batch_a1A",
+      "op": "line",
+      "phase": "batch_lines",
+      "references": [
+        "a1",
+        "A"
+      ],
+      "geometry": {
+        "a": 0.8823529411764706,
+        "b": 0.47058823529411764,
+        "c": -9.705882352941176
+      }
+    },
+    {
+      "e_move": 9,
+      "id": "batch_alpha1B",
+      "op": "line",
+      "phase": "batch_lines",
+      "references": [
+        "alpha1",
+        "B"
+      ],
+      "geometry": {
+        "a": 0.8320502943378437,
+        "b": 0.5547001962252291,
+        "c": -12.480754415067656
+      }
+    },
+    {
+      "e_move": 10,
+      "id": "batch_alphaB",
+      "op": "line",
+      "phase": "batch_lines",
+      "references": [
+        "alpha",
+        "B"
+      ],
+      "geometry": {
+        "a": 0.8574929257125441,
+        "b": -0.5144957554275265,
+        "c": 3.4299717028501764
+      }
+    },
+    {
+      "e_move": 11,
+      "id": "batch_aA",
+      "op": "line",
+      "phase": "batch_lines",
+      "references": [
+        "a",
+        "A"
+      ],
+      "geometry": {
+        "a": 0.9977851578566089,
+        "b": 0.06651901052377393,
+        "c": -3.9911406314264357
+      }
+    },
+    {
+      "e_move": 12,
+      "id": "batch_a1B",
+      "op": "line",
+      "phase": "batch_lines",
+      "references": [
+        "a1",
+        "B"
+      ],
+      "geometry": {
+        "a": 0.9284766908852594,
+        "b": 0.3713906763541037,
+        "c": -10.213243599737853
+      }
+    },
+    {
+      "e_move": 13,
+      "id": "batch_alpha1A",
+      "op": "line",
+      "phase": "batch_lines",
+      "references": [
+        "alpha1",
+        "A"
+      ],
+      "geometry": {
+        "a": 0.7808688094430304,
+        "b": 0.6246950475544243,
+        "c": -11.713032141645455
+      }
+    },
+    {
+      "e_move": 14,
+      "id": "P0_K_core_line_1",
+      "op": "line",
+      "phase": "contact_chords",
+      "references": [
+        "second_aB",
+        "second_alpha1B"
+      ],
+      "geometry": {
+        "a": 0.8671055424707689,
+        "b": 0.498124460568314,
+        "c": -11.733598404498064
+      }
+    },
+    {
+      "e_move": 15,
+      "id": "P0_K_core_line_2",
+      "op": "line",
+      "phase": "contact_chords",
+      "references": [
+        "second_alphaA",
+        "second_a1A"
+      ],
+      "geometry": {
+        "a": 0.9985782836810572,
+        "b": 0.05330489058795679,
+        "c": -4.193318059585934
+      }
+    },
+    {
+      "e_move": 16,
+      "id": "P0_Kp_core_line_1",
+      "op": "line",
+      "phase": "contact_chords",
+      "references": [
+        "second_aB",
+        "second_alphaA"
+      ],
+      "geometry": {
+        "a": 0.4822272466064925,
+        "b": 0.8760461646684614,
+        "c": -15.43127189140776
+      }
+    },
+    {
+      "e_move": 17,
+      "id": "P0_Kp_core_line_2",
+      "op": "line",
+      "phase": "contact_chords",
+      "references": [
+        "second_a1A",
+        "second_alpha1B"
+      ],
+      "geometry": {
+        "a": 0.8809944292988933,
+        "b": -0.47312663795681303,
+        "c": 3.670810122078722
+      }
+    },
+    {
+      "e_move": 18,
+      "id": "P0_tau",
+      "op": "line",
+      "phase": "contact_chords",
+      "references": [
+        "P0_K_core_point",
+        "P0_Kp_core_point"
+      ],
+      "geometry": {
+        "a": 0.9493412933914113,
+        "b": 0.31424689125259836,
+        "c": -8.70707824712679
+      }
+    },
+    {
+      "e_move": 19,
+      "id": "P2_K_core_line_1",
+      "op": "line",
+      "phase": "contact_chords",
+      "references": [
+        "second_aA",
+        "second_a1A"
+      ],
+      "geometry": {
+        "a": 0.8490956049211142,
+        "b": 0.5282392012182048,
+        "c": -10.408268705484627
+      }
+    },
+    {
+      "e_move": 20,
+      "id": "P2_K_core_line_2",
+      "op": "line",
+      "phase": "contact_chords",
+      "references": [
+        "second_alphaB",
+        "second_alpha1B"
+      ],
+      "geometry": {
+        "a": 0.9988681377244375,
+        "b": 0.047565149415449405,
+        "c": -5.137036136868536
+      }
+    },
+    {
+      "e_move": 21,
+      "id": "P2_Kp_core_line_1",
+      "op": "line",
+      "phase": "contact_chords",
+      "references": [
+        "second_aA",
+        "second_alphaB"
+      ],
+      "geometry": {
+        "a": 0.4563166475962754,
+        "b": 0.889817462812737,
+        "c": -14.602132723080812
+      }
+    },
+    {
+      "e_move": 22,
+      "id": "P2_tau",
+      "op": "line",
+      "phase": "contact_chords",
+      "references": [
+        "P2_K_core_point",
+        "P2_Kp_core_point"
+      ],
+      "geometry": {
+        "a": 0.92134460589585,
+        "b": 0.38874685488968386,
+        "c": -9.009608756769152
+      }
+    },
+    {
+      "e_move": 23,
+      "id": "P1_Kp_locus_line_2",
+      "op": "line",
+      "phase": "contact_chords",
+      "references": [
+        "second_a1B",
+        "second_alpha1A"
+      ],
+      "geometry": {
+        "a": 0.8700221858486124,
+        "b": -0.49301257198088033,
+        "c": 3.6250924410358847
+      }
+    },
+    {
+      "e_move": 24,
+      "id": "P1_tau_from_S",
+      "op": "line",
+      "phase": "contact_chords",
+      "references": [
+        "Mannheim_S_center_locus",
+        "P1_Kp_locus_point"
+      ],
+      "geometry": {
+        "a": 0.9323060101058855,
+        "b": 0.3616704349548694,
+        "c": -8.905129820666563
+      }
+    },
+    {
+      "e_move": 25,
+      "id": "P3_tau_from_S",
+      "op": "line",
+      "phase": "contact_chords",
+      "references": [
+        "Mannheim_S_center_locus",
+        "P3_Kp_locus_point"
+      ],
+      "geometry": {
+        "a": 0.9584520784412762,
+        "b": 0.2852535947741894,
+        "c": -8.576917317333471
+      }
+    },
+    {
+      "e_move": 26,
+      "id": "P0_O3_Kp",
+      "op": "line",
+      "phase": "target_pairs",
+      "references": [
+        "O3",
+        "P0_Kp_core_point"
+      ],
+      "geometry": {
+        "a": 0.9738412097417932,
+        "b": -0.2272296156064184,
+        "c": -0.4869206048708966
+      }
+    },
+    {
+      "e_move": 27,
+      "id": "P0_center_locus_from_Kp",
+      "op": "line",
+      "phase": "target_pairs",
+      "references": [
+        "Mannheim_S_center_locus",
+        "P0_center_locus_J"
+      ],
+      "geometry": {
+        "a": 0.7186021417665908,
+        "b": -0.6954214275160555,
+        "c": -0.3593010708832954
+      }
+    },
+    {
+      "e_move": 28,
+      "id": "P0_P0:+++@-1_radius_3_from_Kp_locus",
+      "op": "line",
+      "phase": "target_pairs",
+      "references": [
+        "O3",
+        "P0_+++@-1_M3_Kp_locus"
+      ],
+      "geometry": {
+        "a": 0.8693304886008305,
+        "b": 0.49423122279864246,
+        "c": -10.890790296382958
+      }
+    },
+    {
+      "e_move": 29,
+      "id": "target_P0:+++@-1",
+      "op": "circle",
+      "phase": "target_pairs",
+      "references": [
+        "P0_P0:+++@-1_center_from_Kp_locus",
+        "P0_+++@-1_M3_Kp_locus"
+      ],
+      "geometry": {
+        "center": [
+          8.07670408911738,
+          7.829260892087959
+        ],
+        "radius": 7.248576579262966
+      },
+      "target": {
+        "key": "P0:+++@-1",
+        "profile": "P0"
+      }
+    },
+    {
+      "e_move": 30,
+      "id": "P0_P0:---@+1_radius_3_from_Kp_locus",
+      "op": "line",
+      "phase": "target_pairs",
+      "references": [
+        "O3",
+        "P0_---@+1_M3_Kp_locus"
+      ],
+      "geometry": {
+        "a": 0.9925213693608176,
+        "b": 0.12207100950728395,
+        "c": -5.801150620052529
+      }
+    },
+    {
+      "e_move": 31,
+      "id": "target_P0:---@+1",
+      "op": "circle",
+      "phase": "target_pairs",
+      "references": [
+        "P0_P0:---@+1_center_from_Kp_locus",
+        "P0_---@+1_M3_Kp_locus"
+      ],
+      "geometry": {
+        "center": [
+          5.242176565677444,
+          4.900249117866693
+        ],
+        "radius": 11.175852323096613
+      },
+      "target": {
+        "key": "P0:---@+1",
+        "profile": "P0"
+      }
+    },
+    {
+      "e_move": 32,
+      "id": "P2_O3_Kp",
+      "op": "line",
+      "phase": "target_pairs",
+      "references": [
+        "O3",
+        "P2_Kp_core_point"
+      ],
+      "geometry": {
+        "a": 0.7886266631142201,
+        "b": -0.6148723332736075,
+        "c": 6.068578346647231
+      }
+    },
+    {
+      "e_move": 33,
+      "id": "P2_center_locus_from_Kp",
+      "op": "line",
+      "phase": "target_pairs",
+      "references": [
+        "Mannheim_S_center_locus",
+        "P2_center_locus_J"
+      ],
+      "geometry": {
+        "a": 0.4145646120999257,
+        "b": -0.910019880219349,
+        "c": 3.19012524676894
+      }
+    },
+    {
+      "e_move": 34,
+      "id": "P2_P2:+--@-1_radius_3_from_Kp_locus",
+      "op": "line",
+      "phase": "target_pairs",
+      "references": [
+        "O3",
+        "P2_+--@-1_M3_Kp_locus"
+      ],
+      "geometry": {
+        "a": 0.5970802944538453,
+        "b": 0.8021814769582437,
+        "c": -14.42104333218904
+      }
+    },
+    {
+      "e_move": 35,
+      "id": "target_P2:+--@-1",
+      "op": "circle",
+      "phase": "target_pairs",
+      "references": [
+        "P2_P2:+--@-1_center_from_Kp_locus",
+        "P2_+--@-1_M3_Kp_locus"
+      ],
+      "geometry": {
+        "center": [
+          12.061016306210345,
+          9.000018539495823
+        ],
+        "radius": 11.048868663455748
+      },
+      "target": {
+        "key": "P2:+--@-1",
+        "profile": "P2"
+      }
+    },
+    {
+      "e_move": 36,
+      "id": "P2_P2:-++@+1_radius_3_from_Kp_locus",
+      "op": "line",
+      "phase": "target_pairs",
+      "references": [
+        "O3",
+        "P2_-++@+1_M3_Kp_locus"
+      ],
+      "geometry": {
+        "a": 0.9912482165840429,
+        "b": -0.13201126133385033,
+        "c": -1.9848239463284154
+      }
+    },
+    {
+      "e_move": 37,
+      "id": "target_P2:-++@+1",
+      "op": "circle",
+      "phase": "target_pairs",
+      "references": [
+        "P2_P2:-++@+1_center_from_Kp_locus",
+        "P2_-++@+1_M3_Kp_locus"
+      ],
+      "geometry": {
+        "center": [
+          2.6286877017205432,
+          4.703068841894914
+        ],
+        "radius": 9.387843312938823
+      },
+      "target": {
+        "key": "P2:-++@+1",
+        "profile": "P2"
+      }
+    },
+    {
+      "e_move": 38,
+      "id": "P1_O3_Kp",
+      "op": "line",
+      "phase": "target_pairs",
+      "references": [
+        "O3",
+        "P1_Kp_locus_point"
+      ],
+      "geometry": {
+        "a": 0.999322019749525,
+        "b": -0.03681712704340355,
+        "c": -3.4450311733470467
+      }
+    },
+    {
+      "e_move": 39,
+      "id": "P1_center_locus_from_Kp",
+      "op": "line",
+      "phase": "target_pairs",
+      "references": [
+        "Mannheim_S_center_locus",
+        "P1_center_locus_J"
+      ],
+      "geometry": {
+        "a": 0.8849182223819824,
+        "b": -0.4657464328326223,
+        "c": -3.050639135053676
+      }
+    },
+    {
+      "e_move": 40,
+      "id": "P1_P1:++-@-1_radius_3_from_Kp_locus",
+      "op": "line",
+      "phase": "target_pairs",
+      "references": [
+        "O3",
+        "P1_++-@-1_M3_Kp_locus"
+      ],
+      "geometry": {
+        "a": 0.8127950176042787,
+        "b": 0.5825497913120047,
+        "c": -11.989426940097186
+      }
+    },
+    {
+      "e_move": 41,
+      "id": "target_P1:++-@-1",
+      "op": "circle",
+      "phase": "target_pairs",
+      "references": [
+        "P1_P1:++-@-1_center_from_Kp_locus",
+        "P1_++-@-1_M3_Kp_locus"
+      ],
+      "geometry": {
+        "center": [
+          8.233382922237286,
+          9.093427552250844
+        ],
+        "radius": 8.26698899454236
+      },
+      "target": {
+        "key": "P1:++-@-1",
+        "profile": "P1"
+      }
+    },
+    {
+      "e_move": 42,
+      "id": "P1_P1:--+@+1_radius_3_from_Kp_locus",
+      "op": "line",
+      "phase": "target_pairs",
+      "references": [
+        "O3",
+        "P1_--+@+1_M3_Kp_locus"
+      ],
+      "geometry": {
+        "a": 0.99301593356578,
+        "b": 0.1179803190556905,
+        "c": -5.741768520098478
+      }
+    },
+    {
+      "e_move": 43,
+      "id": "target_P1:--+@+1",
+      "op": "circle",
+      "phase": "target_pairs",
+      "references": [
+        "P1_P1:--+@+1_center_from_Kp_locus",
+        "P1_--+@+1_M3_Kp_locus"
+      ],
+      "geometry": {
+        "center": [
+          5.352164367879611,
+          3.61911229897126
+        ],
+        "radius": 10.460931608782529
+      },
+      "target": {
+        "key": "P1:--+@+1",
+        "profile": "P1"
+      }
+    },
+    {
+      "e_move": 44,
+      "id": "P3_O3_Kp",
+      "op": "line",
+      "phase": "target_pairs",
+      "references": [
+        "O3",
+        "P3_Kp_locus_point"
+      ],
+      "geometry": {
+        "a": 0.3748348747544557,
+        "b": -0.9270915902260205,
+        "c": 12.407034354372485
+      }
+    },
+    {
+      "e_move": 45,
+      "id": "P3_center_locus_from_Kp",
+      "op": "line",
+      "phase": "target_pairs",
+      "references": [
+        "Mannheim_S_center_locus",
+        "P3_center_locus_J"
+      ],
+      "geometry": {
+        "a": 0.1643989873053573,
+        "b": -0.9863939238321437,
+        "c": 5.4416064798073265
+      }
+    },
+    {
+      "e_move": 46,
+      "id": "P3_P3:+-+@-1_radius_3_from_Kp_locus",
+      "op": "line",
+      "phase": "target_pairs",
+      "references": [
+        "O3",
+        "P3_+-+@-1_M3_Kp_locus"
+      ],
+      "geometry": {
+        "a": 0.716432667541502,
+        "b": 0.6976562426291101,
+        "c": -13.330574309602659
+      }
+    },
+    {
+      "e_move": 47,
+      "id": "target_P3:+-+@-1",
+      "op": "circle",
+      "phase": "target_pairs",
+      "references": [
+        "P3_P3:+-+@-1_center_from_Kp_locus",
+        "P3_+-+@-1_M3_Kp_locus"
+      ],
+      "geometry": {
+        "center": [
+          11.386739780953551,
+          7.414456630158925
+        ],
+        "radius": 9.587936192066024
+      },
+      "target": {
+        "key": "P3:+-+@-1",
+        "profile": "P3"
+      }
+    },
+    {
+      "e_move": 48,
+      "id": "P3_P3:-+-@+1_radius_3_from_Kp_locus",
+      "op": "line",
+      "phase": "target_pairs",
+      "references": [
+        "O3",
+        "P3_-+-@+1_M3_Kp_locus"
+      ],
+      "geometry": {
+        "a": 0.9813220549409792,
+        "b": -0.1923720990331335,
+        "c": -1.0397067342669144
+      }
+    },
+    {
+      "e_move": 49,
+      "id": "target_P3:-+-@+1",
+      "op": "circle",
+      "phase": "target_pairs",
+      "references": [
+        "P3_P3:-+-@+1_center_from_Kp_locus",
+        "P3_-+-@+1_M3_Kp_locus"
+      ],
+      "geometry": {
+        "center": [
+          2.2132602190464494,
+          5.885543369841075
+        ],
+        "radius": 10.287936192066025
+      },
+      "target": {
+        "key": "P3:-+-@+1",
+        "profile": "P3"
+      }
+    }
+  ],
+  "targets": [
+    {
+      "display_index": 1,
+      "key": "P0:+++@-1",
+      "profile": "P0",
+      "output_id": "target_P0:+++@-1",
+      "draw_index": 29,
+      "center": [
+        8.07670408911738,
+        7.829260892087959
+      ],
+      "radius": 7.248576579262966
+    },
+    {
+      "display_index": 2,
+      "key": "P0:---@+1",
+      "profile": "P0",
+      "output_id": "target_P0:---@+1",
+      "draw_index": 31,
+      "center": [
+        5.242176565677444,
+        4.900249117866693
+      ],
+      "radius": 11.175852323096613
+    },
+    {
+      "display_index": 3,
+      "key": "P2:+--@-1",
+      "profile": "P2",
+      "output_id": "target_P2:+--@-1",
+      "draw_index": 35,
+      "center": [
+        12.061016306210345,
+        9.000018539495823
+      ],
+      "radius": 11.048868663455748
+    },
+    {
+      "display_index": 4,
+      "key": "P2:-++@+1",
+      "profile": "P2",
+      "output_id": "target_P2:-++@+1",
+      "draw_index": 37,
+      "center": [
+        2.6286877017205432,
+        4.703068841894914
+      ],
+      "radius": 9.387843312938823
+    },
+    {
+      "display_index": 5,
+      "key": "P1:++-@-1",
+      "profile": "P1",
+      "output_id": "target_P1:++-@-1",
+      "draw_index": 41,
+      "center": [
+        8.233382922237286,
+        9.093427552250844
+      ],
+      "radius": 8.26698899454236
+    },
+    {
+      "display_index": 6,
+      "key": "P1:--+@+1",
+      "profile": "P1",
+      "output_id": "target_P1:--+@+1",
+      "draw_index": 43,
+      "center": [
+        5.352164367879611,
+        3.61911229897126
+      ],
+      "radius": 10.460931608782529
+    },
+    {
+      "display_index": 7,
+      "key": "P3:+-+@-1",
+      "profile": "P3",
+      "output_id": "target_P3:+-+@-1",
+      "draw_index": 47,
+      "center": [
+        11.386739780953551,
+        7.414456630158925
+      ],
+      "radius": 9.587936192066024
+    },
+    {
+      "display_index": 8,
+      "key": "P3:-+-@+1",
+      "profile": "P3",
+      "output_id": "target_P3:-+-@+1",
+      "draw_index": 49,
+      "center": [
+        2.2132602190464494,
+        5.885543369841075
+      ],
+      "radius": 10.287936192066025
+    }
+  ]
+}
