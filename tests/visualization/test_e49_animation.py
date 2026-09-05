@@ -18,14 +18,14 @@ from export_geometry import build_export  # noqa: E402
 
 
 class E49AnimationDataTests(unittest.TestCase):
-    def test_release_render_profile_is_4k_30fps(self) -> None:
+    def test_release_render_profile_is_4k_60fps(self) -> None:
         parser = configparser.ConfigParser()
         parser.read(MANIM_CONFIG_PATH, encoding="utf-8")
         cli = parser["CLI"]
 
         self.assertEqual(cli.getint("pixel_width"), 3840)
         self.assertEqual(cli.getint("pixel_height"), 2160)
-        self.assertEqual(cli.getint("frame_rate"), 30)
+        self.assertEqual(cli.getint("frame_rate"), 60)
 
     def test_snapshot_is_the_current_exact_replay_export(self) -> None:
         stored = json.loads(GEOMETRY_PATH.read_text(encoding="utf-8"))

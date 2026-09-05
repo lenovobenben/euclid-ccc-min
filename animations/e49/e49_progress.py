@@ -19,10 +19,11 @@ from manim import (
     MovingCameraScene,
     Rectangle,
     Text,
-    Transform,
+    UpdateFromAlphaFunc,
     VGroup,
     Write,
     config,
+    linear,
     DOWN,
     LEFT,
     RIGHT,
@@ -50,6 +51,17 @@ INPUT_FRAME_CENTER = (5.0, 4.75)
 INPUT_FRAME_WIDTH = 11.7
 TARGET_FRAME_CENTER = (5.45, 4.65)
 TARGET_FRAME_WIDTH = 15.8
+
+# Widths and marker radii are specified at the overview camera scale. They stay
+# the same size on screen when the camera moves into the dense construction.
+INPUT_STROKE = 0.95
+ACTIVE_STROKE = 0.85
+TARGET_STROKE = 1.05
+AUX_STROKE = 0.40
+MARKER_STROKE = 0.60
+REFERENCE_RADIUS = 0.038
+REFERENCE_DOT_RADIUS = 0.010
+CENTER_DOT_RADIUS = 0.016
 
 SUBSCRIPTS = "₀₁₂₃₄₅₆₇₈₉"
 TARGET_DIRECTIONS = (
@@ -103,9 +115,12 @@ def logical_to_scene(point: list[float] | tuple[float, float]):
     )
 
 
-def clipped_line(geometry: dict) -> tuple[list[float], list[float]]:
+def clipped_line(
+    geometry: dict,
+    bounds: tuple[float, float, float, float] = LOGICAL_BOUNDS,
+) -> tuple[list[float], list[float]]:
     a, b, c = geometry["a"], geometry["b"], geometry["c"]
-    x_min, x_max, y_min, y_max = LOGICAL_BOUNDS
+    x_min, x_max, y_min, y_max = bounds
     candidates: list[tuple[float, float]] = []
     if abs(b) > 1e-10:
         for x in (x_min, x_max):
@@ -233,6 +248,9 @@ class E49Progress(MovingCameraScene):
             width=INPUT_FRAME_WIDTH
         )
         self.base_frame_width = INPUT_FRAME_WIDTH
+        self.screen_strokes = []
+        self.screen_anchors = []
+        self.viewport_key = None
 
         self.counter = self.make_text(
             "00 / 49",
@@ -241,7 +259,7 @@ class E49Progress(MovingCameraScene):
             weight="MEDIUM",
         )
         self.counter_base_width = self.counter.width
-        self.counter.set_stroke(BACKGROUND, width=7, background=True).set_z_index(20)
+        self.counter.set_z_index(20)
         self.counter_backdrop = Rectangle(
             width=self.counter.width + 0.42,
             height=self.counter.height + 0.24,
@@ -249,49 +267,33 @@ class E49Progress(MovingCameraScene):
             fill_color=BACKGROUND,
             fill_opacity=0.88,
         ).set_z_index(19)
-        backdrop_base_width = self.counter_backdrop.width
-        backdrop_base_height = self.counter_backdrop.height
-
-        def pin_counter(counter: Text) -> None:
-            scale = self.camera.frame.width / self.base_frame_width
-            counter.set(width=self.counter_base_width * scale)
-            counter.move_to(
-                self.camera.frame.get_corner(UP + RIGHT)
-                + LEFT * (counter.width / 2 + 0.30 * scale)
-                + DOWN * (counter.height / 2 + 0.22 * scale)
-            )
-
-        self.counter.add_updater(pin_counter)
-
-        def pin_counter_backdrop(backdrop: Rectangle) -> None:
-            scale = self.camera.frame.width / self.base_frame_width
-            backdrop.set(
-                width=backdrop_base_width * scale,
-                height=backdrop_base_height * scale,
-            )
-            backdrop.move_to(self.counter)
-
-        self.counter_backdrop.add_updater(pin_counter_backdrop)
+        self.backdrop_base_width = self.counter_backdrop.width
+        self.backdrop_base_height = self.counter_backdrop.height
+        self.sync_viewport()
         input_circles = VGroup()
         input_centers = VGroup()
         for index, record in enumerate(self.data["initial"]["circles"], start=1):
             circle = Circle(
                 radius=record["radius"] * GEOMETRY_SCALE,
                 color=INPUT_CIRCLE,
-                stroke_width=self.screen_stroke_width(2.4),
-                fill_opacity=0.025,
+                stroke_width=self.screen_stroke_width(INPUT_STROKE),
+                fill_opacity=0,
                 fill_color=INPUT_CIRCLE,
             ).move_to(logical_to_scene(record["center"]))
-            self.keep_screen_stroke(circle, 2.4)
+            self.keep_screen_stroke(circle, INPUT_STROKE)
             circle.set_z_index(3)
-            center = Dot(logical_to_scene(record["center"]), radius=0.052, color=FOREGROUND)
+            position = logical_to_scene(record["center"])
+            center = Dot(position, radius=CENTER_DOT_RADIUS, color=FOREGROUND)
             direction = DOWN if index < 3 else UP
             label = self.make_text(f"O{SUBSCRIPTS[index]}", font_size=17)
             label.next_to(center, direction, buff=0.08)
             gamma = self.make_text(f"Γ{SUBSCRIPTS[index]}", font_size=17, color=INPUT_CIRCLE)
             gamma.next_to(circle, UP if index < 3 else LEFT, buff=0.08)
+            self.keep_screen_size(gamma, gamma.get_center())
+            center_group = VGroup(center, label)
+            self.keep_screen_size(center_group, position)
             input_circles.add(circle, gamma)
-            input_centers.add(center, label)
+            input_centers.add(center_group)
         self.input_circles = input_circles
         self.input_centers = input_centers
         self.play(
@@ -311,19 +313,55 @@ class E49Progress(MovingCameraScene):
         return width * self.camera.frame.width / self.base_frame_width
 
     def keep_screen_stroke(self, drawable, width: float) -> None:
-        """缩放镜头时保持线在屏幕上的粗细稳定。"""
+        """记录屏幕线宽；仅在镜头变化时更新，静止背景可以缓存。"""
 
         drawable.screen_stroke_width = width
-        drawable.add_updater(
-            lambda item: item.set_stroke(
-                width=self.screen_stroke_width(item.screen_stroke_width)
-            )
+        self.screen_strokes.append(drawable)
+
+    def keep_screen_size(self, marker, anchor) -> None:
+        self.screen_anchors.append(
+            [marker, anchor.copy(), self.camera.frame.width / self.base_frame_width]
         )
+
+    def update_mobjects(self, dt: float) -> None:
+        super().update_mobjects(dt)
+        if hasattr(self, "base_frame_width"):
+            self.sync_viewport()
+
+    def sync_viewport(self) -> None:
+        """镜头运动时同步线宽、点标记和计数器，避免逐对象常驻 updater。"""
+
+        frame = self.camera.frame
+        key = (frame.width, *frame.get_center())
+        if key == self.viewport_key:
+            return
+        self.viewport_key = key
+        scale = frame.width / self.base_frame_width
+        for drawable in self.screen_strokes:
+            drawable.set_stroke(width=drawable.screen_stroke_width * scale)
+        for record in self.screen_anchors:
+            marker, anchor, previous_scale = record
+            marker.scale(scale / previous_scale, about_point=anchor)
+            record[2] = scale
+        self.pin_counter()
+
+    def pin_counter(self) -> None:
+        scale = self.camera.frame.width / self.base_frame_width
+        self.counter.set(width=self.counter_base_width * scale)
+        self.counter.move_to(
+            self.camera.frame.get_corner(UP + RIGHT)
+            + LEFT * (self.counter.width / 2 + 0.30 * scale)
+            + DOWN * (self.counter.height / 2 + 0.22 * scale)
+        )
+        self.counter_backdrop.set(
+            width=self.backdrop_base_width * scale,
+            height=self.backdrop_base_height * scale,
+        ).move_to(self.counter)
 
     def make_drawable(self, event: dict):
         is_target = "target" in event
         color = TARGET if is_target else GOLD
-        width = 3.0 if is_target else 1.8
+        width = TARGET_STROKE if is_target else ACTIVE_STROKE
         if event["op"] == "line":
             start, end = clipped_line(event["geometry"])
             drawable = Line(
@@ -347,12 +385,34 @@ class E49Progress(MovingCameraScene):
         position = self.point_at(point_id)
         return VGroup(
             Circle(
-                radius=0.105,
+                radius=self.screen_stroke_width(REFERENCE_RADIUS),
                 color=color,
-                stroke_width=self.screen_stroke_width(1.8),
+                stroke_width=self.screen_stroke_width(MARKER_STROKE),
+                fill_opacity=0,
             ).move_to(position),
-            Dot(position, radius=0.044, color=color),
+            Dot(position, radius=self.screen_stroke_width(REFERENCE_DOT_RADIUS), color=color),
         ).set_z_index(15)
+
+    def visible_line(self, event: dict, drawable: Line) -> Line:
+        """把绘制时间用在可见线段上，避免局部镜头只看到几帧扫过。"""
+
+        frame = self.camera.frame
+        center = frame.get_center()
+        x = center[0] / GEOMETRY_SCALE + GEOMETRY_ORIGIN[0]
+        y = center[1] / GEOMETRY_SCALE + GEOMETRY_ORIGIN[1]
+        # Extend just beyond the viewport so the replacement is invisible.
+        half_width = frame.width * 0.51 / GEOMETRY_SCALE
+        half_height = frame.height * 0.51 / GEOMETRY_SCALE
+        start, end = clipped_line(
+            event["geometry"],
+            (x - half_width, x + half_width, y - half_height, y + half_height),
+        )
+        return Line(
+            logical_to_scene(start),
+            logical_to_scene(end),
+            color=drawable.get_color(),
+            stroke_width=drawable.get_stroke_width(),
+        )
 
     def show_references(self, event: dict) -> VGroup:
         first_id, second_id = event["references"]
@@ -368,17 +428,18 @@ class E49Progress(MovingCameraScene):
                 center,
                 through,
                 color=ALERT,
-                stroke_width=self.screen_stroke_width(1.4),
+                stroke_width=self.screen_stroke_width(MARKER_STROKE),
             ).set_z_index(14)
             overlay = VGroup(
                 radius,
                 self.reference_marker(first_id, ALERT),
                 self.reference_marker(second_id, GOLD),
             )
-        self.play(FadeIn(overlay, scale=0.75), run_time=0.13)
+        self.play(FadeIn(overlay), run_time=0.2)
+        self.wait(0.1)
         return overlay
 
-    def update_counter(self, e_move: int):
+    def update_counter(self, e_move: int) -> None:
         new_counter = self.make_text(
             f"{e_move:02d} / 49",
             font_size=42,
@@ -387,18 +448,38 @@ class E49Progress(MovingCameraScene):
         )
         new_counter.scale(self.camera.frame.width / self.base_frame_width)
         new_counter.move_to(self.counter)
-        new_counter.set_stroke(BACKGROUND, width=7, background=True).set_z_index(20)
-        return Transform(self.counter, new_counter)
+        new_counter.set_z_index(20)
+        # E is an integer. Morphing Text glyphs made intermediate numbers tear
+        # and kept the HUD moving for every drawing animation.
+        self.counter.become(new_counter)
+        self.pin_counter()
+
+    def move_camera(self, center, width: float) -> None:
+        frame = self.camera.frame
+        start_center = frame.get_center().copy()
+        end_center = logical_to_scene(center)
+        start_width = frame.width
+        zoom = math.log(width / start_width)
+        travel = math.dist(start_center, end_center) / min(start_width, width)
+        if abs(zoom) < 1e-10 and travel < 1e-10:
+            return
+        seconds = min(1.6, 0.8 + 0.25 * abs(zoom) + 0.15 * travel)
+        seconds = round(seconds * config.frame_rate) / config.frame_rate
+
+        def interpolate_camera(camera_frame, alpha):
+            camera_frame.set(width=start_width * math.exp(zoom * alpha))
+            camera_frame.move_to((1 - alpha) * start_center + alpha * end_center)
+
+        self.play(UpdateFromAlphaFunc(frame, interpolate_camera), run_time=seconds)
+        self.sync_viewport()
+        self.wait(0.1)
 
     def adjust_camera(self, e_move: int) -> None:
         cue = CAMERA_CUES.get(e_move)
         if cue is None:
             return
         center, width = cue
-        self.play(
-            self.camera.frame.animate.move_to(logical_to_scene(center)).set(width=width),
-            run_time=0.42,
-        )
+        self.move_camera(center, width)
 
     def assert_references_visible(self, event: dict) -> None:
         """渲染时验证本步的两个尺规定位点没有被局部镜头裁掉。"""
@@ -422,12 +503,15 @@ class E49Progress(MovingCameraScene):
             record = self.data["points"][point_id]
             if record["available_after"] != e_move or point_id in self.key_point_groups:
                 continue
-            dot = Dot(self.point_at(point_id), radius=0.035, color=FOREGROUND)
+            position = self.point_at(point_id)
+            dot = Dot(position, radius=self.screen_stroke_width(0.012), color=FOREGROUND)
             label = self.make_text(label_text, font_size=14, color=FOREGROUND)
-            label.next_to(dot, direction, buff=0.055)
+            label.scale(self.camera.frame.width / self.base_frame_width)
+            label.next_to(dot, direction, buff=self.screen_stroke_width(0.055))
             group = VGroup(dot, label).set_z_index(7)
+            self.keep_screen_size(group, position)
             self.key_point_groups[point_id] = group
-            self.play(FadeIn(group, scale=0.7), run_time=0.12)
+            self.play(FadeIn(group), run_time=0.2)
 
     def make_target_marker(self, event: dict) -> VGroup:
         display_index = next(
@@ -436,15 +520,19 @@ class E49Progress(MovingCameraScene):
             if item["output_id"] == event["id"]
         )
         center_id = event["references"][0]
-        dot = Dot(self.point_at(center_id), radius=0.052, color=TARGET)
+        position = self.point_at(center_id)
+        dot = Dot(position, radius=self.screen_stroke_width(CENTER_DOT_RADIUS), color=TARGET)
         label = self.make_text(
             f"K{SUBSCRIPTS[display_index]}",
             font_size=15,
             color=TARGET,
             weight="MEDIUM",
         )
-        label.next_to(dot, TARGET_DIRECTIONS[display_index - 1], buff=0.07)
-        return VGroup(dot, label).set_z_index(12)
+        label.scale(self.camera.frame.width / self.base_frame_width)
+        label.next_to(dot, TARGET_DIRECTIONS[display_index - 1], buff=self.screen_stroke_width(0.07))
+        marker = VGroup(dot, label).set_z_index(12)
+        self.keep_screen_size(marker, position)
+        return marker
 
     def play_construction(self) -> None:
         for event in self.data["events"]:
@@ -465,52 +553,53 @@ class E49Progress(MovingCameraScene):
             references = self.show_references(event)
             drawable = self.make_drawable(event)
             is_target = "target" in event
-            animations = [Create(drawable), self.update_counter(e_move)]
+            self.update_counter(e_move)
+            visible = self.visible_line(event, drawable) if event["op"] == "line" else drawable
+            animations = [Create(visible, rate_func=linear)]
             target_marker = None
             if is_target:
                 target_marker = self.make_target_marker(event)
-                animations.append(FadeIn(target_marker, scale=0.7))
+                animations.append(FadeIn(target_marker))
             self.play(
                 *animations,
-                run_time=0.56 if is_target else 0.27,
+                run_time=1.0 if is_target else 0.6,
             )
+            if visible is not drawable:
+                self.remove(visible)
+                self.add(drawable)
             if is_target:
                 self.target_drawables.add(drawable)
                 self.target_markers.add(target_marker)
-                self.play(FadeOut(references), run_time=0.1)
-                self.wait(0.12)
+                self.play(FadeOut(references), run_time=0.2)
+                self.wait(0.2)
             else:
                 self.aux_drawables.add(drawable)
                 faded_color = CIRCLE_BLUE if event["op"] == "circle" else LINE_BLUE
-                drawable.screen_stroke_width = 0.8
+                drawable.screen_stroke_width = AUX_STROKE
                 self.play(
                     drawable.animate.set_stroke(
                         color=faded_color,
-                        opacity=0.22,
+                        width=self.screen_stroke_width(AUX_STROKE),
+                        opacity=0.28,
                     ),
                     FadeOut(references),
-                    run_time=0.09,
+                    run_time=0.2,
                 )
             self.reveal_key_points(e_move)
 
     def finish_construction(self) -> None:
-        self.play(
-            self.camera.frame.animate.move_to(logical_to_scene(TARGET_FRAME_CENTER)).set(
-                width=TARGET_FRAME_WIDTH
-            ),
-            run_time=0.65,
-        )
+        self.move_camera(TARGET_FRAME_CENTER, TARGET_FRAME_WIDTH)
         remaining_points = VGroup()
         root_center_id = "Mannheim_S_center_locus"
         if root_center_id in self.key_point_groups:
             remaining_points.add(self.key_point_groups[root_center_id])
         for drawable in self.aux_drawables:
-            drawable.screen_stroke_width = 0.55
+            drawable.screen_stroke_width = 0.3
         for drawable in self.target_drawables:
-            drawable.screen_stroke_width = 2.8
+            drawable.screen_stroke_width = 0.95
         finish_animations = [
-            self.aux_drawables.animate.set_stroke(opacity=0.045),
-            self.target_drawables.animate.set_stroke(color=TARGET, opacity=0.95),
+            self.aux_drawables.animate.set_stroke(width=self.screen_stroke_width(0.3), opacity=0.045),
+            self.target_drawables.animate.set_stroke(width=self.screen_stroke_width(0.95), color=TARGET, opacity=0.95),
         ]
         if len(remaining_points):
             finish_animations.append(FadeOut(remaining_points))
@@ -519,9 +608,9 @@ class E49Progress(MovingCameraScene):
         pulses = []
         for target in self.data["targets"]:
             pulse = Circle(
-                radius=0.12,
+                radius=self.screen_stroke_width(REFERENCE_RADIUS),
                 color=TARGET,
-                stroke_width=self.screen_stroke_width(2.0),
+                stroke_width=self.screen_stroke_width(MARKER_STROKE),
                 fill_opacity=0,
             ).move_to(logical_to_scene(target["center"]))
             pulses.append(pulse.animate.scale(3.0).set_stroke(opacity=0))
@@ -547,6 +636,8 @@ class E49Progress(MovingCameraScene):
             + RIGHT * (conclusion.width / 2 + 0.35 * scale)
             + UP * (conclusion.height / 2 + 0.28 * scale)
         )
-        conclusion.set_stroke(BACKGROUND, width=8, background=True).set_z_index(20)
+        conclusion.set_stroke(
+            BACKGROUND, width=self.screen_stroke_width(2.5), background=True
+        ).set_z_index(20)
         self.play(FadeIn(conclusion, shift=UP * 0.08), run_time=0.55)
         self.wait(3.0)
