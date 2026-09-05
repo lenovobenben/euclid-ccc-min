@@ -98,3 +98,9 @@ ffmpeg -i animations/e49/media/videos/e49_progress/2160p60/E49Progress.mp4 -vf f
 ```
 
 播放卡顿时优先比较 1080p60 与 4K60 播放版，以区分动画节奏和播放器解码负担。
+
+## 许可
+
+Manim 源代码、导出程序和配置采用 [Apache License 2.0](../../LICENSE)；
+几何导出数据、说明、分镜和视频成品采用 [CC BY 4.0](../../LICENSE-CONTENT)。
+转载或改编视频时请按 [许可范围](../../LICENSE-SCOPE.md)保留署名并注明修改。

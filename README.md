@@ -505,3 +505,9 @@ Lemoine 1892 把 Mannheim 1885 的方案展开为 54 条直线和 10 个圆，
 若 README 的概述与详细定义发生歧义，以
 [研究设计](docs/DESIGN.md)中冻结的 CCC 专用语义和上面固定版本的
 Euclid-Min E 步计分规范为准。
+
+## 许可
+
+代码、测试、构建脚本和配置采用 [Apache License 2.0](LICENSE)；
+文档、构造记录、研究数据和动画视频采用 [CC BY 4.0](LICENSE-CONTENT)。
+具体适用范围、第三方材料说明和推荐署名方式见 [许可范围](LICENSE-SCOPE.md)。

@@ -1,0 +1,46 @@
+# 许可范围
+
+版权所有 © 2026 lenovobenben。
+
+本仓库包含软件、数学文字、构造记录、研究数据和动画，因此采用分范围双协议。
+两个协议都只适用于贡献者有权授权的内容。
+范围划分参考 [Euclid-Min 的许可范围](https://github.com/lenovobenben/euclid-min/blob/main/LICENSE-SCOPE.md)，
+已按 Euclid-CCC-Min 的目录和材料调整。
+
+## Apache License 2.0
+
+下列软件材料采用 [Apache License 2.0](LICENSE)：
+
+- `experiments/`、`tests/` 和 `animations/` 中的 Python、Manim 源代码；
+- 测试工具、命令行工具和构建脚本；
+- Dockerfile、运行配置与搜索配置；
+- 定义程序接口或文件格式的模式文件。
+
+如果某个原创文件没有落入下方的 CC BY 4.0 范围，也没有单独的许可声明，
+则默认采用 Apache License 2.0。
+
+## Creative Commons Attribution 4.0 International
+
+下列非软件内容采用 [Creative Commons Attribution 4.0 International](LICENSE-CONTENT)：
+
+- 所有 Markdown 文档，包括各级 `README.md`、设计文档、文献台账、研究记录和动画分镜；
+- 独立保存的构造轨迹、证明记录、验证报告与搜索数据；
+- `animations/` 中的几何导出数据（包括 `animations/e49/geometry.json`）、图像、音频和视频成品。
+
+生成或检查这些材料的程序源代码与配置仍按上方的软件范围授权。
+
+推荐署名方式：
+
+> lenovobenben，*Euclid-CCC-Min*，<https://github.com/lenovobenben/euclid-ccc-min>，CC BY 4.0；如有修改请注明。
+
+## 不受本项目许可改变的内容
+
+- 数学事实、定理、公式、算法思想和数学概念本身是否受版权保护，由适用法律决定；本许可不主张超出贡献者依法享有的权利。
+- 引用的论文、网页和其他第三方材料仍由原权利人与原许可约束。
+- Python、Manim、字体及其他外部依赖保持各自的许可。本仓库的许可不替代或修改这些依赖的许可。
+- 某个文件如果带有单独的版权或许可声明，以该文件的明确声明为准。
+
+## 贡献
+
+除非贡献者在提交时明确另行说明，向本仓库有意提交的软件贡献按 Apache License 2.0 授权，
+非软件内容贡献按 CC BY 4.0 授权；具体归类遵循本文件。
