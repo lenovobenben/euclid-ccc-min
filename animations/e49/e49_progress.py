@@ -151,9 +151,13 @@ def clipped_line(
 
 
 class E49Progress(MovingCameraScene):
+    data_path = DATA_PATH
+    total_moves = 49
+    logical_bounds = LOGICAL_BOUNDS
+
     def construct(self) -> None:
         config.background_color = BACKGROUND
-        self.data = json.loads(DATA_PATH.read_text(encoding="utf-8"))
+        self.data = json.loads(self.data_path.read_text(encoding="utf-8"))
         self.aux_drawables = VGroup()
         self.target_drawables = VGroup()
         self.target_markers = VGroup()
@@ -253,7 +257,7 @@ class E49Progress(MovingCameraScene):
         self.viewport_key = None
 
         self.counter = self.make_text(
-            "00 / 49",
+            f"00 / {self.total_moves}",
             font_size=42,
             color=GOLD,
             weight="MEDIUM",
@@ -363,7 +367,7 @@ class E49Progress(MovingCameraScene):
         color = TARGET if is_target else GOLD
         width = TARGET_STROKE if is_target else ACTIVE_STROKE
         if event["op"] == "line":
-            start, end = clipped_line(event["geometry"])
+            start, end = clipped_line(event["geometry"], self.logical_bounds)
             drawable = Line(
                 logical_to_scene(start),
                 logical_to_scene(end),
@@ -441,7 +445,7 @@ class E49Progress(MovingCameraScene):
 
     def update_counter(self, e_move: int) -> None:
         new_counter = self.make_text(
-            f"{e_move:02d} / 49",
+            f"{e_move:02d} / {self.total_moves}",
             font_size=42,
             color=GOLD,
             weight="MEDIUM",

@@ -1,0 +1,630 @@
+{
+  "schema": "euclid-ccc-min-manim-e18/v1",
+  "mode": "external",
+  "source": {
+    "replay": "experiments/replay_mannheim_three_block_dependencies.py",
+    "replay_class": "ThreeBlockReplay",
+    "selection": "paid ancestors of the selected P0 target",
+    "trace_sha256": "1d9ace972ca08afaa3de71be575ff3312fce6c67da7e309430030b6f71ac79d0",
+    "centers_exact": [
+      [
+        "0",
+        "0"
+      ],
+      [
+        "11",
+        "0"
+      ],
+      [
+        "6",
+        "12"
+      ]
+    ],
+    "radii_exact": [
+      "9/2",
+      "4",
+      "2"
+    ]
+  },
+  "verified_result": {
+    "coverage": "gen",
+    "physical_sign": "+++",
+    "e_move": 18,
+    "line_draws": 15,
+    "circle_draws": 3,
+    "target_draws": 1
+  },
+  "initial": {
+    "circles": [
+      {
+        "id": "Gamma1",
+        "center_id": "O1",
+        "center": [
+          0.0,
+          0.0
+        ],
+        "radius": 4.5
+      },
+      {
+        "id": "Gamma2",
+        "center_id": "O2",
+        "center": [
+          11.0,
+          0.0
+        ],
+        "radius": 4.0
+      },
+      {
+        "id": "Gamma3",
+        "center_id": "O3",
+        "center": [
+          6.0,
+          12.0
+        ],
+        "radius": 2.0
+      }
+    ]
+  },
+  "points": {
+    "A": {
+      "at": [
+        4.0,
+        12.0
+      ],
+      "available_after": 5,
+      "dependencies": [
+        "ell3",
+        "Gamma3"
+      ]
+    },
+    "B": {
+      "at": [
+        8.0,
+        12.0
+      ],
+      "available_after": 5,
+      "dependencies": [
+        "ell3",
+        "Gamma3"
+      ]
+    },
+    "H23_ext": {
+      "at": [
+        1.0,
+        24.0
+      ],
+      "available_after": 9,
+      "dependencies": [
+        "batch_a1A",
+        "batch_alpha1B"
+      ]
+    },
+    "O1": {
+      "at": [
+        0.0,
+        0.0
+      ],
+      "available_after": 0,
+      "dependencies": []
+    },
+    "O2": {
+      "at": [
+        11.0,
+        0.0
+      ],
+      "available_after": 0,
+      "dependencies": []
+    },
+    "O3": {
+      "at": [
+        6.0,
+        12.0
+      ],
+      "available_after": 0,
+      "dependencies": []
+    },
+    "P0_+++_M2": {
+      "at": [
+        8.416642681369979,
+        3.053893410759568
+      ],
+      "available_after": 15,
+      "dependencies": [
+        "P0_+++_contact_line",
+        "Gamma2"
+      ]
+    },
+    "P0_+++_M3": {
+      "at": [
+        5.956986454580197,
+        10.000462594770875
+      ],
+      "available_after": 14,
+      "dependencies": [
+        "P0_tau",
+        "Gamma3"
+      ]
+    },
+    "P0_+++_center": {
+      "at": [
+        5.872257143533711,
+        6.061716669429323
+      ],
+      "available_after": 17,
+      "dependencies": [
+        "P0_+++_radius_3",
+        "P0_+++_radius_2"
+      ]
+    },
+    "P0_---_M3": {
+      "at": [
+        6.18244755233975,
+        13.991660837252477
+      ],
+      "available_after": 14,
+      "dependencies": [
+        "P0_tau",
+        "Gamma3"
+      ]
+    },
+    "P0_K": {
+      "at": [
+        6.319078947368421,
+        16.410361842105264
+      ],
+      "available_after": 11,
+      "dependencies": [
+        "P0_K_line_1",
+        "P0_K_line_2"
+      ]
+    },
+    "P0_Kp": {
+      "at": [
+        6.120679778499141,
+        12.898224174145502
+      ],
+      "available_after": 13,
+      "dependencies": [
+        "P0_Kp_line_1",
+        "P0_Kp_line_2"
+      ]
+    },
+    "a": {
+      "at": [
+        4.5,
+        0.0
+      ],
+      "available_after": 1,
+      "dependencies": [
+        "ell",
+        "Gamma1"
+      ]
+    },
+    "a1": {
+      "at": [
+        7.0,
+        0.0
+      ],
+      "available_after": 1,
+      "dependencies": [
+        "ell",
+        "Gamma2"
+      ]
+    },
+    "alpha": {
+      "at": [
+        -4.5,
+        0.0
+      ],
+      "available_after": 1,
+      "dependencies": [
+        "ell",
+        "Gamma1"
+      ]
+    },
+    "alpha1": {
+      "at": [
+        15.0,
+        0.0
+      ],
+      "available_after": 1,
+      "dependencies": [
+        "ell",
+        "Gamma2"
+      ]
+    },
+    "parallel_Q": {
+      "at": [
+        6.0,
+        -12.0
+      ],
+      "available_after": 3,
+      "dependencies": [
+        "parallel_c0",
+        "parallel_cX"
+      ]
+    },
+    "parallel_R": {
+      "at": [
+        20.832815729997478,
+        12.0
+      ],
+      "available_after": 4,
+      "dependencies": [
+        "parallel_diameter",
+        "parallel_cX"
+      ]
+    },
+    "parallel_X": {
+      "at": [
+        13.416407864998739,
+        0.0
+      ],
+      "available_after": 2,
+      "dependencies": [
+        "parallel_c0",
+        "ell"
+      ]
+    },
+    "second_a1A": {
+      "at": [
+        4.235294117647059,
+        11.058823529411764
+      ],
+      "available_after": 8,
+      "dependencies": [
+        "batch_a1A",
+        "Gamma3"
+      ]
+    },
+    "second_aB": {
+      "at": [
+        7.6864,
+        10.9248
+      ],
+      "available_after": 7,
+      "dependencies": [
+        "batch_aB",
+        "Gamma3"
+      ]
+    },
+    "second_alpha1B": {
+      "at": [
+        6.984455958549223,
+        13.740932642487047
+      ],
+      "available_after": 9,
+      "dependencies": [
+        "batch_alpha1B",
+        "Gamma3"
+      ]
+    },
+    "second_alphaA": {
+      "at": [
+        5.336416184971099,
+        13.88670520231214
+      ],
+      "available_after": 6,
+      "dependencies": [
+        "batch_alphaA",
+        "Gamma3"
+      ]
+    }
+  },
+  "events": [
+    {
+      "e_move": 1,
+      "id": "ell",
+      "op": "line",
+      "references": [
+        "O1",
+        "O2"
+      ],
+      "geometry": {
+        "a": 0.0,
+        "b": 1.0,
+        "c": 0.0
+      }
+    },
+    {
+      "e_move": 2,
+      "id": "parallel_c0",
+      "op": "circle",
+      "references": [
+        "O1",
+        "O3"
+      ],
+      "geometry": {
+        "center": [
+          0.0,
+          0.0
+        ],
+        "radius": 13.416407864998739
+      }
+    },
+    {
+      "e_move": 3,
+      "id": "parallel_cX",
+      "op": "circle",
+      "references": [
+        "parallel_X",
+        "O3"
+      ],
+      "geometry": {
+        "center": [
+          13.416407864998739,
+          0.0
+        ],
+        "radius": 14.106846055019355
+      }
+    },
+    {
+      "e_move": 4,
+      "id": "parallel_diameter",
+      "op": "line",
+      "references": [
+        "parallel_X",
+        "parallel_Q"
+      ],
+      "geometry": {
+        "a": 0.8506508083520399,
+        "b": -0.5257311121191336,
+        "c": -11.412678195541844
+      }
+    },
+    {
+      "e_move": 5,
+      "id": "ell3",
+      "op": "line",
+      "references": [
+        "O3",
+        "parallel_R"
+      ],
+      "geometry": {
+        "a": 0.0,
+        "b": 1.0,
+        "c": -12.0
+      }
+    },
+    {
+      "e_move": 6,
+      "id": "batch_alphaA",
+      "op": "line",
+      "references": [
+        "alpha",
+        "A"
+      ],
+      "geometry": {
+        "a": 0.8160244811016552,
+        "b": -0.5780173407803391,
+        "c": 3.672110164957448
+      }
+    },
+    {
+      "e_move": 7,
+      "id": "batch_aB",
+      "op": "line",
+      "references": [
+        "a",
+        "B"
+      ],
+      "geometry": {
+        "a": 0.96,
+        "b": -0.28,
+        "c": -4.32
+      }
+    },
+    {
+      "e_move": 8,
+      "id": "batch_a1A",
+      "op": "line",
+      "references": [
+        "a1",
+        "A"
+      ],
+      "geometry": {
+        "a": 0.9701425001453319,
+        "b": 0.24253562503633297,
+        "c": -6.790997501017324
+      }
+    },
+    {
+      "e_move": 9,
+      "id": "batch_alpha1B",
+      "op": "line",
+      "references": [
+        "alpha1",
+        "B"
+      ],
+      "geometry": {
+        "a": 0.8637789008984335,
+        "b": 0.5038710255240862,
+        "c": -12.956683513476502
+      }
+    },
+    {
+      "e_move": 10,
+      "id": "P0_K_line_1",
+      "op": "line",
+      "references": [
+        "second_aB",
+        "second_alpha1B"
+      ],
+      "geometry": {
+        "a": 0.9703116320092402,
+        "b": 0.24185809225156135,
+        "c": -10.100454614505681
+      }
+    },
+    {
+      "e_move": 11,
+      "id": "P0_K_line_2",
+      "op": "line",
+      "references": [
+        "second_alphaA",
+        "second_a1A"
+      ],
+      "geometry": {
+        "a": 0.9318498273037554,
+        "b": -0.36284418054305523,
+        "c": 0.0659716691896464
+      }
+    },
+    {
+      "e_move": 12,
+      "id": "P0_Kp_line_1",
+      "op": "line",
+      "references": [
+        "second_aB",
+        "second_alphaA"
+      ],
+      "geometry": {
+        "a": 0.7833835018575889,
+        "b": 0.621538646439094,
+        "c": -12.811584353295984
+      }
+    },
+    {
+      "e_move": 13,
+      "id": "P0_Kp_line_2",
+      "op": "line",
+      "references": [
+        "second_a1A",
+        "second_alpha1B"
+      ],
+      "geometry": {
+        "a": 0.6983238520753277,
+        "b": -0.7157819483772108,
+        "c": 4.958099349734826
+      }
+    },
+    {
+      "e_move": 14,
+      "id": "P0_tau",
+      "op": "line",
+      "references": [
+        "P0_K",
+        "P0_Kp"
+      ],
+      "geometry": {
+        "a": 0.9984082723601216,
+        "b": -0.056399660308170965,
+        "c": -5.383481861320414
+      }
+    },
+    {
+      "e_move": 15,
+      "id": "P0_+++_contact_line",
+      "op": "line",
+      "references": [
+        "H23_ext",
+        "P0_+++_M3"
+      ],
+      "geometry": {
+        "a": 0.9426522908712476,
+        "b": 0.3337763600304685,
+        "c": -8.95328493160249
+      }
+    },
+    {
+      "e_move": 16,
+      "id": "P0_+++_radius_3",
+      "op": "line",
+      "references": [
+        "O3",
+        "P0_+++_M3"
+      ],
+      "geometry": {
+        "a": 0.999768702614562,
+        "b": -0.02150677270990128,
+        "c": -5.740530943168556
+      }
+    },
+    {
+      "e_move": 17,
+      "id": "P0_+++_radius_2",
+      "op": "line",
+      "references": [
+        "O2",
+        "P0_+++_M2"
+      ],
+      "geometry": {
+        "a": 0.763473352689892,
+        "b": 0.6458393296575053,
+        "c": -8.398206879588813
+      }
+    },
+    {
+      "e_move": 18,
+      "id": "target_+++",
+      "op": "circle",
+      "references": [
+        "P0_+++_center",
+        "P0_+++_M3"
+      ],
+      "geometry": {
+        "center": [
+          5.872257143533711,
+          6.061716669429323
+        ],
+        "radius": 3.93965715774166
+      },
+      "target": {
+        "key": "+++",
+        "profile": "P0"
+      }
+    }
+  ],
+  "targets": [
+    {
+      "display_index": 1,
+      "key": "+++",
+      "profile": "P0",
+      "output_id": "target_+++",
+      "draw_index": 18,
+      "center": [
+        5.872257143533711,
+        6.061716669429323
+      ],
+      "radius": 3.93965715774166
+    }
+  ],
+  "contacts": [
+    {
+      "input_id": "Gamma1",
+      "at": [
+        3.1310699773701147,
+        3.2320892309482288
+      ],
+      "available_after": 18,
+      "dependencies": [
+        "target_+++",
+        "Gamma1"
+      ]
+    },
+    {
+      "input_id": "Gamma2",
+      "at": [
+        8.416642681369979,
+        3.053893410759568
+      ],
+      "available_after": 18,
+      "dependencies": [
+        "target_+++",
+        "Gamma2"
+      ]
+    },
+    {
+      "input_id": "Gamma3",
+      "at": [
+        5.956986454580197,
+        10.000462594770875
+      ],
+      "available_after": 18,
+      "dependencies": [
+        "target_+++",
+        "Gamma3"
+      ]
+    }
+  ]
+}
