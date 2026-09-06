@@ -4,8 +4,8 @@
 
 | 动画 | 目标 | 4K60 成片 |
 |---|---|---|
-| `E18External` | 与三个输入圆都外切 | [下载](media/E18External_4k60.mp4?raw=true) |
-| `E18Internal` | 包住三个输入圆，并与它们分别内切 | [下载](media/E18Internal_4k60.mp4?raw=true) |
+| `E18External` | 与三个输入圆都外切 | [下载](https://raw.githubusercontent.com/lenovobenben/euclid-ccc-min/main/animations/e18/media/E18External_4k60.mp4) |
+| `E18Internal` | 包住三个输入圆，并与它们分别内切 | [下载](https://raw.githubusercontent.com/lenovobenben/euclid-ccc-min/main/animations/e18/media/E18Internal_4k60.mp4) |
 
 两条程序各为 **15 条直线 + 3 个圆 = 18 E**，共用前 14 E 的构造，
 第 15–18 E 分别使用不同的第三圆接触点恢复圆心并画出目标圆。

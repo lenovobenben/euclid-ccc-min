@@ -1,6 +1,6 @@
 # E49 Manim 演示动画
 
-[下载 4K60 成片](media/E49Progress_4k60.mp4?raw=true)
+[下载 4K60 成片](https://raw.githubusercontent.com/lenovobenben/euclid-ccc-min/main/animations/e49/media/E49Progress_4k60.mp4)
 （3840 × 2160，60 fps，约 1 分 39 秒）。仓库只跟踪这份正式播放版，
 其余渲染中间文件和预览仍由 `.gitignore` 排除。
 

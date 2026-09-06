@@ -101,7 +101,7 @@ python3 -m unittest discover -v
 
 ## 49 E 八解动画
 
-[下载 4K60 成片](animations/e49/media/E49Progress_4k60.mp4?raw=true)
+[下载 4K60 成片](https://raw.githubusercontent.com/lenovobenben/euclid-ccc-min/main/animations/e49/media/E49Progress_4k60.mp4)
 （3840 × 2160，60 fps，约 1 分 39 秒）。
 
 [`animations/e49`](animations/e49) 使用与 Euclid-Min 正十七边形演示一致的
@@ -121,8 +121,8 @@ Manim 视觉风格，逐步播放 `CCC-ALL-8 / gen` 的正规 49 E 程序。动�
 两段动画各从输入三圆开始，以 **15 条直线 + 3 个圆 = 18 E** 独立完成
 一个目标圆：
 
-- [全外切圆 · 4K60](animations/e18/media/E18External_4k60.mp4?raw=true)：与三圆分别外切。
-- [全内切圆 · 4K60](animations/e18/media/E18Internal_4k60.mp4?raw=true)：包住三圆，并与它们分别内切。
+- [全外切圆 · 4K60](https://raw.githubusercontent.com/lenovobenben/euclid-ccc-min/main/animations/e18/media/E18External_4k60.mp4)：与三圆分别外切。
+- [全内切圆 · 4K60](https://raw.githubusercontent.com/lenovobenben/euclid-ccc-min/main/animations/e18/media/E18Internal_4k60.mp4)：包住三圆，并与它们分别内切。
 
 两条程序共用前 14 E 的构造，随后选取不同接触点。视频演示严格一般位置；
 全内切动画不据此宣称全域 18 E 覆盖或最优性。
