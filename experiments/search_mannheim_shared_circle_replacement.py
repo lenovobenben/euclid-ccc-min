@@ -14,6 +14,7 @@ from pathlib import Path
 from time import monotonic
 
 from mannheim_search_calibration import apply_calibrated_candidate, close_point
+from mannheim_virtual_witnesses import bisector, witness_helpers
 from search_mannheim_center_locus_2e import object_value, point_value
 from search_mannheim_joint_root_kp import (
     PROFILES, SHARED_IDS, build_carrier_state, fast_target_candidates,
@@ -90,7 +91,7 @@ def two_step_root_paths(state, targets, move, audit):
     return paths
 
 
-def run_case(omitted, seconds, helper_kind="both"):
+def run_case(omitted, seconds, helper_kind="both", witness_pruning=False):
     started = monotonic()
     kept = tuple(node for node in SHARED_IDS if node != omitted)
     state, replays, audit = build_carrier_state(kept)
@@ -108,7 +109,17 @@ def run_case(omitted, seconds, helper_kind="both"):
                                      for replay in replays))
     omitted_signature = drawable_signature(omitted_drawable)
     all_firsts = generate_candidates(state, 17)
-    firsts = tuple(sorted((candidate for candidate in all_firsts
+    first_pool = all_firsts
+    witness_report = None
+    if witness_pruning:
+        goals = [DrawableBundle("virtual_bisector", "line", tuple(bisector(p, q)
+                                for p, q in zip(first_targets, second_targets, strict=True)))]
+        for center in eligible_centers(state, first_targets, second_targets):
+            values = tuple((p[0], p[1], (q[0] - p[0]) ** 2 + (q[1] - p[1]) ** 2)
+                           for p, q in zip(center.values, first_targets, strict=True))
+            goals.append(DrawableBundle("virtual_radius", "circle", values))
+        first_pool, witness_report = witness_helpers(state, goals, 17, started + seconds)
+    firsts = tuple(sorted((candidate for candidate in first_pool
                           if helper_kind == "both" or candidate.kind == helper_kind),
                          key=lambda candidate: candidate.describe()))
     report = {"omitted": omitted, "kept": kept, "policy": "known-first", "missing_profiles": missing,
@@ -118,6 +129,7 @@ def run_case(omitted, seconds, helper_kind="both"):
               "static_eligible_circle_centers": len(eligible_centers(state, first_targets, second_targets)),
               "first_root_carriers": sum(drawable_contains_targets(c.drawable, root) for c in all_firsts),
               "helper_kind": helper_kind, "all_first_candidates": len(all_firsts),
+              "witness_pruning": witness_pruning, "witness_screen": witness_report,
               "first_candidates": len(firsts), "checked_firsts": 0, "dual_circles": 0,
               "center_helpers": 0, "restored_missing_points": 0, "binding_failures": 0,
               "skipped_standard_line": 0, "hits": [], "complete": False, "budget_seconds": seconds,
@@ -152,7 +164,7 @@ def run_case(omitted, seconds, helper_kind="both"):
             print(json.dumps({"omitted": omitted, "checked": report["checked_firsts"],
                               "center_helpers": report["center_helpers"], "dual_circles": report["dual_circles"]}), flush=True)
             next_progress = monotonic() + 15
-    report["complete"] = report["checked_firsts"] == len(firsts)
+    report["complete"] = report["checked_firsts"] == len(firsts) and (witness_report is None or witness_report["complete"])
     report["next_index"] = report["checked_firsts"]
     report["elapsed_seconds"] = round(monotonic() - started, 3)
     report["binding_audit"] = asdict(audit)
@@ -164,13 +176,14 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--seconds-per-case", type=float, default=15)
     parser.add_argument("--helper-kind", choices=("both", "line", "circle"), default="both")
+    parser.add_argument("--witness-pruning", action="store_true")
     parser.add_argument("--output", required=True)
     args = parser.parse_args()
     if args.seconds_per_case <= 0:
         parser.error("时间预算必须为正")
     report = {"schema": "shared-circle-replacement/v1", "cases": []}
     for omitted in SHARED_IDS:
-        report["cases"].append(run_case(omitted, args.seconds_per_case, args.helper_kind))
+        report["cases"].append(run_case(omitted, args.seconds_per_case, args.helper_kind, args.witness_pruning))
         # 各子例正常完成后即保存；预算包含该例的准备，检查发生在首步之间。
         Path(args.output).write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         if report["cases"][-1]["hits"]:

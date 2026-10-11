@@ -1,0 +1,277 @@
+{
+  "schema": "shared-circle-replacement/v1",
+  "cases": [
+    {
+      "omitted": "P0_Kp_core_line_1",
+      "kept": [
+        "P0_Kp_core_line_2",
+        "P2_Kp_core_line_1",
+        "P1_Kp_locus_line_2"
+      ],
+      "policy": "known-first",
+      "missing_profiles": [
+        "P0",
+        "P3"
+      ],
+      "base_e": 16,
+      "base_points": 126,
+      "base_objects": 19,
+      "static_dual_carriers": [
+        "Line(object_6&Gamma3[1,1,1], object_7&Gamma3[0,0,0])"
+      ],
+      "static_alternatives": 0,
+      "static_eligible_circle_centers": 0,
+      "first_root_carriers": 0,
+      "helper_kind": "both",
+      "all_first_candidates": 22226,
+      "witness_pruning": true,
+      "witness_screen": {
+        "goal_count": 1,
+        "goal_old_pairs": 19,
+        "checked_goal_old_pairs": 19,
+        "witnesses": 30,
+        "helper_candidates": 0,
+        "complete": true,
+        "witness_binding_audit": {
+          "object_pairs": 19,
+          "removed_known_roots": 0,
+          "known_root_realignments": 0,
+          "root_count_mismatches": 2,
+          "mixed_root_bundles": 12
+        },
+        "coincident_goal_old_pairs": 0
+      },
+      "first_candidates": 0,
+      "checked_firsts": 0,
+      "dual_circles": 0,
+      "center_helpers": 0,
+      "restored_missing_points": 0,
+      "binding_failures": 0,
+      "skipped_standard_line": 0,
+      "hits": [],
+      "complete": true,
+      "budget_seconds": 30.0,
+      "candidate_fingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "base_binding_audit": {
+        "object_pairs": 168,
+        "removed_known_roots": 71,
+        "known_root_realignments": 0,
+        "root_count_mismatches": 6,
+        "mixed_root_bundles": 0
+      },
+      "next_index": 0,
+      "elapsed_seconds": 0.312,
+      "binding_audit": {
+        "object_pairs": 168,
+        "removed_known_roots": 71,
+        "known_root_realignments": 0,
+        "root_count_mismatches": 6,
+        "mixed_root_bundles": 0
+      }
+    },
+    {
+      "omitted": "P0_Kp_core_line_2",
+      "kept": [
+        "P0_Kp_core_line_1",
+        "P2_Kp_core_line_1",
+        "P1_Kp_locus_line_2"
+      ],
+      "policy": "known-first",
+      "missing_profiles": [
+        "P0",
+        "P2"
+      ],
+      "base_e": 16,
+      "base_points": 126,
+      "base_objects": 19,
+      "static_dual_carriers": [
+        "Line(object_8&Gamma3[1,1,1], object_9&Gamma3[0,0,0])"
+      ],
+      "static_alternatives": 0,
+      "static_eligible_circle_centers": 0,
+      "first_root_carriers": 0,
+      "helper_kind": "both",
+      "all_first_candidates": 22226,
+      "witness_pruning": true,
+      "witness_screen": {
+        "goal_count": 1,
+        "goal_old_pairs": 19,
+        "checked_goal_old_pairs": 19,
+        "witnesses": 38,
+        "helper_candidates": 0,
+        "complete": true,
+        "witness_binding_audit": {
+          "object_pairs": 19,
+          "removed_known_roots": 0,
+          "known_root_realignments": 0,
+          "root_count_mismatches": 0,
+          "mixed_root_bundles": 18
+        },
+        "coincident_goal_old_pairs": 0
+      },
+      "first_candidates": 0,
+      "checked_firsts": 0,
+      "dual_circles": 0,
+      "center_helpers": 0,
+      "restored_missing_points": 0,
+      "binding_failures": 0,
+      "skipped_standard_line": 0,
+      "hits": [],
+      "complete": true,
+      "budget_seconds": 30.0,
+      "candidate_fingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "base_binding_audit": {
+        "object_pairs": 168,
+        "removed_known_roots": 71,
+        "known_root_realignments": 0,
+        "root_count_mismatches": 6,
+        "mixed_root_bundles": 0
+      },
+      "next_index": 0,
+      "elapsed_seconds": 0.292,
+      "binding_audit": {
+        "object_pairs": 168,
+        "removed_known_roots": 71,
+        "known_root_realignments": 0,
+        "root_count_mismatches": 6,
+        "mixed_root_bundles": 0
+      }
+    },
+    {
+      "omitted": "P2_Kp_core_line_1",
+      "kept": [
+        "P0_Kp_core_line_1",
+        "P0_Kp_core_line_2",
+        "P1_Kp_locus_line_2"
+      ],
+      "policy": "known-first",
+      "missing_profiles": [
+        "P2",
+        "P1"
+      ],
+      "base_e": 16,
+      "base_points": 126,
+      "base_objects": 19,
+      "static_dual_carriers": [
+        "Line(object_10&Gamma3[0,0,0], object_11&Gamma3[1,1,1])"
+      ],
+      "static_alternatives": 0,
+      "static_eligible_circle_centers": 0,
+      "first_root_carriers": 0,
+      "helper_kind": "both",
+      "all_first_candidates": 22224,
+      "witness_pruning": true,
+      "witness_screen": {
+        "goal_count": 1,
+        "goal_old_pairs": 19,
+        "checked_goal_old_pairs": 19,
+        "witnesses": 38,
+        "helper_candidates": 0,
+        "complete": true,
+        "witness_binding_audit": {
+          "object_pairs": 19,
+          "removed_known_roots": 0,
+          "known_root_realignments": 0,
+          "root_count_mismatches": 1,
+          "mixed_root_bundles": 18
+        },
+        "coincident_goal_old_pairs": 0
+      },
+      "first_candidates": 0,
+      "checked_firsts": 0,
+      "dual_circles": 0,
+      "center_helpers": 0,
+      "restored_missing_points": 0,
+      "binding_failures": 0,
+      "skipped_standard_line": 0,
+      "hits": [],
+      "complete": true,
+      "budget_seconds": 30.0,
+      "candidate_fingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "base_binding_audit": {
+        "object_pairs": 168,
+        "removed_known_roots": 71,
+        "known_root_realignments": 0,
+        "root_count_mismatches": 6,
+        "mixed_root_bundles": 0
+      },
+      "next_index": 0,
+      "elapsed_seconds": 0.287,
+      "binding_audit": {
+        "object_pairs": 168,
+        "removed_known_roots": 71,
+        "known_root_realignments": 0,
+        "root_count_mismatches": 6,
+        "mixed_root_bundles": 0
+      }
+    },
+    {
+      "omitted": "P1_Kp_locus_line_2",
+      "kept": [
+        "P0_Kp_core_line_1",
+        "P0_Kp_core_line_2",
+        "P2_Kp_core_line_1"
+      ],
+      "policy": "known-first",
+      "missing_profiles": [
+        "P1",
+        "P3"
+      ],
+      "base_e": 16,
+      "base_points": 126,
+      "base_objects": 19,
+      "static_dual_carriers": [
+        "Line(object_12&Gamma3[0,0,0], object_13&Gamma3[1,1,1])"
+      ],
+      "static_alternatives": 0,
+      "static_eligible_circle_centers": 0,
+      "first_root_carriers": 0,
+      "helper_kind": "both",
+      "all_first_candidates": 22224,
+      "witness_pruning": true,
+      "witness_screen": {
+        "goal_count": 1,
+        "goal_old_pairs": 19,
+        "checked_goal_old_pairs": 19,
+        "witnesses": 30,
+        "helper_candidates": 0,
+        "complete": true,
+        "witness_binding_audit": {
+          "object_pairs": 19,
+          "removed_known_roots": 0,
+          "known_root_realignments": 0,
+          "root_count_mismatches": 1,
+          "mixed_root_bundles": 12
+        },
+        "coincident_goal_old_pairs": 0
+      },
+      "first_candidates": 0,
+      "checked_firsts": 0,
+      "dual_circles": 0,
+      "center_helpers": 0,
+      "restored_missing_points": 0,
+      "binding_failures": 0,
+      "skipped_standard_line": 0,
+      "hits": [],
+      "complete": true,
+      "budget_seconds": 30.0,
+      "candidate_fingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "base_binding_audit": {
+        "object_pairs": 168,
+        "removed_known_roots": 71,
+        "known_root_realignments": 0,
+        "root_count_mismatches": 6,
+        "mixed_root_bundles": 0
+      },
+      "next_index": 0,
+      "elapsed_seconds": 0.303,
+      "binding_audit": {
+        "object_pairs": 168,
+        "removed_known_roots": 71,
+        "known_root_realignments": 0,
+        "root_count_mismatches": 6,
+        "mixed_root_bundles": 0
+      }
+    }
+  ]
+}
