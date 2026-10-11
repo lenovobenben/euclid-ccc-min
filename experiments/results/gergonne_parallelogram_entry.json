@@ -1,0 +1,304 @@
+{
+  "schema": "gergonne-parallelogram-entry/v1",
+  "policy": "known-first",
+  "samples": 3,
+  "score_certificate": false,
+  "lower_bound": false,
+  "fixtures": [
+    {
+      "centers": [
+        [
+          "0",
+          "0"
+        ],
+        [
+          "13",
+          "0"
+        ],
+        [
+          "4",
+          "15"
+        ]
+      ],
+      "radii": [
+        "4",
+        "2",
+        "1"
+      ]
+    },
+    {
+      "centers": [
+        [
+          "0",
+          "0"
+        ],
+        [
+          "17",
+          "0"
+        ],
+        [
+          "5",
+          "12"
+        ]
+      ],
+      "radii": [
+        "5",
+        "3",
+        "1"
+      ]
+    },
+    {
+      "centers": [
+        [
+          "0",
+          "0"
+        ],
+        [
+          "19",
+          "0"
+        ],
+        [
+          "10",
+          "11"
+        ]
+      ],
+      "radii": [
+        "6",
+        "4",
+        "2"
+      ]
+    }
+  ],
+  "model_scope_complete": true,
+  "construction_coverage_complete": false,
+  "scope": "static target carriers; C two-step completions only",
+  "limitations": [
+    "multi-fixture floating screening",
+    "known-first root pairing only",
+    "unequal real-root counts skipped",
+    "no dynamic G or pole search",
+    "no joint core/locus or reflection search"
+  ],
+  "cases": [
+    {
+      "base_e": 13,
+      "points": 86,
+      "objects": 16,
+      "targets": {
+        "C": {
+          "available": false,
+          "old_carriers": [],
+          "first_screen_skipped": false,
+          "first_carriers": [
+            "Line(O3, object_3&parallel_c0[0,0,0])"
+          ]
+        },
+        "P0": {
+          "available": false,
+          "old_carriers": [],
+          "first_screen_skipped": false,
+          "first_carriers": []
+        },
+        "P2": {
+          "available": false,
+          "old_carriers": [],
+          "first_screen_skipped": false,
+          "first_carriers": []
+        },
+        "P1": {
+          "available": false,
+          "old_carriers": [],
+          "first_screen_skipped": false,
+          "first_carriers": []
+        },
+        "P3": {
+          "available": false,
+          "old_carriers": [],
+          "first_screen_skipped": false,
+          "first_carriers": []
+        },
+        "G": {
+          "available": false,
+          "old_carriers": [],
+          "first_screen_skipped": false,
+          "first_carriers": []
+        }
+      },
+      "c_two_step_expansions": [
+        {
+          "first": "Line(O3, object_3&parallel_c0[0,0,0])",
+          "points_after_first": 97,
+          "available_after_first": false,
+          "second_carriers": [],
+          "finite_intersection_hits": [],
+          "binding_audit": {
+            "object_pairs": 16,
+            "removed_known_roots": 6,
+            "known_root_realignments": 0,
+            "root_count_mismatches": 1,
+            "mixed_root_bundles": 0
+          }
+        }
+      ],
+      "base_binding_audit": {
+        "object_pairs": 117,
+        "removed_known_roots": 57,
+        "known_root_realignments": 0,
+        "root_count_mismatches": 3,
+        "mixed_root_bundles": 0
+      },
+      "elapsed_seconds": 0.084
+    },
+    {
+      "base_e": 17,
+      "points": 140,
+      "objects": 20,
+      "targets": {
+        "C": {
+          "available": false,
+          "old_carriers": [],
+          "first_screen_skipped": false,
+          "first_carriers": [
+            "Line(O3, object_3&parallel_c0[0,0,0])"
+          ]
+        },
+        "P0": {
+          "available": false,
+          "old_carriers": [],
+          "first_screen_skipped": false,
+          "first_carriers": []
+        },
+        "P2": {
+          "available": false,
+          "old_carriers": [],
+          "first_screen_skipped": false,
+          "first_carriers": []
+        },
+        "P1": {
+          "available": false,
+          "old_carriers": [],
+          "first_screen_skipped": false,
+          "first_carriers": []
+        },
+        "P3": {
+          "available": false,
+          "old_carriers": [],
+          "first_screen_skipped": false,
+          "first_carriers": []
+        },
+        "G": {
+          "available": false,
+          "old_carriers": [],
+          "first_screen_skipped": false,
+          "first_carriers": []
+        }
+      },
+      "c_two_step_expansions": [
+        {
+          "first": "Line(O3, object_3&parallel_c0[0,0,0])",
+          "points_after_first": 155,
+          "available_after_first": false,
+          "second_carriers": [],
+          "finite_intersection_hits": [],
+          "binding_audit": {
+            "object_pairs": 20,
+            "removed_known_roots": 6,
+            "known_root_realignments": 0,
+            "root_count_mismatches": 1,
+            "mixed_root_bundles": 0
+          }
+        }
+      ],
+      "base_binding_audit": {
+        "object_pairs": 187,
+        "removed_known_roots": 77,
+        "known_root_realignments": 0,
+        "root_count_mismatches": 7,
+        "mixed_root_bundles": 0
+      },
+      "elapsed_seconds": 0.105
+    },
+    {
+      "base_e": 25,
+      "points": 297,
+      "objects": 28,
+      "targets": {
+        "C": {
+          "available": false,
+          "old_carriers": [],
+          "first_screen_skipped": false,
+          "first_carriers": [
+            "Line(O3, object_3&parallel_c0[0,0,0])"
+          ]
+        },
+        "P0": {
+          "available": false,
+          "old_carriers": [
+            "P0_tau"
+          ],
+          "first_screen_skipped": false,
+          "first_carriers": []
+        },
+        "P2": {
+          "available": false,
+          "old_carriers": [
+            "P2_tau"
+          ],
+          "first_screen_skipped": false,
+          "first_carriers": []
+        },
+        "P1": {
+          "available": false,
+          "old_carriers": [
+            "P1_tau_from_S"
+          ],
+          "first_screen_skipped": false,
+          "first_carriers": []
+        },
+        "P3": {
+          "available": false,
+          "old_carriers": [
+            "P3_tau_from_S"
+          ],
+          "first_screen_skipped": false,
+          "first_carriers": []
+        },
+        "G": {
+          "available": true,
+          "old_carriers": [
+            "P0_tau",
+            "P2_tau",
+            "P1_tau_from_S",
+            "P3_tau_from_S"
+          ],
+          "first_screen_skipped": true,
+          "first_carriers": []
+        }
+      },
+      "c_two_step_expansions": [
+        {
+          "first": "Line(O3, object_3&parallel_c0[0,0,0])",
+          "points_after_first": 320,
+          "available_after_first": false,
+          "second_carriers": [],
+          "finite_intersection_hits": [],
+          "binding_audit": {
+            "object_pairs": 28,
+            "removed_known_roots": 6,
+            "known_root_realignments": 0,
+            "root_count_mismatches": 1,
+            "mixed_root_bundles": 0
+          }
+        }
+      ],
+      "base_binding_audit": {
+        "object_pairs": 375,
+        "removed_known_roots": 120,
+        "known_root_realignments": 4,
+        "root_count_mismatches": 10,
+        "mixed_root_bundles": 0
+      },
+      "elapsed_seconds": 0.221
+    }
+  ]
+}
