@@ -60,7 +60,8 @@ def bind_named_intersections(state, replays, object_ids):
     return State(state.points + tuple(additions), state.drawables, state.program)
 
 
-def build_joint_state(policy="known-first"):
+def build_carrier_state(shared_ids=SHARED_IDS, policy="known-first", extra_ids=()):
+    """重放公共前缀、选定共享弦和指定后续对象；不给未画对象的点。"""
     replays = []
     for centers, radii in FIXTURES:
         replay = KpCenterLocusReplay("joint_root_kp", centers=centers, radii=radii, emit=False)
@@ -69,7 +70,11 @@ def build_joint_state(policy="known-first"):
             raise AssertionError("校准夹具必须属于 49 E 正规分支")
         replays.append(replay)
     graph = replays[0].objects.graph
-    paid_ids = tuple(graph.paid_order[:13]) + SHARED_IDS
+    if not set(shared_ids) <= set(SHARED_IDS) or len(set(shared_ids)) != len(shared_ids):
+        raise ValueError("共享弦必须是不重复的标准弦子集")
+    paid_ids = tuple(graph.paid_order[:13]) + tuple(shared_ids) + tuple(extra_ids)
+    if len(set(paid_ids)) != len(paid_ids) or not set(paid_ids) <= set(graph.paid_order):
+        raise ValueError("指定重放对象必须是不重复的已计费对象")
     initial = tuple(PointBundle(f"O{i+1}", tuple(tuple(map(float, replay.centers[i]))
                     for replay in replays)) for i in range(3))
     initial_objects = tuple(DrawableBundle(node, "circle", tuple(object_value(replay.objects, node)[1]
@@ -94,6 +99,12 @@ def build_joint_state(policy="known-first"):
         state = State(state.points, state.drawables[:-1] + (renamed,), state.program)
         object_ids.add(node)
         state = bind_named_intersections(state, replays, object_ids)
+    return state, replays, audit
+
+
+def build_joint_state(policy="known-first"):
+    state, replays, audit = build_carrier_state(policy=policy)
+    graph = replays[0].objects.graph
     targets = tuple(point_value(replay.objects, "Mannheim_S_center_locus") for replay in replays)
     kps = {}
     for profile in PROFILES:

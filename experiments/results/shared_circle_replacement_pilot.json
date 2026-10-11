@@ -1,0 +1,201 @@
+{
+  "schema": "shared-circle-replacement/v1",
+  "cases": [
+    {
+      "omitted": "P0_Kp_core_line_1",
+      "kept": [
+        "P0_Kp_core_line_2",
+        "P2_Kp_core_line_1",
+        "P1_Kp_locus_line_2"
+      ],
+      "policy": "known-first",
+      "missing_profiles": [
+        "P0",
+        "P3"
+      ],
+      "base_e": 16,
+      "base_points": 126,
+      "base_objects": 19,
+      "static_dual_carriers": [
+        "Line(object_6&Gamma3[1,1,1], object_7&Gamma3[0,0,0])"
+      ],
+      "static_alternatives": 0,
+      "static_eligible_circle_centers": 0,
+      "first_root_carriers": 0,
+      "first_candidates": 22226,
+      "checked_firsts": 2355,
+      "dual_circles": 0,
+      "center_helpers": 0,
+      "restored_missing_points": 0,
+      "binding_failures": 0,
+      "skipped_standard_line": 0,
+      "hits": [],
+      "complete": false,
+      "budget_seconds": 15.0,
+      "candidate_fingerprint": "94afaa4118552612cd96bc4cf48c68dbbb3a1387533559995a0a549a9f3a4f13",
+      "base_binding_audit": {
+        "object_pairs": 168,
+        "removed_known_roots": 71,
+        "known_root_realignments": 0,
+        "root_count_mismatches": 6,
+        "mixed_root_bundles": 0
+      },
+      "next_index": 2355,
+      "elapsed_seconds": 15.001,
+      "binding_audit": {
+        "object_pairs": 44913,
+        "removed_known_roots": 5255,
+        "known_root_realignments": 1426,
+        "root_count_mismatches": 7962,
+        "mixed_root_bundles": 1421
+      }
+    },
+    {
+      "omitted": "P0_Kp_core_line_2",
+      "kept": [
+        "P0_Kp_core_line_1",
+        "P2_Kp_core_line_1",
+        "P1_Kp_locus_line_2"
+      ],
+      "policy": "known-first",
+      "missing_profiles": [
+        "P0",
+        "P2"
+      ],
+      "base_e": 16,
+      "base_points": 126,
+      "base_objects": 19,
+      "static_dual_carriers": [
+        "Line(object_8&Gamma3[1,1,1], object_9&Gamma3[0,0,0])"
+      ],
+      "static_alternatives": 0,
+      "static_eligible_circle_centers": 0,
+      "first_root_carriers": 0,
+      "first_candidates": 22226,
+      "checked_firsts": 2348,
+      "dual_circles": 0,
+      "center_helpers": 0,
+      "restored_missing_points": 0,
+      "binding_failures": 0,
+      "skipped_standard_line": 0,
+      "hits": [],
+      "complete": false,
+      "budget_seconds": 15.0,
+      "candidate_fingerprint": "68bab3afc511407feadfcd4a0c6153f920ca2a57bed45703f27e6616de2efcb9",
+      "base_binding_audit": {
+        "object_pairs": 168,
+        "removed_known_roots": 71,
+        "known_root_realignments": 0,
+        "root_count_mismatches": 6,
+        "mixed_root_bundles": 0
+      },
+      "next_index": 2348,
+      "elapsed_seconds": 15.002,
+      "binding_audit": {
+        "object_pairs": 44780,
+        "removed_known_roots": 5241,
+        "known_root_realignments": 1438,
+        "root_count_mismatches": 8036,
+        "mixed_root_bundles": 1432
+      }
+    },
+    {
+      "omitted": "P2_Kp_core_line_1",
+      "kept": [
+        "P0_Kp_core_line_1",
+        "P0_Kp_core_line_2",
+        "P1_Kp_locus_line_2"
+      ],
+      "policy": "known-first",
+      "missing_profiles": [
+        "P2",
+        "P1"
+      ],
+      "base_e": 16,
+      "base_points": 126,
+      "base_objects": 19,
+      "static_dual_carriers": [
+        "Line(object_10&Gamma3[0,0,0], object_11&Gamma3[1,1,1])"
+      ],
+      "static_alternatives": 0,
+      "static_eligible_circle_centers": 0,
+      "first_root_carriers": 0,
+      "first_candidates": 22224,
+      "checked_firsts": 2423,
+      "dual_circles": 0,
+      "center_helpers": 0,
+      "restored_missing_points": 0,
+      "binding_failures": 0,
+      "skipped_standard_line": 0,
+      "hits": [],
+      "complete": false,
+      "budget_seconds": 15.0,
+      "candidate_fingerprint": "1a87dd5a5c5ce7ede8724e8ffe0f1255a49ac5fa3de3a5e6c49dacf1e822c267",
+      "base_binding_audit": {
+        "object_pairs": 168,
+        "removed_known_roots": 71,
+        "known_root_realignments": 0,
+        "root_count_mismatches": 6,
+        "mixed_root_bundles": 0
+      },
+      "next_index": 2423,
+      "elapsed_seconds": 15.005,
+      "binding_audit": {
+        "object_pairs": 46205,
+        "removed_known_roots": 5406,
+        "known_root_realignments": 1546,
+        "root_count_mismatches": 8444,
+        "mixed_root_bundles": 1540
+      }
+    },
+    {
+      "omitted": "P1_Kp_locus_line_2",
+      "kept": [
+        "P0_Kp_core_line_1",
+        "P0_Kp_core_line_2",
+        "P2_Kp_core_line_1"
+      ],
+      "policy": "known-first",
+      "missing_profiles": [
+        "P1",
+        "P3"
+      ],
+      "base_e": 16,
+      "base_points": 126,
+      "base_objects": 19,
+      "static_dual_carriers": [
+        "Line(object_12&Gamma3[0,0,0], object_13&Gamma3[1,1,1])"
+      ],
+      "static_alternatives": 0,
+      "static_eligible_circle_centers": 0,
+      "first_root_carriers": 0,
+      "first_candidates": 22224,
+      "checked_firsts": 2342,
+      "dual_circles": 0,
+      "center_helpers": 0,
+      "restored_missing_points": 0,
+      "binding_failures": 0,
+      "skipped_standard_line": 0,
+      "hits": [],
+      "complete": false,
+      "budget_seconds": 15.0,
+      "candidate_fingerprint": "ac1d414e7e6ef3ee28ec3529ff31f864ef16059b8349424fd1d20842f69eac3a",
+      "base_binding_audit": {
+        "object_pairs": 168,
+        "removed_known_roots": 71,
+        "known_root_realignments": 0,
+        "root_count_mismatches": 6,
+        "mixed_root_bundles": 0
+      },
+      "next_index": 2342,
+      "elapsed_seconds": 15.001,
+      "binding_audit": {
+        "object_pairs": 44666,
+        "removed_known_roots": 5227,
+        "known_root_realignments": 1412,
+        "root_count_mismatches": 7978,
+        "mixed_root_bundles": 1406
+      }
+    }
+  ]
+}

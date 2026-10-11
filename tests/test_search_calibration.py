@@ -19,8 +19,10 @@ except ImportError:
 
 if numpy is not None:
     from search_mannheim_joint_root_kp import build_joint_state, fast_target_candidates, third_target_candidates
+    from search_mannheim_shared_circle_replacement import available, dual_circle_candidates, two_step_root_paths
 from search_mannheim_root_center_2e import FIXTURES, drawable_contains_targets
-from search_parallel_3e import Candidate, DrawableBundle, PointBundle, State, drawable_signature, generate_candidates
+from search_parallel_3e import Candidate, DrawableBundle, PointBundle, State, drawable_signature, generate_candidates, line_through
+from mannheim_search_calibration import BindingAudit
 
 
 class SearchCalibrationTests(unittest.TestCase):
@@ -73,6 +75,35 @@ class SearchCalibrationTests(unittest.TestCase):
         candidates = third_target_candidates(base, two, ((0.0, 0.0),) * 3, 3)
         vertical = DrawableBundle("expected", "line", ((1.0, 0.0, 0.0),) * 3)
         self.assertIn(drawable_signature(vertical), {drawable_signature(item.drawable) for item in candidates})
+
+    @unittest.skipIf(numpy is None, "联合搜索需要 numpy")
+    def test_shared_circle_restores_two_geometric_intersections_under_rotation(self):
+        # 合法 Circle(O,P)，与两条已知切线各有一个有限交点。
+        transforms = (lambda p: p, lambda p: (-p[0], -p[1]), lambda p: (-p[1], p[0]))
+        values = lambda point: tuple(transform(point) for transform in transforms)
+        origin, through = PointBundle("O", values((0.0, 0.0))), PointBundle("P", values((0.0, 1.0)))
+        supports = tuple(DrawableBundle(str(x), "line", tuple(line_through(transform((x, 0.0)), transform((x, 1.0)))
+                         for transform in transforms)) for x in (-1.0, 1.0))
+        state = State((origin, through), supports)
+        left, right = values((-1.0, 0.0)), values((1.0, 0.0))
+        self.assertFalse(available(state, left))
+        self.assertFalse(available(state, right))
+        circles = dual_circle_candidates(state, left, right, 1)
+        self.assertEqual(len(circles), 1)
+        constructed = apply_calibrated_candidate(state, circles[0], 1)
+        self.assertTrue(available(constructed, left))
+        self.assertTrue(available(constructed, right))
+
+    @unittest.skipIf(numpy is None, "联合搜索需要 numpy")
+    def test_two_step_root_completion_finds_intersection_without_injecting_it(self):
+        points = tuple(PointBundle(name, (value,) * 3) for name, value in (
+            ("A", (1.0, 0.0)), ("B", (1.0, 2.0)), ("C", (0.0, 1.0)), ("D", (2.0, 1.0))))
+        state = State(points, ())
+        targets = ((1.0, 1.0),) * 3
+        self.assertFalse(available(state, targets))
+        paths = two_step_root_paths(state, targets, 1, BindingAudit())
+        self.assertIn(("Line(A, B)", "Line(C, D)"), paths)
+        self.assertTrue(all(len(path) == 2 for path in paths))
 
 
 if __name__ == "__main__":

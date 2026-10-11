@@ -1,0 +1,996 @@
+{
+  "schema": "shared-projections-planned/v1",
+  "states": [
+    {
+      "schema": "shared-projections-static/v1",
+      "base_e": 25,
+      "planned_profiles": [],
+      "planned_mode": "radial",
+      "planned_objects": [],
+      "policy": "known-first",
+      "base_points": 297,
+      "base_objects": 28,
+      "already_available": [],
+      "pairs": [
+        {
+          "profiles": [
+            "P0",
+            "P2"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        },
+        {
+          "profiles": [
+            "P0",
+            "P1"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        },
+        {
+          "profiles": [
+            "P0",
+            "P3"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        },
+        {
+          "profiles": [
+            "P2",
+            "P1"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        },
+        {
+          "profiles": [
+            "P2",
+            "P3"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        },
+        {
+          "profiles": [
+            "P1",
+            "P3"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        }
+      ],
+      "elapsed_seconds": 0.191,
+      "binding_audit": {
+        "object_pairs": 375,
+        "removed_known_roots": 120,
+        "known_root_realignments": 4,
+        "root_count_mismatches": 10,
+        "mixed_root_bundles": 0
+      },
+      "complete": true,
+      "scope": "static circles through two J points; no dynamic helpers"
+    },
+    {
+      "schema": "shared-projections-static/v1",
+      "base_e": 26,
+      "planned_profiles": [
+        "P0"
+      ],
+      "planned_mode": "radial",
+      "planned_objects": [
+        "P0_O3_Kp"
+      ],
+      "policy": "known-first",
+      "base_points": 320,
+      "base_objects": 29,
+      "already_available": [
+        "P0"
+      ],
+      "pairs": [
+        {
+          "profiles": [
+            "P2",
+            "P1"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        },
+        {
+          "profiles": [
+            "P2",
+            "P3"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        },
+        {
+          "profiles": [
+            "P1",
+            "P3"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        }
+      ],
+      "elapsed_seconds": 0.21,
+      "binding_audit": {
+        "object_pairs": 403,
+        "removed_known_roots": 126,
+        "known_root_realignments": 6,
+        "root_count_mismatches": 11,
+        "mixed_root_bundles": 2
+      },
+      "complete": true,
+      "scope": "static circles through two J points; no dynamic helpers"
+    },
+    {
+      "schema": "shared-projections-static/v1",
+      "base_e": 27,
+      "planned_profiles": [
+        "P0"
+      ],
+      "planned_mode": "locus",
+      "planned_objects": [
+        "P0_O3_Kp",
+        "P0_center_locus_from_Kp"
+      ],
+      "policy": "known-first",
+      "base_points": 342,
+      "base_objects": 30,
+      "already_available": [
+        "P0"
+      ],
+      "pairs": [
+        {
+          "profiles": [
+            "P2",
+            "P1"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        },
+        {
+          "profiles": [
+            "P2",
+            "P3"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        },
+        {
+          "profiles": [
+            "P1",
+            "P3"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        }
+      ],
+      "elapsed_seconds": 0.211,
+      "binding_audit": {
+        "object_pairs": 432,
+        "removed_known_roots": 132,
+        "known_root_realignments": 6,
+        "root_count_mismatches": 12,
+        "mixed_root_bundles": 2
+      },
+      "complete": true,
+      "scope": "static circles through two J points; no dynamic helpers"
+    },
+    {
+      "schema": "shared-projections-static/v1",
+      "base_e": 26,
+      "planned_profiles": [
+        "P2"
+      ],
+      "planned_mode": "radial",
+      "planned_objects": [
+        "P2_O3_Kp"
+      ],
+      "policy": "known-first",
+      "base_points": 320,
+      "base_objects": 29,
+      "already_available": [
+        "P2"
+      ],
+      "pairs": [
+        {
+          "profiles": [
+            "P0",
+            "P1"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        },
+        {
+          "profiles": [
+            "P0",
+            "P3"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        },
+        {
+          "profiles": [
+            "P1",
+            "P3"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        }
+      ],
+      "elapsed_seconds": 0.186,
+      "binding_audit": {
+        "object_pairs": 403,
+        "removed_known_roots": 126,
+        "known_root_realignments": 4,
+        "root_count_mismatches": 11,
+        "mixed_root_bundles": 0
+      },
+      "complete": true,
+      "scope": "static circles through two J points; no dynamic helpers"
+    },
+    {
+      "schema": "shared-projections-static/v1",
+      "base_e": 27,
+      "planned_profiles": [
+        "P2"
+      ],
+      "planned_mode": "locus",
+      "planned_objects": [
+        "P2_O3_Kp",
+        "P2_center_locus_from_Kp"
+      ],
+      "policy": "known-first",
+      "base_points": 344,
+      "base_objects": 30,
+      "already_available": [
+        "P2"
+      ],
+      "pairs": [
+        {
+          "profiles": [
+            "P0",
+            "P1"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        },
+        {
+          "profiles": [
+            "P0",
+            "P3"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        },
+        {
+          "profiles": [
+            "P1",
+            "P3"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        }
+      ],
+      "elapsed_seconds": 0.207,
+      "binding_audit": {
+        "object_pairs": 432,
+        "removed_known_roots": 132,
+        "known_root_realignments": 4,
+        "root_count_mismatches": 11,
+        "mixed_root_bundles": 0
+      },
+      "complete": true,
+      "scope": "static circles through two J points; no dynamic helpers"
+    },
+    {
+      "schema": "shared-projections-static/v1",
+      "base_e": 26,
+      "planned_profiles": [
+        "P1"
+      ],
+      "planned_mode": "radial",
+      "planned_objects": [
+        "P1_O3_Kp"
+      ],
+      "policy": "known-first",
+      "base_points": 320,
+      "base_objects": 29,
+      "already_available": [
+        "P1"
+      ],
+      "pairs": [
+        {
+          "profiles": [
+            "P0",
+            "P2"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        },
+        {
+          "profiles": [
+            "P0",
+            "P3"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        },
+        {
+          "profiles": [
+            "P2",
+            "P3"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        }
+      ],
+      "elapsed_seconds": 0.184,
+      "binding_audit": {
+        "object_pairs": 403,
+        "removed_known_roots": 126,
+        "known_root_realignments": 6,
+        "root_count_mismatches": 11,
+        "mixed_root_bundles": 2
+      },
+      "complete": true,
+      "scope": "static circles through two J points; no dynamic helpers"
+    },
+    {
+      "schema": "shared-projections-static/v1",
+      "base_e": 27,
+      "planned_profiles": [
+        "P1"
+      ],
+      "planned_mode": "locus",
+      "planned_objects": [
+        "P1_O3_Kp",
+        "P1_center_locus_from_Kp"
+      ],
+      "policy": "known-first",
+      "base_points": 342,
+      "base_objects": 30,
+      "already_available": [
+        "P1"
+      ],
+      "pairs": [
+        {
+          "profiles": [
+            "P0",
+            "P2"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        },
+        {
+          "profiles": [
+            "P0",
+            "P3"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        },
+        {
+          "profiles": [
+            "P2",
+            "P3"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        }
+      ],
+      "elapsed_seconds": 0.208,
+      "binding_audit": {
+        "object_pairs": 432,
+        "removed_known_roots": 132,
+        "known_root_realignments": 6,
+        "root_count_mismatches": 13,
+        "mixed_root_bundles": 2
+      },
+      "complete": true,
+      "scope": "static circles through two J points; no dynamic helpers"
+    },
+    {
+      "schema": "shared-projections-static/v1",
+      "base_e": 26,
+      "planned_profiles": [
+        "P3"
+      ],
+      "planned_mode": "radial",
+      "planned_objects": [
+        "P3_O3_Kp"
+      ],
+      "policy": "known-first",
+      "base_points": 320,
+      "base_objects": 29,
+      "already_available": [
+        "P3"
+      ],
+      "pairs": [
+        {
+          "profiles": [
+            "P0",
+            "P2"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        },
+        {
+          "profiles": [
+            "P0",
+            "P1"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        },
+        {
+          "profiles": [
+            "P2",
+            "P1"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        }
+      ],
+      "elapsed_seconds": 0.186,
+      "binding_audit": {
+        "object_pairs": 403,
+        "removed_known_roots": 126,
+        "known_root_realignments": 6,
+        "root_count_mismatches": 12,
+        "mixed_root_bundles": 2
+      },
+      "complete": true,
+      "scope": "static circles through two J points; no dynamic helpers"
+    },
+    {
+      "schema": "shared-projections-static/v1",
+      "base_e": 27,
+      "planned_profiles": [
+        "P3"
+      ],
+      "planned_mode": "locus",
+      "planned_objects": [
+        "P3_O3_Kp",
+        "P3_center_locus_from_Kp"
+      ],
+      "policy": "known-first",
+      "base_points": 342,
+      "base_objects": 30,
+      "already_available": [
+        "P3"
+      ],
+      "pairs": [
+        {
+          "profiles": [
+            "P0",
+            "P2"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        },
+        {
+          "profiles": [
+            "P0",
+            "P1"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        },
+        {
+          "profiles": [
+            "P2",
+            "P1"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        }
+      ],
+      "elapsed_seconds": 0.233,
+      "binding_audit": {
+        "object_pairs": 432,
+        "removed_known_roots": 132,
+        "known_root_realignments": 6,
+        "root_count_mismatches": 14,
+        "mixed_root_bundles": 2
+      },
+      "complete": true,
+      "scope": "static circles through two J points; no dynamic helpers"
+    },
+    {
+      "schema": "shared-projections-static/v1",
+      "base_e": 27,
+      "planned_profiles": [
+        "P0",
+        "P2"
+      ],
+      "planned_mode": "radial",
+      "planned_objects": [
+        "P0_O3_Kp",
+        "P2_O3_Kp"
+      ],
+      "policy": "known-first",
+      "base_points": 343,
+      "base_objects": 30,
+      "already_available": [
+        "P0",
+        "P2"
+      ],
+      "pairs": [
+        {
+          "profiles": [
+            "P1",
+            "P3"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        }
+      ],
+      "elapsed_seconds": 0.204,
+      "binding_audit": {
+        "object_pairs": 432,
+        "removed_known_roots": 133,
+        "known_root_realignments": 6,
+        "root_count_mismatches": 12,
+        "mixed_root_bundles": 2
+      },
+      "complete": true,
+      "scope": "static circles through two J points; no dynamic helpers"
+    },
+    {
+      "schema": "shared-projections-static/v1",
+      "base_e": 29,
+      "planned_profiles": [
+        "P0",
+        "P2"
+      ],
+      "planned_mode": "locus",
+      "planned_objects": [
+        "P0_O3_Kp",
+        "P0_center_locus_from_Kp",
+        "P2_O3_Kp",
+        "P2_center_locus_from_Kp"
+      ],
+      "policy": "known-first",
+      "base_points": 391,
+      "base_objects": 32,
+      "already_available": [
+        "P0",
+        "P2"
+      ],
+      "pairs": [
+        {
+          "profiles": [
+            "P1",
+            "P3"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        }
+      ],
+      "elapsed_seconds": 0.245,
+      "binding_audit": {
+        "object_pairs": 493,
+        "removed_known_roots": 146,
+        "known_root_realignments": 6,
+        "root_count_mismatches": 13,
+        "mixed_root_bundles": 2
+      },
+      "complete": true,
+      "scope": "static circles through two J points; no dynamic helpers"
+    },
+    {
+      "schema": "shared-projections-static/v1",
+      "base_e": 27,
+      "planned_profiles": [
+        "P0",
+        "P1"
+      ],
+      "planned_mode": "radial",
+      "planned_objects": [
+        "P0_O3_Kp",
+        "P1_O3_Kp"
+      ],
+      "policy": "known-first",
+      "base_points": 343,
+      "base_objects": 30,
+      "already_available": [
+        "P0",
+        "P1"
+      ],
+      "pairs": [
+        {
+          "profiles": [
+            "P2",
+            "P3"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        }
+      ],
+      "elapsed_seconds": 0.207,
+      "binding_audit": {
+        "object_pairs": 432,
+        "removed_known_roots": 133,
+        "known_root_realignments": 8,
+        "root_count_mismatches": 12,
+        "mixed_root_bundles": 4
+      },
+      "complete": true,
+      "scope": "static circles through two J points; no dynamic helpers"
+    },
+    {
+      "schema": "shared-projections-static/v1",
+      "base_e": 29,
+      "planned_profiles": [
+        "P0",
+        "P1"
+      ],
+      "planned_mode": "locus",
+      "planned_objects": [
+        "P0_O3_Kp",
+        "P0_center_locus_from_Kp",
+        "P1_O3_Kp",
+        "P1_center_locus_from_Kp"
+      ],
+      "policy": "known-first",
+      "base_points": 389,
+      "base_objects": 32,
+      "already_available": [
+        "P0",
+        "P1"
+      ],
+      "pairs": [
+        {
+          "profiles": [
+            "P2",
+            "P3"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        }
+      ],
+      "elapsed_seconds": 0.272,
+      "binding_audit": {
+        "object_pairs": 493,
+        "removed_known_roots": 146,
+        "known_root_realignments": 8,
+        "root_count_mismatches": 15,
+        "mixed_root_bundles": 4
+      },
+      "complete": true,
+      "scope": "static circles through two J points; no dynamic helpers"
+    },
+    {
+      "schema": "shared-projections-static/v1",
+      "base_e": 27,
+      "planned_profiles": [
+        "P0",
+        "P3"
+      ],
+      "planned_mode": "radial",
+      "planned_objects": [
+        "P0_O3_Kp",
+        "P3_O3_Kp"
+      ],
+      "policy": "known-first",
+      "base_points": 343,
+      "base_objects": 30,
+      "already_available": [
+        "P0",
+        "P3"
+      ],
+      "pairs": [
+        {
+          "profiles": [
+            "P2",
+            "P1"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        }
+      ],
+      "elapsed_seconds": 0.224,
+      "binding_audit": {
+        "object_pairs": 432,
+        "removed_known_roots": 133,
+        "known_root_realignments": 8,
+        "root_count_mismatches": 13,
+        "mixed_root_bundles": 4
+      },
+      "complete": true,
+      "scope": "static circles through two J points; no dynamic helpers"
+    },
+    {
+      "schema": "shared-projections-static/v1",
+      "base_e": 29,
+      "planned_profiles": [
+        "P0",
+        "P3"
+      ],
+      "planned_mode": "locus",
+      "planned_objects": [
+        "P0_O3_Kp",
+        "P0_center_locus_from_Kp",
+        "P3_O3_Kp",
+        "P3_center_locus_from_Kp"
+      ],
+      "policy": "known-first",
+      "base_points": 389,
+      "base_objects": 32,
+      "already_available": [
+        "P0",
+        "P3"
+      ],
+      "pairs": [
+        {
+          "profiles": [
+            "P2",
+            "P1"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        }
+      ],
+      "elapsed_seconds": 0.272,
+      "binding_audit": {
+        "object_pairs": 493,
+        "removed_known_roots": 146,
+        "known_root_realignments": 8,
+        "root_count_mismatches": 16,
+        "mixed_root_bundles": 4
+      },
+      "complete": true,
+      "scope": "static circles through two J points; no dynamic helpers"
+    },
+    {
+      "schema": "shared-projections-static/v1",
+      "base_e": 27,
+      "planned_profiles": [
+        "P2",
+        "P1"
+      ],
+      "planned_mode": "radial",
+      "planned_objects": [
+        "P2_O3_Kp",
+        "P1_O3_Kp"
+      ],
+      "policy": "known-first",
+      "base_points": 343,
+      "base_objects": 30,
+      "already_available": [
+        "P2",
+        "P1"
+      ],
+      "pairs": [
+        {
+          "profiles": [
+            "P0",
+            "P3"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        }
+      ],
+      "elapsed_seconds": 0.237,
+      "binding_audit": {
+        "object_pairs": 432,
+        "removed_known_roots": 133,
+        "known_root_realignments": 6,
+        "root_count_mismatches": 12,
+        "mixed_root_bundles": 2
+      },
+      "complete": true,
+      "scope": "static circles through two J points; no dynamic helpers"
+    },
+    {
+      "schema": "shared-projections-static/v1",
+      "base_e": 29,
+      "planned_profiles": [
+        "P2",
+        "P1"
+      ],
+      "planned_mode": "locus",
+      "planned_objects": [
+        "P2_O3_Kp",
+        "P2_center_locus_from_Kp",
+        "P1_O3_Kp",
+        "P1_center_locus_from_Kp"
+      ],
+      "policy": "known-first",
+      "base_points": 391,
+      "base_objects": 32,
+      "already_available": [
+        "P2",
+        "P1"
+      ],
+      "pairs": [
+        {
+          "profiles": [
+            "P0",
+            "P3"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        }
+      ],
+      "elapsed_seconds": 0.269,
+      "binding_audit": {
+        "object_pairs": 493,
+        "removed_known_roots": 146,
+        "known_root_realignments": 6,
+        "root_count_mismatches": 14,
+        "mixed_root_bundles": 2
+      },
+      "complete": true,
+      "scope": "static circles through two J points; no dynamic helpers"
+    },
+    {
+      "schema": "shared-projections-static/v1",
+      "base_e": 27,
+      "planned_profiles": [
+        "P2",
+        "P3"
+      ],
+      "planned_mode": "radial",
+      "planned_objects": [
+        "P2_O3_Kp",
+        "P3_O3_Kp"
+      ],
+      "policy": "known-first",
+      "base_points": 343,
+      "base_objects": 30,
+      "already_available": [
+        "P2",
+        "P3"
+      ],
+      "pairs": [
+        {
+          "profiles": [
+            "P0",
+            "P1"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        }
+      ],
+      "elapsed_seconds": 0.225,
+      "binding_audit": {
+        "object_pairs": 432,
+        "removed_known_roots": 133,
+        "known_root_realignments": 6,
+        "root_count_mismatches": 13,
+        "mixed_root_bundles": 2
+      },
+      "complete": true,
+      "scope": "static circles through two J points; no dynamic helpers"
+    },
+    {
+      "schema": "shared-projections-static/v1",
+      "base_e": 29,
+      "planned_profiles": [
+        "P2",
+        "P3"
+      ],
+      "planned_mode": "locus",
+      "planned_objects": [
+        "P2_O3_Kp",
+        "P2_center_locus_from_Kp",
+        "P3_O3_Kp",
+        "P3_center_locus_from_Kp"
+      ],
+      "policy": "known-first",
+      "base_points": 391,
+      "base_objects": 32,
+      "already_available": [
+        "P2",
+        "P3"
+      ],
+      "pairs": [
+        {
+          "profiles": [
+            "P0",
+            "P1"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        }
+      ],
+      "elapsed_seconds": 0.278,
+      "binding_audit": {
+        "object_pairs": 493,
+        "removed_known_roots": 146,
+        "known_root_realignments": 6,
+        "root_count_mismatches": 15,
+        "mixed_root_bundles": 2
+      },
+      "complete": true,
+      "scope": "static circles through two J points; no dynamic helpers"
+    },
+    {
+      "schema": "shared-projections-static/v1",
+      "base_e": 27,
+      "planned_profiles": [
+        "P1",
+        "P3"
+      ],
+      "planned_mode": "radial",
+      "planned_objects": [
+        "P1_O3_Kp",
+        "P3_O3_Kp"
+      ],
+      "policy": "known-first",
+      "base_points": 343,
+      "base_objects": 30,
+      "already_available": [
+        "P1",
+        "P3"
+      ],
+      "pairs": [
+        {
+          "profiles": [
+            "P0",
+            "P2"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        }
+      ],
+      "elapsed_seconds": 0.229,
+      "binding_audit": {
+        "object_pairs": 432,
+        "removed_known_roots": 133,
+        "known_root_realignments": 8,
+        "root_count_mismatches": 13,
+        "mixed_root_bundles": 4
+      },
+      "complete": true,
+      "scope": "static circles through two J points; no dynamic helpers"
+    },
+    {
+      "schema": "shared-projections-static/v1",
+      "base_e": 29,
+      "planned_profiles": [
+        "P1",
+        "P3"
+      ],
+      "planned_mode": "locus",
+      "planned_objects": [
+        "P1_O3_Kp",
+        "P1_center_locus_from_Kp",
+        "P3_O3_Kp",
+        "P3_center_locus_from_Kp"
+      ],
+      "policy": "known-first",
+      "base_points": 389,
+      "base_objects": 32,
+      "already_available": [
+        "P1",
+        "P3"
+      ],
+      "pairs": [
+        {
+          "profiles": [
+            "P0",
+            "P2"
+          ],
+          "eligible_centers": 0,
+          "candidates": []
+        }
+      ],
+      "elapsed_seconds": 0.265,
+      "binding_audit": {
+        "object_pairs": 493,
+        "removed_known_roots": 146,
+        "known_root_realignments": 8,
+        "root_count_mismatches": 17,
+        "mixed_root_bundles": 4
+      },
+      "complete": true,
+      "scope": "static circles through two J points; no dynamic helpers"
+    }
+  ]
+}

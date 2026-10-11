@@ -1,0 +1,71 @@
+{
+  "schema": "shared-projections-static/v1",
+  "base_e": 25,
+  "planned_profiles": [],
+  "planned_mode": "radial",
+  "planned_objects": [],
+  "policy": "known-first",
+  "base_points": 297,
+  "base_objects": 28,
+  "already_available": [],
+  "pairs": [
+    {
+      "profiles": [
+        "P0",
+        "P2"
+      ],
+      "eligible_centers": 0,
+      "candidates": []
+    },
+    {
+      "profiles": [
+        "P0",
+        "P1"
+      ],
+      "eligible_centers": 0,
+      "candidates": []
+    },
+    {
+      "profiles": [
+        "P0",
+        "P3"
+      ],
+      "eligible_centers": 0,
+      "candidates": []
+    },
+    {
+      "profiles": [
+        "P2",
+        "P1"
+      ],
+      "eligible_centers": 0,
+      "candidates": []
+    },
+    {
+      "profiles": [
+        "P2",
+        "P3"
+      ],
+      "eligible_centers": 0,
+      "candidates": []
+    },
+    {
+      "profiles": [
+        "P1",
+        "P3"
+      ],
+      "eligible_centers": 0,
+      "candidates": []
+    }
+  ],
+  "elapsed_seconds": 0.175,
+  "binding_audit": {
+    "object_pairs": 375,
+    "removed_known_roots": 120,
+    "known_root_realignments": 4,
+    "root_count_mismatches": 10,
+    "mixed_root_bundles": 0
+  },
+  "complete": true,
+  "scope": "static circles through two J points; no dynamic helpers"
+}
