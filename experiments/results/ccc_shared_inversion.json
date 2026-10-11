@@ -1,0 +1,897 @@
+{
+  "schema": "ccc-shared-inversion/v1",
+  "symbolic": {
+    "profiles": [
+      {
+        "profile": "P0",
+        "factors": [
+          "12_same",
+          "13_same",
+          "23_same"
+        ],
+        "identity": true
+      },
+      {
+        "profile": "P2",
+        "factors": [
+          "12_opposite",
+          "13_opposite",
+          "23_same"
+        ],
+        "identity": true
+      },
+      {
+        "profile": "P1",
+        "factors": [
+          "12_same",
+          "13_opposite",
+          "23_opposite"
+        ],
+        "identity": true
+      },
+      {
+        "profile": "P3",
+        "factors": [
+          "12_opposite",
+          "13_same",
+          "23_opposite"
+        ],
+        "identity": true
+      }
+    ],
+    "four_radicand_product_is_square": true,
+    "factor_occurrences": {
+      "12_same": 2,
+      "13_same": 2,
+      "23_same": 2,
+      "12_opposite": 2,
+      "13_opposite": 2,
+      "23_opposite": 2
+    },
+    "ring": "Z[c,d,h,p,q]",
+    "score_certificate": false
+  },
+  "exact_inversion_fixtures": [
+    {
+      "centers": [
+        [
+          "0",
+          "0"
+        ],
+        [
+          "13",
+          "0"
+        ],
+        [
+          "4",
+          "15"
+        ]
+      ],
+      "radii": [
+        "4",
+        "2",
+        "1"
+      ],
+      "radical_center": [
+        "181/26",
+        "434/65"
+      ],
+      "inversion_power": "1302049/16900",
+      "pairs": [
+        {
+          "profile": "P0",
+          "both_directions_exact": true,
+          "discriminant_quarter": "38918/507",
+          "pair_intersection_margin": "14347/50700",
+          "pair_has_two_real_intersections": true
+        },
+        {
+          "profile": "P2",
+          "both_directions_exact": true,
+          "discriminant_quarter": "48678/845",
+          "pair_intersection_margin": "328489/16900",
+          "pair_has_two_real_intersections": true
+        },
+        {
+          "profile": "P1",
+          "both_directions_exact": true,
+          "discriminant_quarter": "58806/845",
+          "pair_intersection_margin": "125929/16900",
+          "pair_has_two_real_intersections": true
+        },
+        {
+          "profile": "P3",
+          "both_directions_exact": true,
+          "discriminant_quarter": "254562/4225",
+          "pair_intersection_margin": "283801/16900",
+          "pair_has_two_real_intersections": true
+        }
+      ]
+    },
+    {
+      "centers": [
+        [
+          "0",
+          "0"
+        ],
+        [
+          "17",
+          "0"
+        ],
+        [
+          "5",
+          "12"
+        ]
+      ],
+      "radii": [
+        "5",
+        "3",
+        "1"
+      ],
+      "radical_center": [
+        "305/34",
+        "439/102"
+      ],
+      "inversion_power": "384923/5202",
+      "pairs": [
+        {
+          "profile": "P0",
+          "both_directions_exact": true,
+          "discriminant_quarter": "20235/272",
+          "pair_intersection_margin": "-16571/41616",
+          "pair_has_two_real_intersections": false
+        },
+        {
+          "profile": "P2",
+          "both_directions_exact": true,
+          "discriminant_quarter": "236075/4624",
+          "pair_intersection_margin": "954709/41616",
+          "pair_has_two_real_intersections": true
+        },
+        {
+          "profile": "P1",
+          "both_directions_exact": true,
+          "discriminant_quarter": "12635/204",
+          "pair_intersection_margin": "125461/10404",
+          "pair_has_two_real_intersections": true
+        },
+        {
+          "profile": "P3",
+          "both_directions_exact": true,
+          "discriminant_quarter": "225/4",
+          "pair_intersection_margin": "184621/10404",
+          "pair_has_two_real_intersections": true
+        }
+      ]
+    },
+    {
+      "centers": [
+        [
+          "0",
+          "0"
+        ],
+        [
+          "19",
+          "0"
+        ],
+        [
+          "10",
+          "11"
+        ]
+      ],
+      "radii": [
+        "6",
+        "4",
+        "2"
+      ],
+      "radical_center": [
+        "381/38",
+        "997/418"
+      ],
+      "inversion_power": "6134213/87362",
+      "pairs": [
+        {
+          "profile": "P0",
+          "both_directions_exact": true,
+          "discriminant_quarter": "658665/7942",
+          "pair_intersection_margin": "-555551/43681",
+          "pair_has_two_real_intersections": false
+        },
+        {
+          "profile": "P2",
+          "both_directions_exact": true,
+          "discriminant_quarter": "368793/7942",
+          "pair_intersection_margin": "1038745/43681",
+          "pair_has_two_real_intersections": true
+        },
+        {
+          "profile": "P1",
+          "both_directions_exact": true,
+          "discriminant_quarter": "4652067/87362",
+          "pair_intersection_margin": "741073/43681",
+          "pair_has_two_real_intersections": true
+        },
+        {
+          "profile": "P3",
+          "both_directions_exact": true,
+          "discriminant_quarter": "4440915/87362",
+          "pair_intersection_margin": "846649/43681",
+          "pair_has_two_real_intersections": true
+        }
+      ]
+    }
+  ],
+  "omega_entry_states": [
+    {
+      "completed_profiles": [],
+      "base_e": 25,
+      "points": 297,
+      "objects": 28,
+      "omega_existing": [],
+      "omega_drawable_through_points": [],
+      "omega_completion": null,
+      "binding_audit": {
+        "object_pairs": 375,
+        "removed_known_roots": 120,
+        "known_root_realignments": 4,
+        "root_count_mismatches": 10,
+        "mixed_root_bundles": 0
+      },
+      "elapsed_seconds": 0.168
+    },
+    {
+      "completed_profiles": [
+        "P0"
+      ],
+      "base_e": 31,
+      "points": 494,
+      "objects": 34,
+      "omega_existing": [],
+      "omega_drawable_through_points": [],
+      "omega_completion": null,
+      "binding_audit": {
+        "object_pairs": 558,
+        "removed_known_roots": 151,
+        "known_root_realignments": 12,
+        "root_count_mismatches": 19,
+        "mixed_root_bundles": 8
+      },
+      "elapsed_seconds": 0.317
+    },
+    {
+      "completed_profiles": [
+        "P2"
+      ],
+      "base_e": 31,
+      "points": 500,
+      "objects": 34,
+      "omega_existing": [],
+      "omega_drawable_through_points": [
+        "Circle(object_23&P0_tau[0,0,0], object_31&target_P2:+--@-1[0,0,0])",
+        "Circle(object_23&P0_tau[0,0,0], object_31&target_P2:+--@-1[1,1,1])"
+      ],
+      "omega_completion": {
+        "draw": "Circle(object_23&P0_tau[0,0,0], object_31&target_P2:+--@-1[0,0,0])",
+        "new_points": 60,
+        "new_points_on_remaining_loci": {
+          "P0": [],
+          "P1": [],
+          "P3": []
+        },
+        "new_remaining_centers": {
+          "P0:+++@-1": [],
+          "P0:---@+1": [],
+          "P1:++-@-1": [],
+          "P1:--+@+1": [],
+          "P3:+-+@-1": [],
+          "P3:-+-@+1": []
+        },
+        "static_shared_center_carriers": {
+          "P0": [],
+          "P1": [],
+          "P3": []
+        },
+        "binding_audit": {
+          "object_pairs": 34,
+          "removed_known_roots": 4,
+          "known_root_realignments": 0,
+          "root_count_mismatches": 2,
+          "mixed_root_bundles": 0
+        }
+      },
+      "binding_audit": {
+        "object_pairs": 558,
+        "removed_known_roots": 151,
+        "known_root_realignments": 4,
+        "root_count_mismatches": 18,
+        "mixed_root_bundles": 0
+      },
+      "elapsed_seconds": 0.419
+    },
+    {
+      "completed_profiles": [
+        "P1"
+      ],
+      "base_e": 31,
+      "points": 504,
+      "objects": 34,
+      "omega_existing": [],
+      "omega_drawable_through_points": [
+        "Circle(object_23&P0_tau[0,0,0], object_31&target_P1:++-@-1[0,0,0])",
+        "Circle(object_23&P0_tau[0,0,0], object_31&target_P1:++-@-1[1,1,1])"
+      ],
+      "omega_completion": {
+        "draw": "Circle(object_23&P0_tau[0,0,0], object_31&target_P1:++-@-1[0,0,0])",
+        "new_points": 60,
+        "new_points_on_remaining_loci": {
+          "P0": [],
+          "P2": [],
+          "P3": []
+        },
+        "new_remaining_centers": {
+          "P0:+++@-1": [],
+          "P0:---@+1": [],
+          "P2:+--@-1": [],
+          "P2:-++@+1": [],
+          "P3:+-+@-1": [],
+          "P3:-+-@+1": []
+        },
+        "static_shared_center_carriers": {
+          "P0": [],
+          "P2": [],
+          "P3": []
+        },
+        "binding_audit": {
+          "object_pairs": 34,
+          "removed_known_roots": 4,
+          "known_root_realignments": 0,
+          "root_count_mismatches": 2,
+          "mixed_root_bundles": 0
+        }
+      },
+      "binding_audit": {
+        "object_pairs": 558,
+        "removed_known_roots": 151,
+        "known_root_realignments": 10,
+        "root_count_mismatches": 16,
+        "mixed_root_bundles": 6
+      },
+      "elapsed_seconds": 0.404
+    },
+    {
+      "completed_profiles": [
+        "P3"
+      ],
+      "base_e": 31,
+      "points": 493,
+      "objects": 34,
+      "omega_existing": [],
+      "omega_drawable_through_points": [
+        "Circle(object_23&P0_tau[0,0,0], object_31&target_P3:+-+@-1[0,0,0])",
+        "Circle(object_23&P0_tau[0,0,0], object_31&target_P3:+-+@-1[1,1,1])"
+      ],
+      "omega_completion": {
+        "draw": "Circle(object_23&P0_tau[0,0,0], object_31&target_P3:+-+@-1[0,0,0])",
+        "new_points": 58,
+        "new_points_on_remaining_loci": {
+          "P0": [],
+          "P2": [],
+          "P1": []
+        },
+        "new_remaining_centers": {
+          "P0:+++@-1": [],
+          "P0:---@+1": [],
+          "P2:+--@-1": [],
+          "P2:-++@+1": [],
+          "P1:++-@-1": [],
+          "P1:--+@+1": []
+        },
+        "static_shared_center_carriers": {
+          "P0": [],
+          "P2": [],
+          "P1": []
+        },
+        "binding_audit": {
+          "object_pairs": 34,
+          "removed_known_roots": 4,
+          "known_root_realignments": 0,
+          "root_count_mismatches": 3,
+          "mixed_root_bundles": 0
+        }
+      },
+      "binding_audit": {
+        "object_pairs": 558,
+        "removed_known_roots": 151,
+        "known_root_realignments": 8,
+        "root_count_mismatches": 24,
+        "mixed_root_bundles": 4
+      },
+      "elapsed_seconds": 0.399
+    },
+    {
+      "completed_profiles": [
+        "P0",
+        "P2"
+      ],
+      "base_e": 37,
+      "points": 741,
+      "objects": 40,
+      "omega_existing": [],
+      "omega_drawable_through_points": [
+        "Circle(object_23&P0_tau[0,0,0], object_37&target_P2:+--@-1[0,0,0])",
+        "Circle(object_23&P0_tau[0,0,0], object_37&target_P2:+--@-1[1,1,1])"
+      ],
+      "omega_completion": {
+        "draw": "Circle(object_23&P0_tau[0,0,0], object_37&target_P2:+--@-1[0,0,0])",
+        "new_points": 68,
+        "new_points_on_remaining_loci": {
+          "P1": [],
+          "P3": []
+        },
+        "new_remaining_centers": {
+          "P1:++-@-1": [],
+          "P1:--+@+1": [],
+          "P3:+-+@-1": [],
+          "P3:-+-@+1": []
+        },
+        "static_shared_center_carriers": {
+          "P1": [],
+          "P3": []
+        },
+        "binding_audit": {
+          "object_pairs": 40,
+          "removed_known_roots": 4,
+          "known_root_realignments": 0,
+          "root_count_mismatches": 4,
+          "mixed_root_bundles": 0
+        }
+      },
+      "binding_audit": {
+        "object_pairs": 777,
+        "removed_known_roots": 192,
+        "known_root_realignments": 12,
+        "root_count_mismatches": 28,
+        "mixed_root_bundles": 8
+      },
+      "elapsed_seconds": 0.726
+    },
+    {
+      "completed_profiles": [
+        "P0",
+        "P1"
+      ],
+      "base_e": 37,
+      "points": 747,
+      "objects": 40,
+      "omega_existing": [],
+      "omega_drawable_through_points": [
+        "Circle(object_23&P0_tau[0,0,0], object_37&target_P1:++-@-1[0,0,0])",
+        "Circle(object_23&P0_tau[0,0,0], object_37&target_P1:++-@-1[1,1,1])"
+      ],
+      "omega_completion": {
+        "draw": "Circle(object_23&P0_tau[0,0,0], object_37&target_P1:++-@-1[0,0,0])",
+        "new_points": 68,
+        "new_points_on_remaining_loci": {
+          "P2": [],
+          "P3": []
+        },
+        "new_remaining_centers": {
+          "P2:+--@-1": [],
+          "P2:-++@+1": [],
+          "P3:+-+@-1": [],
+          "P3:-+-@+1": []
+        },
+        "static_shared_center_carriers": {
+          "P2": [],
+          "P3": []
+        },
+        "binding_audit": {
+          "object_pairs": 40,
+          "removed_known_roots": 4,
+          "known_root_realignments": 0,
+          "root_count_mismatches": 4,
+          "mixed_root_bundles": 0
+        }
+      },
+      "binding_audit": {
+        "object_pairs": 777,
+        "removed_known_roots": 192,
+        "known_root_realignments": 18,
+        "root_count_mismatches": 25,
+        "mixed_root_bundles": 14
+      },
+      "elapsed_seconds": 0.761
+    },
+    {
+      "completed_profiles": [
+        "P0",
+        "P3"
+      ],
+      "base_e": 37,
+      "points": 734,
+      "objects": 40,
+      "omega_existing": [],
+      "omega_drawable_through_points": [
+        "Circle(object_23&P0_tau[0,0,0], object_37&target_P3:+-+@-1[0,0,0])",
+        "Circle(object_23&P0_tau[0,0,0], object_37&target_P3:+-+@-1[1,1,1])"
+      ],
+      "omega_completion": {
+        "draw": "Circle(object_23&P0_tau[0,0,0], object_37&target_P3:+-+@-1[0,0,0])",
+        "new_points": 66,
+        "new_points_on_remaining_loci": {
+          "P2": [],
+          "P1": []
+        },
+        "new_remaining_centers": {
+          "P2:+--@-1": [],
+          "P2:-++@+1": [],
+          "P1:++-@-1": [],
+          "P1:--+@+1": []
+        },
+        "static_shared_center_carriers": {
+          "P2": [],
+          "P1": []
+        },
+        "binding_audit": {
+          "object_pairs": 40,
+          "removed_known_roots": 4,
+          "known_root_realignments": 0,
+          "root_count_mismatches": 5,
+          "mixed_root_bundles": 0
+        }
+      },
+      "binding_audit": {
+        "object_pairs": 777,
+        "removed_known_roots": 192,
+        "known_root_realignments": 16,
+        "root_count_mismatches": 34,
+        "mixed_root_bundles": 12
+      },
+      "elapsed_seconds": 0.719
+    },
+    {
+      "completed_profiles": [
+        "P2",
+        "P1"
+      ],
+      "base_e": 37,
+      "points": 753,
+      "objects": 40,
+      "omega_existing": [],
+      "omega_drawable_through_points": [
+        "Circle(object_23&P0_tau[0,0,0], object_31&target_P2:+--@-1[0,0,0])",
+        "Circle(object_23&P0_tau[0,0,0], object_31&target_P2:+--@-1[1,1,1])",
+        "Circle(object_23&P0_tau[0,0,0], object_37&target_P1:++-@-1[0,0,0])",
+        "Circle(object_23&P0_tau[0,0,0], object_37&target_P1:++-@-1[1,1,1])"
+      ],
+      "omega_completion": {
+        "draw": "Circle(object_23&P0_tau[0,0,0], object_31&target_P2:+--@-1[0,0,0])",
+        "new_points": 68,
+        "new_points_on_remaining_loci": {
+          "P0": [],
+          "P3": []
+        },
+        "new_remaining_centers": {
+          "P0:+++@-1": [],
+          "P0:---@+1": [],
+          "P3:+-+@-1": [],
+          "P3:-+-@+1": []
+        },
+        "static_shared_center_carriers": {
+          "P0": [],
+          "P3": []
+        },
+        "binding_audit": {
+          "object_pairs": 40,
+          "removed_known_roots": 8,
+          "known_root_realignments": 0,
+          "root_count_mismatches": 2,
+          "mixed_root_bundles": 0
+        }
+      },
+      "binding_audit": {
+        "object_pairs": 777,
+        "removed_known_roots": 192,
+        "known_root_realignments": 10,
+        "root_count_mismatches": 24,
+        "mixed_root_bundles": 6
+      },
+      "elapsed_seconds": 0.726
+    },
+    {
+      "completed_profiles": [
+        "P2",
+        "P3"
+      ],
+      "base_e": 37,
+      "points": 738,
+      "objects": 40,
+      "omega_existing": [],
+      "omega_drawable_through_points": [
+        "Circle(object_23&P0_tau[0,0,0], object_31&target_P2:+--@-1[0,0,0])",
+        "Circle(object_23&P0_tau[0,0,0], object_31&target_P2:+--@-1[1,1,1])",
+        "Circle(object_23&P0_tau[0,0,0], object_37&target_P3:+-+@-1[0,0,0])",
+        "Circle(object_23&P0_tau[0,0,0], object_37&target_P3:+-+@-1[1,1,1])"
+      ],
+      "omega_completion": {
+        "draw": "Circle(object_23&P0_tau[0,0,0], object_31&target_P2:+--@-1[0,0,0])",
+        "new_points": 66,
+        "new_points_on_remaining_loci": {
+          "P0": [],
+          "P1": []
+        },
+        "new_remaining_centers": {
+          "P0:+++@-1": [],
+          "P0:---@+1": [],
+          "P1:++-@-1": [],
+          "P1:--+@+1": []
+        },
+        "static_shared_center_carriers": {
+          "P0": [],
+          "P1": []
+        },
+        "binding_audit": {
+          "object_pairs": 40,
+          "removed_known_roots": 8,
+          "known_root_realignments": 0,
+          "root_count_mismatches": 3,
+          "mixed_root_bundles": 0
+        }
+      },
+      "binding_audit": {
+        "object_pairs": 777,
+        "removed_known_roots": 192,
+        "known_root_realignments": 8,
+        "root_count_mismatches": 34,
+        "mixed_root_bundles": 4
+      },
+      "elapsed_seconds": 0.723
+    },
+    {
+      "completed_profiles": [
+        "P1",
+        "P3"
+      ],
+      "base_e": 37,
+      "points": 744,
+      "objects": 40,
+      "omega_existing": [],
+      "omega_drawable_through_points": [
+        "Circle(object_23&P0_tau[0,0,0], object_31&target_P1:++-@-1[0,0,0])",
+        "Circle(object_23&P0_tau[0,0,0], object_31&target_P1:++-@-1[1,1,1])",
+        "Circle(object_23&P0_tau[0,0,0], object_37&target_P3:+-+@-1[0,0,0])",
+        "Circle(object_23&P0_tau[0,0,0], object_37&target_P3:+-+@-1[1,1,1])"
+      ],
+      "omega_completion": {
+        "draw": "Circle(object_23&P0_tau[0,0,0], object_31&target_P1:++-@-1[0,0,0])",
+        "new_points": 66,
+        "new_points_on_remaining_loci": {
+          "P0": [],
+          "P2": []
+        },
+        "new_remaining_centers": {
+          "P0:+++@-1": [],
+          "P0:---@+1": [],
+          "P2:+--@-1": [],
+          "P2:-++@+1": []
+        },
+        "static_shared_center_carriers": {
+          "P0": [],
+          "P2": []
+        },
+        "binding_audit": {
+          "object_pairs": 40,
+          "removed_known_roots": 8,
+          "known_root_realignments": 0,
+          "root_count_mismatches": 3,
+          "mixed_root_bundles": 0
+        }
+      },
+      "binding_audit": {
+        "object_pairs": 777,
+        "removed_known_roots": 192,
+        "known_root_realignments": 14,
+        "root_count_mismatches": 31,
+        "mixed_root_bundles": 10
+      },
+      "elapsed_seconds": 0.735
+    },
+    {
+      "completed_profiles": [
+        "P0",
+        "P2",
+        "P1"
+      ],
+      "base_e": 43,
+      "points": 1040,
+      "objects": 46,
+      "omega_existing": [],
+      "omega_drawable_through_points": [
+        "Circle(object_23&P0_tau[0,0,0], object_37&target_P2:+--@-1[0,0,0])",
+        "Circle(object_23&P0_tau[0,0,0], object_37&target_P2:+--@-1[1,1,1])",
+        "Circle(object_23&P0_tau[0,0,0], object_43&target_P1:++-@-1[0,0,0])",
+        "Circle(object_23&P0_tau[0,0,0], object_43&target_P1:++-@-1[1,1,1])"
+      ],
+      "omega_completion": {
+        "draw": "Circle(object_23&P0_tau[0,0,0], object_37&target_P2:+--@-1[0,0,0])",
+        "new_points": 76,
+        "new_points_on_remaining_loci": {
+          "P3": []
+        },
+        "new_remaining_centers": {
+          "P3:+-+@-1": [],
+          "P3:-+-@+1": []
+        },
+        "static_shared_center_carriers": {
+          "P3": []
+        },
+        "binding_audit": {
+          "object_pairs": 46,
+          "removed_known_roots": 8,
+          "known_root_realignments": 0,
+          "root_count_mismatches": 4,
+          "mixed_root_bundles": 0
+        }
+      },
+      "binding_audit": {
+        "object_pairs": 1032,
+        "removed_known_roots": 243,
+        "known_root_realignments": 18,
+        "root_count_mismatches": 34,
+        "mixed_root_bundles": 14
+      },
+      "elapsed_seconds": 1.22
+    },
+    {
+      "completed_profiles": [
+        "P0",
+        "P2",
+        "P3"
+      ],
+      "base_e": 43,
+      "points": 1023,
+      "objects": 46,
+      "omega_existing": [],
+      "omega_drawable_through_points": [
+        "Circle(object_23&P0_tau[0,0,0], object_37&target_P2:+--@-1[0,0,0])",
+        "Circle(object_23&P0_tau[0,0,0], object_37&target_P2:+--@-1[1,1,1])",
+        "Circle(object_23&P0_tau[0,0,0], object_43&target_P3:+-+@-1[0,0,0])",
+        "Circle(object_23&P0_tau[0,0,0], object_43&target_P3:+-+@-1[1,1,1])"
+      ],
+      "omega_completion": {
+        "draw": "Circle(object_23&P0_tau[0,0,0], object_37&target_P2:+--@-1[0,0,0])",
+        "new_points": 74,
+        "new_points_on_remaining_loci": {
+          "P1": []
+        },
+        "new_remaining_centers": {
+          "P1:++-@-1": [],
+          "P1:--+@+1": []
+        },
+        "static_shared_center_carriers": {
+          "P1": []
+        },
+        "binding_audit": {
+          "object_pairs": 46,
+          "removed_known_roots": 8,
+          "known_root_realignments": 0,
+          "root_count_mismatches": 5,
+          "mixed_root_bundles": 0
+        }
+      },
+      "binding_audit": {
+        "object_pairs": 1032,
+        "removed_known_roots": 243,
+        "known_root_realignments": 16,
+        "root_count_mismatches": 45,
+        "mixed_root_bundles": 12
+      },
+      "elapsed_seconds": 1.219
+    },
+    {
+      "completed_profiles": [
+        "P0",
+        "P1",
+        "P3"
+      ],
+      "base_e": 43,
+      "points": 1031,
+      "objects": 46,
+      "omega_existing": [],
+      "omega_drawable_through_points": [
+        "Circle(object_23&P0_tau[0,0,0], object_37&target_P1:++-@-1[0,0,0])",
+        "Circle(object_23&P0_tau[0,0,0], object_37&target_P1:++-@-1[1,1,1])",
+        "Circle(object_23&P0_tau[0,0,0], object_43&target_P3:+-+@-1[0,0,0])",
+        "Circle(object_23&P0_tau[0,0,0], object_43&target_P3:+-+@-1[1,1,1])"
+      ],
+      "omega_completion": {
+        "draw": "Circle(object_23&P0_tau[0,0,0], object_37&target_P1:++-@-1[0,0,0])",
+        "new_points": 74,
+        "new_points_on_remaining_loci": {
+          "P2": []
+        },
+        "new_remaining_centers": {
+          "P2:+--@-1": [],
+          "P2:-++@+1": []
+        },
+        "static_shared_center_carriers": {
+          "P2": []
+        },
+        "binding_audit": {
+          "object_pairs": 46,
+          "removed_known_roots": 8,
+          "known_root_realignments": 0,
+          "root_count_mismatches": 5,
+          "mixed_root_bundles": 0
+        }
+      },
+      "binding_audit": {
+        "object_pairs": 1032,
+        "removed_known_roots": 243,
+        "known_root_realignments": 22,
+        "root_count_mismatches": 41,
+        "mixed_root_bundles": 18
+      },
+      "elapsed_seconds": 1.238
+    },
+    {
+      "completed_profiles": [
+        "P2",
+        "P1",
+        "P3"
+      ],
+      "base_e": 43,
+      "points": 1035,
+      "objects": 46,
+      "omega_existing": [],
+      "omega_drawable_through_points": [
+        "Circle(object_23&P0_tau[0,0,0], object_31&target_P2:+--@-1[0,0,0])",
+        "Circle(object_23&P0_tau[0,0,0], object_31&target_P2:+--@-1[1,1,1])",
+        "Circle(object_23&P0_tau[0,0,0], object_37&target_P1:++-@-1[0,0,0])",
+        "Circle(object_23&P0_tau[0,0,0], object_37&target_P1:++-@-1[1,1,1])",
+        "Circle(object_23&P0_tau[0,0,0], object_43&target_P3:+-+@-1[0,0,0])",
+        "Circle(object_23&P0_tau[0,0,0], object_43&target_P3:+-+@-1[1,1,1])"
+      ],
+      "omega_completion": {
+        "draw": "Circle(object_23&P0_tau[0,0,0], object_31&target_P2:+--@-1[0,0,0])",
+        "new_points": 74,
+        "new_points_on_remaining_loci": {
+          "P0": []
+        },
+        "new_remaining_centers": {
+          "P0:+++@-1": [],
+          "P0:---@+1": []
+        },
+        "static_shared_center_carriers": {
+          "P0": []
+        },
+        "binding_audit": {
+          "object_pairs": 46,
+          "removed_known_roots": 12,
+          "known_root_realignments": 0,
+          "root_count_mismatches": 3,
+          "mixed_root_bundles": 0
+        }
+      },
+      "binding_audit": {
+        "object_pairs": 1032,
+        "removed_known_roots": 243,
+        "known_root_realignments": 14,
+        "root_count_mismatches": 41,
+        "mixed_root_bundles": 10
+      },
+      "elapsed_seconds": 1.247
+    }
+  ],
+  "policy": "known-first",
+  "virtual_omega_is_not_an_input": true,
+  "score_certificate": false,
+  "construction_coverage_complete": false,
+  "scope": "15 completed-pair states; static omega entry; one omega draw; free loci and centers; static shared-center carriers",
+  "limitations": [
+    "known-first floating closure skips unequal root counts",
+    "no dynamic inverse-circle construction",
+    "no general-parameter E coverage certificate"
+  ],
+  "elapsed_seconds": 11.407
+}
