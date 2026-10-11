@@ -1,0 +1,55 @@
+{
+  "schema": "joint-root-kp-screen/v1",
+  "policy": "known-first",
+  "samples": 3,
+  "base_e": 17,
+  "base_points": 140,
+  "base_objects": 20,
+  "kp_ids": {
+    "P0": "P0_Kp_core_point",
+    "P2": "P2_Kp_core_point",
+    "P1": "P1_Kp_locus_point",
+    "P3": "P3_Kp_locus_point"
+  },
+  "candidate_fingerprint": "718501e58160a25a61fa1c9fad6fd0f8d10d84756169fdbec0b1efe18c354c10",
+  "first_candidates": 27513,
+  "first_target_objects": 0,
+  "start_index": 19984,
+  "checked_firsts": 2285,
+  "second_target_objects": 2,
+  "third_target_objects": 0,
+  "second_examples": [
+    {
+      "first_index": 20120,
+      "first": "Line(object_10&Gamma1[1,1,1], object_11&Gamma1[0,0,0])",
+      "second": "Line(object_14&ell[0,0,0], object_18&ell3[0,0,0])",
+      "thirds": 0
+    },
+    {
+      "first_index": 21299,
+      "first": "Line(object_12&Gamma2[1,1,1], object_13&Gamma2[0,0,0])",
+      "second": "Line(object_15&ell[0,0,0], object_18&ell3[0,0,0])",
+      "thirds": 0
+    }
+  ],
+  "hits": [],
+  "budget_seconds": 25.0,
+  "complete": false,
+  "base_binding_audit": {
+    "object_pairs": 187,
+    "removed_known_roots": 77,
+    "known_root_realignments": 0,
+    "root_count_mismatches": 7,
+    "mixed_root_bundles": 0
+  },
+  "maximum_first_state_points": 159,
+  "next_index": 22269,
+  "elapsed_seconds": 15.081,
+  "binding_audit": {
+    "object_pairs": 45929,
+    "removed_known_roots": 9830,
+    "known_root_realignments": 678,
+    "root_count_mismatches": 2260,
+    "mixed_root_bundles": 616
+  }
+}

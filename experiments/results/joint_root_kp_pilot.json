@@ -1,0 +1,33 @@
+{
+  "schema": "joint-root-kp-screen/v1",
+  "policy": "known-first",
+  "samples": 3,
+  "base_e": 17,
+  "base_points": 140,
+  "base_objects": 20,
+  "kp_ids": {
+    "P0": "P0_Kp_core_point",
+    "P2": "P2_Kp_core_point",
+    "P1": "P1_Kp_locus_point",
+    "P3": "P3_Kp_locus_point"
+  },
+  "candidate_fingerprint": "718501e58160a25a61fa1c9fad6fd0f8d10d84756169fdbec0b1efe18c354c10",
+  "first_candidates": 27513,
+  "first_target_objects": 0,
+  "start_index": 0,
+  "checked_firsts": 20,
+  "second_target_objects": 0,
+  "third_target_objects": 0,
+  "hits": [],
+  "budget_seconds": 30.0,
+  "complete": false,
+  "next_index": 20,
+  "elapsed_seconds": 0.46,
+  "binding_audit": {
+    "object_pairs": 587,
+    "removed_known_roots": 123,
+    "known_root_realignments": 11,
+    "root_count_mismatches": 88,
+    "mixed_root_bundles": 10
+  }
+}

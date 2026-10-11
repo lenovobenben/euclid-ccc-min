@@ -1,0 +1,42 @@
+{
+  "schema": "joint-root-kp-screen/v1",
+  "policy": "all",
+  "samples": 3,
+  "base_e": 17,
+  "base_points": 320,
+  "base_objects": 20,
+  "kp_ids": {
+    "P0": "P0_Kp_core_point",
+    "P2": "P2_Kp_core_point",
+    "P1": "P1_Kp_locus_point",
+    "P3": "P3_Kp_locus_point"
+  },
+  "candidate_fingerprint": "523ea13f65f20f166e2769d3eaedc626ae0e1669f2adba6bf01b2f6d43f9ebb2",
+  "first_candidates": 144741,
+  "first_target_objects": 0,
+  "start_index": 144000,
+  "checked_firsts": 741,
+  "second_target_objects": 0,
+  "third_target_objects": 0,
+  "second_examples": [],
+  "hits": [],
+  "budget_seconds": 15.0,
+  "complete": true,
+  "base_binding_audit": {
+    "object_pairs": 187,
+    "removed_known_roots": 77,
+    "known_root_realignments": 0,
+    "root_count_mismatches": 7,
+    "mixed_root_bundles": 180
+  },
+  "maximum_first_state_points": 363,
+  "next_index": 144741,
+  "elapsed_seconds": 13.355,
+  "binding_audit": {
+    "object_pairs": 15007,
+    "removed_known_roots": 3065,
+    "known_root_realignments": 550,
+    "root_count_mismatches": 1400,
+    "mixed_root_bundles": 4680
+  }
+}
