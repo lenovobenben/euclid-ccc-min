@@ -23,12 +23,33 @@ if numpy is not None:
     from search_mannheim_joint_root_kp import build_joint_state, fast_target_candidates, third_target_candidates
     from search_mannheim_shared_circle_replacement import available, dual_circle_candidates, two_step_root_paths
     from mannheim_virtual_witnesses import witness_helpers
+    from search_ccc_inversion_suffix import draw_output, early_target_search
 from search_mannheim_root_center_2e import FIXTURES, drawable_contains_targets
 from search_parallel_3e import Candidate, DrawableBundle, PointBundle, State, drawable_signature, generate_candidates, line_through, intersections
 from mannheim_search_calibration import BindingAudit, root_bundles
 
 
 class SearchCalibrationTests(unittest.TestCase):
+    @unittest.skipIf(numpy is None, "反演后缀的 NumPy 剪枝需要 numpy")
+    def test_output_first_suffix_has_a_real_positive_control(self):
+        # 两个目标圆心均未给出，也不在唯一旧对象 y=2 上。
+        # 先画 y=x，产生 Q=(2,2)；再画 Circle((1,1),Q)，取得第一圆心。
+        # 此时允许画出第一输出圆，随后由另一条半径恢复第二圆心。
+        transforms = (lambda p: p, lambda p: (7 - p[1], p[0] - 3))
+        source = ((-1, -1), (1, 1), (0, 1), (2, 1), (3, 2), (4, 2), (3, -1))
+        points = tuple(PointBundle(f"p{i}", tuple(transform(p) for transform in transforms))
+                       for i, p in enumerate(source))
+        old = DrawableBundle("old_y2", "line", tuple(
+            line_through(transform((3, 2)), transform((4, 2))) for transform in transforms))
+        state = State(points, (old,))
+        targets = tuple(tuple(transform(p) for transform in transforms) for p in ((0, 0), (2, 0)))
+        contacts = tuple(tuple(transform(p) for transform in transforms) for p in ((0, 1), (2, 1)))
+        self.assertIsNone(draw_output(state, targets[0], contacts[0], BindingAudit()))
+        result = early_target_search(state, ("first", "second"), targets, contacts, monotonic() + 10)
+        self.assertGreater(result["three_auxiliary_hits"], 0)
+        self.assertGreater(result["output_first_hits"], 0)
+        self.assertTrue(all(len(program) == 5 for program in result["hits"]))
+
     def test_known_intersection_identity_survives_rotation(self):
         result = known_root_control()
         self.assertEqual(result["legacy_hits"], 0)

@@ -51,12 +51,13 @@ def pair_data(state, replays, profile):
 def run_case(state, replays, profile, seconds):
     started = monotonic()
     deadline = started + seconds
+    move = len(state.program) + 1
     keys, targets = pair_data(state, replays, profile)
     first_targets, second_targets = targets
     if any(drawable_contains_targets(item, values)
            for item in state.drawables for values in targets):
         raise AssertionError("延迟载体初态不能已有经过任一目标圆心的对象")
-    if pair_carriers(state, first_targets, second_targets, 26):
+    if pair_carriers(state, first_targets, second_targets, move):
         raise AssertionError("初态已有可画共同载体，需保留无需新定义点的首步形状")
     axis = DrawableBundle("virtual_axis", "line", tuple(object_value(replay.objects, f"{profile}_center_locus_from_Kp")[1]
                            for replay in replays))
@@ -68,7 +69,7 @@ def run_case(state, replays, profile, seconds):
         values = tuple((p[0], p[1], (q[0] - p[0]) ** 2 + (q[1] - p[1]) ** 2)
                        for p, q in zip(center.values, first_targets, strict=True))
         goals.append(DrawableBundle(f"virtual_radius_{center.point_id}", "circle", values))
-    helpers, witness_report = witness_helpers(state, goals, 26, deadline)
+    helpers, witness_report = witness_helpers(state, goals, move, deadline)
     report = {"profile": profile, "target_keys": keys, "policy": "known-first",
               "base_e": len(state.program), "base_points": len(state.points), "base_objects": len(state.drawables),
               "static_eligible_centers": len(centers), "witness_screen": witness_report,
@@ -86,12 +87,12 @@ def run_case(state, replays, profile, seconds):
         if any(drawable_contains_targets(first.drawable, values) for values in targets):
             report["skipped_early_center_carriers"] += 1
             continue
-        one = apply_calibrated_candidate(state, first, 26, audit=audit)
-        seconds_candidates = pair_carriers(one, first_targets, second_targets, 27)
+        one = apply_calibrated_candidate(state, first, move, audit=audit)
+        seconds_candidates = pair_carriers(one, first_targets, second_targets, move + 1)
         report["second_carriers"] += len(seconds_candidates)
         for second in seconds_candidates:
-            two = apply_calibrated_candidate(one, second, 27, audit=audit)
-            thirds = pair_carriers(two, first_targets, second_targets, 28)
+            two = apply_calibrated_candidate(one, second, move + 1, audit=audit)
+            thirds = pair_carriers(two, first_targets, second_targets, move + 2)
             report["third_carriers"] += len(thirds)
             if len(report["carrier_examples"]) < 10:
                 report["carrier_examples"].append({"first": first.describe(), "second": second.describe(),

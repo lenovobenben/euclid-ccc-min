@@ -126,12 +126,8 @@ def verify_inversion(replays):
     return fixtures, tuple(omega_values)
 
 
-def screen_omega(selected, suffix_ids, omega):
-    started = monotonic()
-    planned = tuple(node for profile in selected for node in suffix_ids[profile])
-    state, replays, audit = build_carrier_state(extra_ids=CORE_AFTER_SHARED + planned)
-    if len(state.program) != 25 + 6 * len(selected):
-        raise AssertionError("实际前缀费用不符合完成目标对的状态")
+def omega_candidates(state, omega):
+    """只从真实已有点寻找公共圆的定义点；解析 omega 不加入状态。"""
     center = next(point for point in state.points
                   if all(close_point(value, row[:2]) for value, row in zip(point.values, omega.values, strict=True)))
     candidates = []
@@ -142,6 +138,16 @@ def screen_omega(selected, suffix_ids, omega):
         drawable = DrawableBundle("omega_candidate", "circle", values)
         if coincides(drawable, omega):
             candidates.append(Candidate("circle", center.point_id, point.point_id, drawable))
+    return center, tuple(candidates)
+
+
+def screen_omega(selected, suffix_ids, omega):
+    started = monotonic()
+    planned = tuple(node for profile in selected for node in suffix_ids[profile])
+    state, replays, audit = build_carrier_state(extra_ids=CORE_AFTER_SHARED + planned)
+    if len(state.program) != 25 + 6 * len(selected):
+        raise AssertionError("实际前缀费用不符合完成目标对的状态")
+    center, candidates = omega_candidates(state, omega)
     completion = None
     if candidates:
         extra_audit = BindingAudit()

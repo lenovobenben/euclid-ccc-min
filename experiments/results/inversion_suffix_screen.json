@@ -1,0 +1,1382 @@
+{
+  "schema": "inversion-suffix-screen/v1",
+  "policy": "known-first",
+  "entry_domain": "selected seed pair has two finite real intersections",
+  "score_certificate": false,
+  "construction_coverage_complete": false,
+  "scope": "three one-pair seed states; early-center firsts and delayed shared-carrier helpers; five-draw suffixes only",
+  "limitations": [
+    "known-first floating closure skips unequal real-root counts",
+    "virtual witness roots use all pairings; virtual points are not inputs",
+    "no cross-profile shared auxiliary programs",
+    "no changed contact core or changed seed-pair program",
+    "no general-parameter E certificate"
+  ],
+  "fixtures": [
+    {
+      "centers": [
+        [
+          "0",
+          "0"
+        ],
+        [
+          "13",
+          "0"
+        ],
+        [
+          "4",
+          "15"
+        ]
+      ],
+      "radii": [
+        "4",
+        "2",
+        "1"
+      ],
+      "radical_center": [
+        "181/26",
+        "434/65"
+      ],
+      "inversion_power": "1302049/16900",
+      "pairs": [
+        {
+          "profile": "P0",
+          "both_directions_exact": true,
+          "discriminant_quarter": "38918/507",
+          "pair_intersection_margin": "14347/50700",
+          "pair_has_two_real_intersections": true
+        },
+        {
+          "profile": "P2",
+          "both_directions_exact": true,
+          "discriminant_quarter": "48678/845",
+          "pair_intersection_margin": "328489/16900",
+          "pair_has_two_real_intersections": true
+        },
+        {
+          "profile": "P1",
+          "both_directions_exact": true,
+          "discriminant_quarter": "58806/845",
+          "pair_intersection_margin": "125929/16900",
+          "pair_has_two_real_intersections": true
+        },
+        {
+          "profile": "P3",
+          "both_directions_exact": true,
+          "discriminant_quarter": "254562/4225",
+          "pair_intersection_margin": "283801/16900",
+          "pair_has_two_real_intersections": true
+        }
+      ]
+    },
+    {
+      "centers": [
+        [
+          "0",
+          "0"
+        ],
+        [
+          "17",
+          "0"
+        ],
+        [
+          "5",
+          "12"
+        ]
+      ],
+      "radii": [
+        "5",
+        "3",
+        "1"
+      ],
+      "radical_center": [
+        "305/34",
+        "439/102"
+      ],
+      "inversion_power": "384923/5202",
+      "pairs": [
+        {
+          "profile": "P0",
+          "both_directions_exact": true,
+          "discriminant_quarter": "20235/272",
+          "pair_intersection_margin": "-16571/41616",
+          "pair_has_two_real_intersections": false
+        },
+        {
+          "profile": "P2",
+          "both_directions_exact": true,
+          "discriminant_quarter": "236075/4624",
+          "pair_intersection_margin": "954709/41616",
+          "pair_has_two_real_intersections": true
+        },
+        {
+          "profile": "P1",
+          "both_directions_exact": true,
+          "discriminant_quarter": "12635/204",
+          "pair_intersection_margin": "125461/10404",
+          "pair_has_two_real_intersections": true
+        },
+        {
+          "profile": "P3",
+          "both_directions_exact": true,
+          "discriminant_quarter": "225/4",
+          "pair_intersection_margin": "184621/10404",
+          "pair_has_two_real_intersections": true
+        }
+      ]
+    },
+    {
+      "centers": [
+        [
+          "0",
+          "0"
+        ],
+        [
+          "19",
+          "0"
+        ],
+        [
+          "10",
+          "11"
+        ]
+      ],
+      "radii": [
+        "6",
+        "4",
+        "2"
+      ],
+      "radical_center": [
+        "381/38",
+        "997/418"
+      ],
+      "inversion_power": "6134213/87362",
+      "pairs": [
+        {
+          "profile": "P0",
+          "both_directions_exact": true,
+          "discriminant_quarter": "658665/7942",
+          "pair_intersection_margin": "-555551/43681",
+          "pair_has_two_real_intersections": false
+        },
+        {
+          "profile": "P2",
+          "both_directions_exact": true,
+          "discriminant_quarter": "368793/7942",
+          "pair_intersection_margin": "1038745/43681",
+          "pair_has_two_real_intersections": true
+        },
+        {
+          "profile": "P1",
+          "both_directions_exact": true,
+          "discriminant_quarter": "4652067/87362",
+          "pair_intersection_margin": "741073/43681",
+          "pair_has_two_real_intersections": true
+        },
+        {
+          "profile": "P3",
+          "both_directions_exact": true,
+          "discriminant_quarter": "4440915/87362",
+          "pair_intersection_margin": "846649/43681",
+          "pair_has_two_real_intersections": true
+        }
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "seed": "P2",
+      "profile": "P0",
+      "base_e": 32,
+      "base_points": 560,
+      "base_binding_audit": {
+        "object_pairs": 558,
+        "removed_known_roots": 151,
+        "known_root_realignments": 4,
+        "root_count_mismatches": 18,
+        "mixed_root_bundles": 0
+      },
+      "omega_entry": "Circle(object_23&P0_tau[0,0,0], object_31&target_P2:+--@-1[0,0,0])",
+      "entry_binding_audit": {
+        "object_pairs": 34,
+        "removed_known_roots": 4,
+        "known_root_realignments": 0,
+        "root_count_mismatches": 2,
+        "mixed_root_bundles": 0
+      },
+      "early": {
+        "target_keys": [
+          "+++@-1",
+          "---@+1"
+        ],
+        "first_carriers": [
+          {
+            "key": "+++@-1",
+            "candidates": [
+              "Line(O3, P0_+++@-1_M3_Kp_locus)"
+            ]
+          },
+          {
+            "key": "---@+1",
+            "candidates": [
+              "Line(O3, P0_---@+1_M3_Kp_locus)"
+            ]
+          }
+        ],
+        "checked_firsts": 2,
+        "second_carriers": 2,
+        "second_shared_carriers": 0,
+        "third_shared_carriers": 0,
+        "first_center_available_after_two": 0,
+        "output_first_branches": 0,
+        "output_first_third_carriers": 0,
+        "three_auxiliary_hits": 0,
+        "output_first_hits": 0,
+        "examples": [
+          {
+            "first": "Line(O3, P0_+++@-1_M3_Kp_locus)",
+            "second": "Line(O3, P0_---@+1_M3_Kp_locus)",
+            "third_count": 0
+          },
+          {
+            "first": "Line(O3, P0_---@+1_M3_Kp_locus)",
+            "second": "Line(O3, P0_+++@-1_M3_Kp_locus)",
+            "third_count": 0
+          }
+        ],
+        "hits": [],
+        "complete": true,
+        "binding_audit": {
+          "object_pairs": 142,
+          "removed_known_roots": 34,
+          "known_root_realignments": 6,
+          "root_count_mismatches": 2,
+          "mixed_root_bundles": 6
+        },
+        "elapsed_seconds": 0.266
+      },
+      "delayed": {
+        "profile": "P0",
+        "target_keys": [
+          "+++@-1",
+          "---@+1"
+        ],
+        "policy": "known-first",
+        "base_e": 32,
+        "base_points": 560,
+        "base_objects": 35,
+        "static_eligible_centers": 0,
+        "witness_screen": {
+          "goal_count": 2,
+          "goal_old_pairs": 70,
+          "checked_goal_old_pairs": 70,
+          "witnesses": 137,
+          "helper_candidates": 1,
+          "complete": true,
+          "witness_binding_audit": {
+            "object_pairs": 70,
+            "removed_known_roots": 5,
+            "known_root_realignments": 0,
+            "root_count_mismatches": 2,
+            "mixed_root_bundles": 66
+          },
+          "coincident_goal_old_pairs": 0
+        },
+        "initial_center_objects": [
+          0,
+          0
+        ],
+        "helper_examples": [
+          "Line(O3, object_15&P0_Kp_core_line_1[0,0,0])"
+        ],
+        "candidate_fingerprint": "fafed2fb1af0948f213c989be10ed36415a59129585e7790a507606c10642920",
+        "checked_helpers": 1,
+        "skipped_early_center_carriers": 0,
+        "second_carriers": 1,
+        "third_carriers": 0,
+        "carrier_examples": [
+          {
+            "first": "Line(O3, object_15&P0_Kp_core_line_1[0,0,0])",
+            "second": "Line(object_23&P0_tau[0,0,0], object_33&ell[0,0,0])",
+            "third_count": 0
+          }
+        ],
+        "hits": [],
+        "budget_seconds": 14.727453770000466,
+        "complete": true,
+        "binding_audit": {
+          "object_pairs": 71,
+          "removed_known_roots": 16,
+          "known_root_realignments": 2,
+          "root_count_mismatches": 2,
+          "mixed_root_bundles": 2
+        },
+        "elapsed_seconds": 2.09
+      },
+      "complete": true,
+      "elapsed_seconds": 2.363
+    },
+    {
+      "seed": "P2",
+      "profile": "P1",
+      "base_e": 32,
+      "base_points": 560,
+      "base_binding_audit": {
+        "object_pairs": 558,
+        "removed_known_roots": 151,
+        "known_root_realignments": 4,
+        "root_count_mismatches": 18,
+        "mixed_root_bundles": 0
+      },
+      "omega_entry": "Circle(object_23&P0_tau[0,0,0], object_31&target_P2:+--@-1[0,0,0])",
+      "entry_binding_audit": {
+        "object_pairs": 34,
+        "removed_known_roots": 4,
+        "known_root_realignments": 0,
+        "root_count_mismatches": 2,
+        "mixed_root_bundles": 0
+      },
+      "early": {
+        "target_keys": [
+          "++-@-1",
+          "--+@+1"
+        ],
+        "first_carriers": [
+          {
+            "key": "++-@-1",
+            "candidates": [
+              "Line(O3, object_24&Gamma3[0,0,0])"
+            ]
+          },
+          {
+            "key": "--+@+1",
+            "candidates": [
+              "Line(O3, object_24&Gamma3[1,1,1])"
+            ]
+          }
+        ],
+        "checked_firsts": 2,
+        "second_carriers": 2,
+        "second_shared_carriers": 0,
+        "third_shared_carriers": 0,
+        "first_center_available_after_two": 0,
+        "output_first_branches": 0,
+        "output_first_third_carriers": 0,
+        "three_auxiliary_hits": 0,
+        "output_first_hits": 0,
+        "examples": [
+          {
+            "first": "Line(O3, object_24&Gamma3[0,0,0])",
+            "second": "Line(O3, object_24&Gamma3[1,1,1])",
+            "third_count": 0
+          },
+          {
+            "first": "Line(O3, object_24&Gamma3[1,1,1])",
+            "second": "Line(O3, object_24&Gamma3[0,0,0])",
+            "third_count": 0
+          }
+        ],
+        "hits": [],
+        "complete": true,
+        "binding_audit": {
+          "object_pairs": 142,
+          "removed_known_roots": 34,
+          "known_root_realignments": 6,
+          "root_count_mismatches": 2,
+          "mixed_root_bundles": 6
+        },
+        "elapsed_seconds": 0.255
+      },
+      "delayed": {
+        "profile": "P1",
+        "target_keys": [
+          "++-@-1",
+          "--+@+1"
+        ],
+        "policy": "known-first",
+        "base_e": 32,
+        "base_points": 560,
+        "base_objects": 35,
+        "static_eligible_centers": 0,
+        "witness_screen": {
+          "goal_count": 2,
+          "goal_old_pairs": 70,
+          "checked_goal_old_pairs": 70,
+          "witnesses": 129,
+          "helper_candidates": 1,
+          "complete": true,
+          "witness_binding_audit": {
+            "object_pairs": 70,
+            "removed_known_roots": 5,
+            "known_root_realignments": 0,
+            "root_count_mismatches": 4,
+            "mixed_root_bundles": 60
+          },
+          "coincident_goal_old_pairs": 0
+        },
+        "initial_center_objects": [
+          0,
+          0
+        ],
+        "helper_examples": [
+          "Line(O3, object_17&P2_Kp_core_line_1[0,0,0])"
+        ],
+        "candidate_fingerprint": "8365cd0c937a46833310192475285b6924c5689f4b323aeff43e7c37333013e1",
+        "checked_helpers": 1,
+        "skipped_early_center_carriers": 0,
+        "second_carriers": 1,
+        "third_carriers": 0,
+        "carrier_examples": [
+          {
+            "first": "Line(O3, object_17&P2_Kp_core_line_1[0,0,0])",
+            "second": "Line(object_23&P0_tau[0,0,0], object_33&ell[0,0,0])",
+            "third_count": 0
+          }
+        ],
+        "hits": [],
+        "budget_seconds": 14.737481187000412,
+        "complete": true,
+        "binding_audit": {
+          "object_pairs": 71,
+          "removed_known_roots": 16,
+          "known_root_realignments": 2,
+          "root_count_mismatches": 3,
+          "mixed_root_bundles": 2
+        },
+        "elapsed_seconds": 2.034
+      },
+      "complete": true,
+      "elapsed_seconds": 2.297
+    },
+    {
+      "seed": "P2",
+      "profile": "P3",
+      "base_e": 32,
+      "base_points": 560,
+      "base_binding_audit": {
+        "object_pairs": 558,
+        "removed_known_roots": 151,
+        "known_root_realignments": 4,
+        "root_count_mismatches": 18,
+        "mixed_root_bundles": 0
+      },
+      "omega_entry": "Circle(object_23&P0_tau[0,0,0], object_31&target_P2:+--@-1[0,0,0])",
+      "entry_binding_audit": {
+        "object_pairs": 34,
+        "removed_known_roots": 4,
+        "known_root_realignments": 0,
+        "root_count_mismatches": 2,
+        "mixed_root_bundles": 0
+      },
+      "early": {
+        "target_keys": [
+          "+-+@-1",
+          "-+-@+1"
+        ],
+        "first_carriers": [
+          {
+            "key": "+-+@-1",
+            "candidates": [
+              "Line(O3, P3_+-+@-1_M3_Kp_locus)"
+            ]
+          },
+          {
+            "key": "-+-@+1",
+            "candidates": [
+              "Line(O3, P3_-+-@+1_M3_Kp_locus)"
+            ]
+          }
+        ],
+        "checked_firsts": 2,
+        "second_carriers": 2,
+        "second_shared_carriers": 0,
+        "third_shared_carriers": 0,
+        "first_center_available_after_two": 0,
+        "output_first_branches": 0,
+        "output_first_third_carriers": 0,
+        "three_auxiliary_hits": 0,
+        "output_first_hits": 0,
+        "examples": [
+          {
+            "first": "Line(O3, P3_+-+@-1_M3_Kp_locus)",
+            "second": "Line(O3, P3_-+-@+1_M3_Kp_locus)",
+            "third_count": 0
+          },
+          {
+            "first": "Line(O3, P3_-+-@+1_M3_Kp_locus)",
+            "second": "Line(O3, P3_+-+@-1_M3_Kp_locus)",
+            "third_count": 0
+          }
+        ],
+        "hits": [],
+        "complete": true,
+        "binding_audit": {
+          "object_pairs": 142,
+          "removed_known_roots": 34,
+          "known_root_realignments": 0,
+          "root_count_mismatches": 4,
+          "mixed_root_bundles": 0
+        },
+        "elapsed_seconds": 0.261
+      },
+      "delayed": {
+        "profile": "P3",
+        "target_keys": [
+          "+-+@-1",
+          "-+-@+1"
+        ],
+        "policy": "known-first",
+        "base_e": 32,
+        "base_points": 560,
+        "base_objects": 35,
+        "static_eligible_centers": 0,
+        "witness_screen": {
+          "goal_count": 2,
+          "goal_old_pairs": 70,
+          "checked_goal_old_pairs": 70,
+          "witnesses": 129,
+          "helper_candidates": 1,
+          "complete": true,
+          "witness_binding_audit": {
+            "object_pairs": 70,
+            "removed_known_roots": 5,
+            "known_root_realignments": 0,
+            "root_count_mismatches": 3,
+            "mixed_root_bundles": 60
+          },
+          "coincident_goal_old_pairs": 0
+        },
+        "initial_center_objects": [
+          0,
+          0
+        ],
+        "helper_examples": [
+          "Line(O3, object_17&P0_Kp_core_line_1[0,0,0])"
+        ],
+        "candidate_fingerprint": "3ddb78f84d6a26b1f1107612de0bd4900f19937edc209f552ba124434ccb4d9a",
+        "checked_helpers": 1,
+        "skipped_early_center_carriers": 0,
+        "second_carriers": 1,
+        "third_carriers": 0,
+        "carrier_examples": [
+          {
+            "first": "Line(O3, object_17&P0_Kp_core_line_1[0,0,0])",
+            "second": "Line(object_23&P0_tau[0,0,0], object_33&ell[0,0,0])",
+            "third_count": 0
+          }
+        ],
+        "hits": [],
+        "budget_seconds": 14.732672781000474,
+        "complete": true,
+        "binding_audit": {
+          "object_pairs": 71,
+          "removed_known_roots": 16,
+          "known_root_realignments": 2,
+          "root_count_mismatches": 6,
+          "mixed_root_bundles": 2
+        },
+        "elapsed_seconds": 2.046
+      },
+      "complete": true,
+      "elapsed_seconds": 2.313
+    },
+    {
+      "seed": "P1",
+      "profile": "P0",
+      "base_e": 32,
+      "base_points": 564,
+      "base_binding_audit": {
+        "object_pairs": 558,
+        "removed_known_roots": 151,
+        "known_root_realignments": 10,
+        "root_count_mismatches": 16,
+        "mixed_root_bundles": 6
+      },
+      "omega_entry": "Circle(object_23&P0_tau[0,0,0], object_31&target_P1:++-@-1[0,0,0])",
+      "entry_binding_audit": {
+        "object_pairs": 34,
+        "removed_known_roots": 4,
+        "known_root_realignments": 0,
+        "root_count_mismatches": 2,
+        "mixed_root_bundles": 0
+      },
+      "early": {
+        "target_keys": [
+          "+++@-1",
+          "---@+1"
+        ],
+        "first_carriers": [
+          {
+            "key": "+++@-1",
+            "candidates": [
+              "Line(O3, P0_+++@-1_M3_Kp_locus)"
+            ]
+          },
+          {
+            "key": "---@+1",
+            "candidates": [
+              "Line(O3, P0_---@+1_M3_Kp_locus)"
+            ]
+          }
+        ],
+        "checked_firsts": 2,
+        "second_carriers": 2,
+        "second_shared_carriers": 0,
+        "third_shared_carriers": 0,
+        "first_center_available_after_two": 0,
+        "output_first_branches": 0,
+        "output_first_third_carriers": 0,
+        "three_auxiliary_hits": 0,
+        "output_first_hits": 0,
+        "examples": [
+          {
+            "first": "Line(O3, P0_+++@-1_M3_Kp_locus)",
+            "second": "Line(O3, P0_---@+1_M3_Kp_locus)",
+            "third_count": 0
+          },
+          {
+            "first": "Line(O3, P0_---@+1_M3_Kp_locus)",
+            "second": "Line(O3, P0_+++@-1_M3_Kp_locus)",
+            "third_count": 0
+          }
+        ],
+        "hits": [],
+        "complete": true,
+        "binding_audit": {
+          "object_pairs": 142,
+          "removed_known_roots": 34,
+          "known_root_realignments": 6,
+          "root_count_mismatches": 2,
+          "mixed_root_bundles": 6
+        },
+        "elapsed_seconds": 0.262
+      },
+      "delayed": {
+        "profile": "P0",
+        "target_keys": [
+          "+++@-1",
+          "---@+1"
+        ],
+        "policy": "known-first",
+        "base_e": 32,
+        "base_points": 564,
+        "base_objects": 35,
+        "static_eligible_centers": 0,
+        "witness_screen": {
+          "goal_count": 2,
+          "goal_old_pairs": 70,
+          "checked_goal_old_pairs": 70,
+          "witnesses": 137,
+          "helper_candidates": 2,
+          "complete": true,
+          "witness_binding_audit": {
+            "object_pairs": 70,
+            "removed_known_roots": 5,
+            "known_root_realignments": 0,
+            "root_count_mismatches": 2,
+            "mixed_root_bundles": 66
+          },
+          "coincident_goal_old_pairs": 0
+        },
+        "initial_center_objects": [
+          0,
+          0
+        ],
+        "helper_examples": [
+          "Line(O3, object_15&P0_Kp_core_line_1[0,0,0])",
+          "Line(object_26&Gamma3[1,1,1], object_31&P1_O3_Kp[0,0,0])"
+        ],
+        "candidate_fingerprint": "3010911b8a1931237e080d4e0d10a1ec86270a91acc05cec84d736e18e843d85",
+        "checked_helpers": 2,
+        "skipped_early_center_carriers": 0,
+        "second_carriers": 1,
+        "third_carriers": 0,
+        "carrier_examples": [
+          {
+            "first": "Line(O3, object_15&P0_Kp_core_line_1[0,0,0])",
+            "second": "Line(object_23&P0_tau[0,0,0], object_33&ell[0,0,0])",
+            "third_count": 0
+          }
+        ],
+        "hits": [],
+        "budget_seconds": 14.732118629999604,
+        "complete": true,
+        "binding_audit": {
+          "object_pairs": 106,
+          "removed_known_roots": 54,
+          "known_root_realignments": 6,
+          "root_count_mismatches": 3,
+          "mixed_root_bundles": 2
+        },
+        "elapsed_seconds": 2.262
+      },
+      "complete": true,
+      "elapsed_seconds": 2.53
+    },
+    {
+      "seed": "P1",
+      "profile": "P2",
+      "base_e": 32,
+      "base_points": 564,
+      "base_binding_audit": {
+        "object_pairs": 558,
+        "removed_known_roots": 151,
+        "known_root_realignments": 10,
+        "root_count_mismatches": 16,
+        "mixed_root_bundles": 6
+      },
+      "omega_entry": "Circle(object_23&P0_tau[0,0,0], object_31&target_P1:++-@-1[0,0,0])",
+      "entry_binding_audit": {
+        "object_pairs": 34,
+        "removed_known_roots": 4,
+        "known_root_realignments": 0,
+        "root_count_mismatches": 2,
+        "mixed_root_bundles": 0
+      },
+      "early": {
+        "target_keys": [
+          "+--@-1",
+          "-++@+1"
+        ],
+        "first_carriers": [
+          {
+            "key": "+--@-1",
+            "candidates": [
+              "Line(O3, object_23&Gamma3[0,0,0])"
+            ]
+          },
+          {
+            "key": "-++@+1",
+            "candidates": [
+              "Line(O3, object_23&Gamma3[1,1,1])"
+            ]
+          }
+        ],
+        "checked_firsts": 2,
+        "second_carriers": 2,
+        "second_shared_carriers": 0,
+        "third_shared_carriers": 0,
+        "first_center_available_after_two": 0,
+        "output_first_branches": 0,
+        "output_first_third_carriers": 0,
+        "three_auxiliary_hits": 0,
+        "output_first_hits": 0,
+        "examples": [
+          {
+            "first": "Line(O3, object_23&Gamma3[0,0,0])",
+            "second": "Line(O3, object_23&Gamma3[1,1,1])",
+            "third_count": 0
+          },
+          {
+            "first": "Line(O3, object_23&Gamma3[1,1,1])",
+            "second": "Line(O3, object_23&Gamma3[0,0,0])",
+            "third_count": 0
+          }
+        ],
+        "hits": [],
+        "complete": true,
+        "binding_audit": {
+          "object_pairs": 142,
+          "removed_known_roots": 34,
+          "known_root_realignments": 0,
+          "root_count_mismatches": 2,
+          "mixed_root_bundles": 0
+        },
+        "elapsed_seconds": 0.263
+      },
+      "delayed": {
+        "profile": "P2",
+        "target_keys": [
+          "+--@-1",
+          "-++@+1"
+        ],
+        "policy": "known-first",
+        "base_e": 32,
+        "base_points": 564,
+        "base_objects": 35,
+        "static_eligible_centers": 0,
+        "witness_screen": {
+          "goal_count": 2,
+          "goal_old_pairs": 70,
+          "checked_goal_old_pairs": 70,
+          "witnesses": 137,
+          "helper_candidates": 2,
+          "complete": true,
+          "witness_binding_audit": {
+            "object_pairs": 70,
+            "removed_known_roots": 5,
+            "known_root_realignments": 0,
+            "root_count_mismatches": 1,
+            "mixed_root_bundles": 66
+          },
+          "coincident_goal_old_pairs": 0
+        },
+        "initial_center_objects": [
+          0,
+          0
+        ],
+        "helper_examples": [
+          "Line(O3, object_16&P0_Kp_core_line_2[0,0,0])",
+          "Line(object_26&Gamma3[1,1,1], object_31&P1_O3_Kp[0,0,0])"
+        ],
+        "candidate_fingerprint": "c10eb085d7884312e02abd6a3772a38386c133a35716ee92ea9ac6665da495a0",
+        "checked_helpers": 2,
+        "skipped_early_center_carriers": 0,
+        "second_carriers": 1,
+        "third_carriers": 0,
+        "carrier_examples": [
+          {
+            "first": "Line(O3, object_16&P0_Kp_core_line_2[0,0,0])",
+            "second": "Line(object_23&P0_tau[0,0,0], object_33&ell[0,0,0])",
+            "third_count": 0
+          }
+        ],
+        "hits": [],
+        "budget_seconds": 14.730601102000037,
+        "complete": true,
+        "binding_audit": {
+          "object_pairs": 106,
+          "removed_known_roots": 54,
+          "known_root_realignments": 4,
+          "root_count_mismatches": 2,
+          "mixed_root_bundles": 0
+        },
+        "elapsed_seconds": 2.206
+      },
+      "complete": true,
+      "elapsed_seconds": 2.476
+    },
+    {
+      "seed": "P1",
+      "profile": "P3",
+      "base_e": 32,
+      "base_points": 564,
+      "base_binding_audit": {
+        "object_pairs": 558,
+        "removed_known_roots": 151,
+        "known_root_realignments": 10,
+        "root_count_mismatches": 16,
+        "mixed_root_bundles": 6
+      },
+      "omega_entry": "Circle(object_23&P0_tau[0,0,0], object_31&target_P1:++-@-1[0,0,0])",
+      "entry_binding_audit": {
+        "object_pairs": 34,
+        "removed_known_roots": 4,
+        "known_root_realignments": 0,
+        "root_count_mismatches": 2,
+        "mixed_root_bundles": 0
+      },
+      "early": {
+        "target_keys": [
+          "+-+@-1",
+          "-+-@+1"
+        ],
+        "first_carriers": [
+          {
+            "key": "+-+@-1",
+            "candidates": [
+              "Line(O3, P3_+-+@-1_M3_Kp_locus)"
+            ]
+          },
+          {
+            "key": "-+-@+1",
+            "candidates": [
+              "Line(O3, P3_-+-@+1_M3_Kp_locus)"
+            ]
+          }
+        ],
+        "checked_firsts": 2,
+        "second_carriers": 2,
+        "second_shared_carriers": 0,
+        "third_shared_carriers": 0,
+        "first_center_available_after_two": 0,
+        "output_first_branches": 0,
+        "output_first_third_carriers": 0,
+        "three_auxiliary_hits": 0,
+        "output_first_hits": 0,
+        "examples": [
+          {
+            "first": "Line(O3, P3_+-+@-1_M3_Kp_locus)",
+            "second": "Line(O3, P3_-+-@+1_M3_Kp_locus)",
+            "third_count": 0
+          },
+          {
+            "first": "Line(O3, P3_-+-@+1_M3_Kp_locus)",
+            "second": "Line(O3, P3_+-+@-1_M3_Kp_locus)",
+            "third_count": 0
+          }
+        ],
+        "hits": [],
+        "complete": true,
+        "binding_audit": {
+          "object_pairs": 142,
+          "removed_known_roots": 34,
+          "known_root_realignments": 0,
+          "root_count_mismatches": 4,
+          "mixed_root_bundles": 0
+        },
+        "elapsed_seconds": 0.255
+      },
+      "delayed": {
+        "profile": "P3",
+        "target_keys": [
+          "+-+@-1",
+          "-+-@+1"
+        ],
+        "policy": "known-first",
+        "base_e": 32,
+        "base_points": 564,
+        "base_objects": 35,
+        "static_eligible_centers": 0,
+        "witness_screen": {
+          "goal_count": 2,
+          "goal_old_pairs": 70,
+          "checked_goal_old_pairs": 70,
+          "witnesses": 129,
+          "helper_candidates": 2,
+          "complete": true,
+          "witness_binding_audit": {
+            "object_pairs": 70,
+            "removed_known_roots": 5,
+            "known_root_realignments": 0,
+            "root_count_mismatches": 3,
+            "mixed_root_bundles": 60
+          },
+          "coincident_goal_old_pairs": 0
+        },
+        "initial_center_objects": [
+          0,
+          0
+        ],
+        "helper_examples": [
+          "Line(O3, object_17&P0_Kp_core_line_1[0,0,0])",
+          "Line(object_26&Gamma3[1,1,1], object_31&P1_O3_Kp[0,0,0])"
+        ],
+        "candidate_fingerprint": "73bbc90719bf0f866006d8f47cba64455e08e988ddc6170239bbce736626f81e",
+        "checked_helpers": 2,
+        "skipped_early_center_carriers": 0,
+        "second_carriers": 1,
+        "third_carriers": 0,
+        "carrier_examples": [
+          {
+            "first": "Line(O3, object_17&P0_Kp_core_line_1[0,0,0])",
+            "second": "Line(object_23&P0_tau[0,0,0], object_33&ell[0,0,0])",
+            "third_count": 0
+          }
+        ],
+        "hits": [],
+        "budget_seconds": 14.739113270000416,
+        "complete": true,
+        "binding_audit": {
+          "object_pairs": 106,
+          "removed_known_roots": 54,
+          "known_root_realignments": 6,
+          "root_count_mismatches": 7,
+          "mixed_root_bundles": 2
+        },
+        "elapsed_seconds": 2.133
+      },
+      "complete": true,
+      "elapsed_seconds": 2.394
+    },
+    {
+      "seed": "P3",
+      "profile": "P0",
+      "base_e": 32,
+      "base_points": 551,
+      "base_binding_audit": {
+        "object_pairs": 558,
+        "removed_known_roots": 151,
+        "known_root_realignments": 8,
+        "root_count_mismatches": 24,
+        "mixed_root_bundles": 4
+      },
+      "omega_entry": "Circle(object_23&P0_tau[0,0,0], object_31&target_P3:+-+@-1[0,0,0])",
+      "entry_binding_audit": {
+        "object_pairs": 34,
+        "removed_known_roots": 4,
+        "known_root_realignments": 0,
+        "root_count_mismatches": 3,
+        "mixed_root_bundles": 0
+      },
+      "early": {
+        "target_keys": [
+          "+++@-1",
+          "---@+1"
+        ],
+        "first_carriers": [
+          {
+            "key": "+++@-1",
+            "candidates": [
+              "Line(O3, P0_+++@-1_M3_Kp_locus)"
+            ]
+          },
+          {
+            "key": "---@+1",
+            "candidates": [
+              "Line(O3, P0_---@+1_M3_Kp_locus)"
+            ]
+          }
+        ],
+        "checked_firsts": 2,
+        "second_carriers": 2,
+        "second_shared_carriers": 0,
+        "third_shared_carriers": 0,
+        "first_center_available_after_two": 0,
+        "output_first_branches": 0,
+        "output_first_third_carriers": 0,
+        "three_auxiliary_hits": 0,
+        "output_first_hits": 0,
+        "examples": [
+          {
+            "first": "Line(O3, P0_+++@-1_M3_Kp_locus)",
+            "second": "Line(O3, P0_---@+1_M3_Kp_locus)",
+            "third_count": 0
+          },
+          {
+            "first": "Line(O3, P0_---@+1_M3_Kp_locus)",
+            "second": "Line(O3, P0_+++@-1_M3_Kp_locus)",
+            "third_count": 0
+          }
+        ],
+        "hits": [],
+        "complete": true,
+        "binding_audit": {
+          "object_pairs": 142,
+          "removed_known_roots": 34,
+          "known_root_realignments": 6,
+          "root_count_mismatches": 2,
+          "mixed_root_bundles": 6
+        },
+        "elapsed_seconds": 0.257
+      },
+      "delayed": {
+        "profile": "P0",
+        "target_keys": [
+          "+++@-1",
+          "---@+1"
+        ],
+        "policy": "known-first",
+        "base_e": 32,
+        "base_points": 551,
+        "base_objects": 35,
+        "static_eligible_centers": 0,
+        "witness_screen": {
+          "goal_count": 2,
+          "goal_old_pairs": 70,
+          "checked_goal_old_pairs": 70,
+          "witnesses": 137,
+          "helper_candidates": 2,
+          "complete": true,
+          "witness_binding_audit": {
+            "object_pairs": 70,
+            "removed_known_roots": 5,
+            "known_root_realignments": 0,
+            "root_count_mismatches": 2,
+            "mixed_root_bundles": 66
+          },
+          "coincident_goal_old_pairs": 0
+        },
+        "initial_center_objects": [
+          0,
+          0
+        ],
+        "helper_examples": [
+          "Line(O3, object_15&P0_Kp_core_line_1[0,0,0])",
+          "Line(object_18&parallel_c0[0,0,0], object_29&P0_K_core_line_1[0,0,0])"
+        ],
+        "candidate_fingerprint": "c3b9a854bded2a264b4c2b96fcb26422738dab7a238492633d843635f585a78a",
+        "checked_helpers": 2,
+        "skipped_early_center_carriers": 0,
+        "second_carriers": 1,
+        "third_carriers": 0,
+        "carrier_examples": [
+          {
+            "first": "Line(O3, object_15&P0_Kp_core_line_1[0,0,0])",
+            "second": "Line(object_23&P0_tau[0,0,0], object_33&ell[0,0,0])",
+            "third_count": 0
+          }
+        ],
+        "hits": [],
+        "budget_seconds": 14.736837115999151,
+        "complete": true,
+        "binding_audit": {
+          "object_pairs": 106,
+          "removed_known_roots": 54,
+          "known_root_realignments": 2,
+          "root_count_mismatches": 3,
+          "mixed_root_bundles": 2
+        },
+        "elapsed_seconds": 2.147
+      },
+      "complete": true,
+      "elapsed_seconds": 2.41
+    },
+    {
+      "seed": "P3",
+      "profile": "P2",
+      "base_e": 32,
+      "base_points": 551,
+      "base_binding_audit": {
+        "object_pairs": 558,
+        "removed_known_roots": 151,
+        "known_root_realignments": 8,
+        "root_count_mismatches": 24,
+        "mixed_root_bundles": 4
+      },
+      "omega_entry": "Circle(object_23&P0_tau[0,0,0], object_31&target_P3:+-+@-1[0,0,0])",
+      "entry_binding_audit": {
+        "object_pairs": 34,
+        "removed_known_roots": 4,
+        "known_root_realignments": 0,
+        "root_count_mismatches": 3,
+        "mixed_root_bundles": 0
+      },
+      "early": {
+        "target_keys": [
+          "+--@-1",
+          "-++@+1"
+        ],
+        "first_carriers": [
+          {
+            "key": "+--@-1",
+            "candidates": [
+              "Line(O3, object_23&Gamma3[0,0,0])"
+            ]
+          },
+          {
+            "key": "-++@+1",
+            "candidates": [
+              "Line(O3, object_23&Gamma3[1,1,1])"
+            ]
+          }
+        ],
+        "checked_firsts": 2,
+        "second_carriers": 2,
+        "second_shared_carriers": 0,
+        "third_shared_carriers": 0,
+        "first_center_available_after_two": 0,
+        "output_first_branches": 0,
+        "output_first_third_carriers": 0,
+        "three_auxiliary_hits": 0,
+        "output_first_hits": 0,
+        "examples": [
+          {
+            "first": "Line(O3, object_23&Gamma3[0,0,0])",
+            "second": "Line(O3, object_23&Gamma3[1,1,1])",
+            "third_count": 0
+          },
+          {
+            "first": "Line(O3, object_23&Gamma3[1,1,1])",
+            "second": "Line(O3, object_23&Gamma3[0,0,0])",
+            "third_count": 0
+          }
+        ],
+        "hits": [],
+        "complete": true,
+        "binding_audit": {
+          "object_pairs": 142,
+          "removed_known_roots": 34,
+          "known_root_realignments": 0,
+          "root_count_mismatches": 2,
+          "mixed_root_bundles": 0
+        },
+        "elapsed_seconds": 0.251
+      },
+      "delayed": {
+        "profile": "P2",
+        "target_keys": [
+          "+--@-1",
+          "-++@+1"
+        ],
+        "policy": "known-first",
+        "base_e": 32,
+        "base_points": 551,
+        "base_objects": 35,
+        "static_eligible_centers": 0,
+        "witness_screen": {
+          "goal_count": 2,
+          "goal_old_pairs": 70,
+          "checked_goal_old_pairs": 70,
+          "witnesses": 137,
+          "helper_candidates": 2,
+          "complete": true,
+          "witness_binding_audit": {
+            "object_pairs": 70,
+            "removed_known_roots": 5,
+            "known_root_realignments": 0,
+            "root_count_mismatches": 1,
+            "mixed_root_bundles": 66
+          },
+          "coincident_goal_old_pairs": 0
+        },
+        "initial_center_objects": [
+          0,
+          0
+        ],
+        "helper_examples": [
+          "Line(O3, object_16&P0_Kp_core_line_2[0,0,0])",
+          "Line(object_18&parallel_c0[0,0,0], object_29&P0_K_core_line_1[0,0,0])"
+        ],
+        "candidate_fingerprint": "e6f19128255c444b4883d65829292a06ab8c26ea921ed4ff7bb672e6ce708d90",
+        "checked_helpers": 2,
+        "skipped_early_center_carriers": 0,
+        "second_carriers": 1,
+        "third_carriers": 0,
+        "carrier_examples": [
+          {
+            "first": "Line(O3, object_16&P0_Kp_core_line_2[0,0,0])",
+            "second": "Line(object_23&P0_tau[0,0,0], object_33&ell[0,0,0])",
+            "third_count": 0
+          }
+        ],
+        "hits": [],
+        "budget_seconds": 14.742704727999808,
+        "complete": true,
+        "binding_audit": {
+          "object_pairs": 106,
+          "removed_known_roots": 54,
+          "known_root_realignments": 0,
+          "root_count_mismatches": 3,
+          "mixed_root_bundles": 0
+        },
+        "elapsed_seconds": 2.135
+      },
+      "complete": true,
+      "elapsed_seconds": 2.393
+    },
+    {
+      "seed": "P3",
+      "profile": "P1",
+      "base_e": 32,
+      "base_points": 551,
+      "base_binding_audit": {
+        "object_pairs": 558,
+        "removed_known_roots": 151,
+        "known_root_realignments": 8,
+        "root_count_mismatches": 24,
+        "mixed_root_bundles": 4
+      },
+      "omega_entry": "Circle(object_23&P0_tau[0,0,0], object_31&target_P3:+-+@-1[0,0,0])",
+      "entry_binding_audit": {
+        "object_pairs": 34,
+        "removed_known_roots": 4,
+        "known_root_realignments": 0,
+        "root_count_mismatches": 3,
+        "mixed_root_bundles": 0
+      },
+      "early": {
+        "target_keys": [
+          "++-@-1",
+          "--+@+1"
+        ],
+        "first_carriers": [
+          {
+            "key": "++-@-1",
+            "candidates": [
+              "Line(O3, object_24&Gamma3[0,0,0])"
+            ]
+          },
+          {
+            "key": "--+@+1",
+            "candidates": [
+              "Line(O3, object_24&Gamma3[1,1,1])"
+            ]
+          }
+        ],
+        "checked_firsts": 2,
+        "second_carriers": 2,
+        "second_shared_carriers": 0,
+        "third_shared_carriers": 0,
+        "first_center_available_after_two": 0,
+        "output_first_branches": 0,
+        "output_first_third_carriers": 0,
+        "three_auxiliary_hits": 0,
+        "output_first_hits": 0,
+        "examples": [
+          {
+            "first": "Line(O3, object_24&Gamma3[0,0,0])",
+            "second": "Line(O3, object_24&Gamma3[1,1,1])",
+            "third_count": 0
+          },
+          {
+            "first": "Line(O3, object_24&Gamma3[1,1,1])",
+            "second": "Line(O3, object_24&Gamma3[0,0,0])",
+            "third_count": 0
+          }
+        ],
+        "hits": [],
+        "complete": true,
+        "binding_audit": {
+          "object_pairs": 142,
+          "removed_known_roots": 34,
+          "known_root_realignments": 6,
+          "root_count_mismatches": 2,
+          "mixed_root_bundles": 6
+        },
+        "elapsed_seconds": 0.254
+      },
+      "delayed": {
+        "profile": "P1",
+        "target_keys": [
+          "++-@-1",
+          "--+@+1"
+        ],
+        "policy": "known-first",
+        "base_e": 32,
+        "base_points": 551,
+        "base_objects": 35,
+        "static_eligible_centers": 0,
+        "witness_screen": {
+          "goal_count": 2,
+          "goal_old_pairs": 70,
+          "checked_goal_old_pairs": 70,
+          "witnesses": 129,
+          "helper_candidates": 2,
+          "complete": true,
+          "witness_binding_audit": {
+            "object_pairs": 70,
+            "removed_known_roots": 5,
+            "known_root_realignments": 0,
+            "root_count_mismatches": 4,
+            "mixed_root_bundles": 60
+          },
+          "coincident_goal_old_pairs": 0
+        },
+        "initial_center_objects": [
+          0,
+          0
+        ],
+        "helper_examples": [
+          "Line(O3, object_17&P2_Kp_core_line_1[0,0,0])",
+          "Line(object_18&parallel_c0[0,0,0], object_29&P0_K_core_line_1[0,0,0])"
+        ],
+        "candidate_fingerprint": "f5b2f2043d6cb1704e66672919fd20ddabe7ec97ccbe66e237e0aed854270140",
+        "checked_helpers": 2,
+        "skipped_early_center_carriers": 0,
+        "second_carriers": 1,
+        "third_carriers": 0,
+        "carrier_examples": [
+          {
+            "first": "Line(O3, object_17&P2_Kp_core_line_1[0,0,0])",
+            "second": "Line(object_23&P0_tau[0,0,0], object_33&ell[0,0,0])",
+            "third_count": 0
+          }
+        ],
+        "hits": [],
+        "budget_seconds": 14.739182243999494,
+        "complete": true,
+        "binding_audit": {
+          "object_pairs": 106,
+          "removed_known_roots": 54,
+          "known_root_realignments": 2,
+          "root_count_mismatches": 4,
+          "mixed_root_bundles": 2
+        },
+        "elapsed_seconds": 2.077
+      },
+      "complete": true,
+      "elapsed_seconds": 2.338
+    }
+  ],
+  "seconds_per_case": 15.0
+}
