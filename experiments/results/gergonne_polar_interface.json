@@ -1,0 +1,1098 @@
+{
+  "schema": "gergonne-polar-interface/v1",
+  "symbolic": {
+    "ring": "Z[c,d,h,p,q]",
+    "profiles": [
+      {
+        "profile": "P0",
+        "pole_formula": true,
+        "same_contact_chord": true,
+        "same_center_direction": true
+      },
+      {
+        "profile": "P1",
+        "pole_formula": true,
+        "same_contact_chord": true,
+        "same_center_direction": true
+      },
+      {
+        "profile": "P2",
+        "pole_formula": true,
+        "same_contact_chord": true,
+        "same_center_direction": true
+      },
+      {
+        "profile": "P3",
+        "pole_formula": true,
+        "same_contact_chord": true,
+        "same_center_direction": true
+      }
+    ],
+    "pole_parallelogram_center": "(0, 1/h)",
+    "score_certificate": false
+  },
+  "gadget_fixtures": [
+    {
+      "centers": [
+        [
+          "0",
+          "0"
+        ],
+        [
+          "15",
+          "0"
+        ],
+        [
+          "0",
+          "20"
+        ]
+      ],
+      "radii": [
+        "4",
+        "2",
+        "1"
+      ],
+      "inputs": [
+        "A+",
+        "A-",
+        "C+",
+        "C-",
+        "H1+",
+        "H1-",
+        "H2+",
+        "H2-"
+      ],
+      "input_objects": [
+        "Gamma3",
+        "diameter_A",
+        "diameter_C"
+      ],
+      "conditional_e": 19,
+      "full_ccc_score": false,
+      "poles": [
+        {
+          "profile": "P0",
+          "point": [
+            "2/15",
+            "403/20"
+          ]
+        },
+        {
+          "profile": "P1",
+          "point": [
+            "-2/15",
+            "79/4"
+          ]
+        },
+        {
+          "profile": "P2",
+          "point": [
+            "-2/5",
+            "79/4"
+          ]
+        },
+        {
+          "profile": "P3",
+          "point": [
+            "2/5",
+            "403/20"
+          ]
+        }
+      ],
+      "program": [
+        {
+          "op": "Line",
+          "id": "shared_A+",
+          "points": [
+            "A+",
+            "C+"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "shared_A-",
+          "points": [
+            "A-",
+            "C+"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "secant_H1+",
+          "points": [
+            "H1+",
+            "C+"
+          ]
+        },
+        {
+          "op": "IntersectOther",
+          "id": "D_H1+",
+          "objects": [
+            "secant_H1+",
+            "Gamma3"
+          ],
+          "known": "C+"
+        },
+        {
+          "op": "Line",
+          "id": "cross_plus_H1+",
+          "points": [
+            "A+",
+            "D_H1+"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "cross_minus_H1+",
+          "points": [
+            "A-",
+            "D_H1+"
+          ]
+        },
+        {
+          "op": "Intersect",
+          "id": "X_H1+",
+          "objects": [
+            "shared_A+",
+            "cross_minus_H1+"
+          ]
+        },
+        {
+          "op": "Intersect",
+          "id": "Y_H1+",
+          "objects": [
+            "shared_A-",
+            "cross_plus_H1+"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "polar_H1+",
+          "points": [
+            "X_H1+",
+            "Y_H1+"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "secant_H1-",
+          "points": [
+            "H1-",
+            "C+"
+          ]
+        },
+        {
+          "op": "IntersectOther",
+          "id": "D_H1-",
+          "objects": [
+            "secant_H1-",
+            "Gamma3"
+          ],
+          "known": "C+"
+        },
+        {
+          "op": "Line",
+          "id": "cross_plus_H1-",
+          "points": [
+            "A+",
+            "D_H1-"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "cross_minus_H1-",
+          "points": [
+            "A-",
+            "D_H1-"
+          ]
+        },
+        {
+          "op": "Intersect",
+          "id": "X_H1-",
+          "objects": [
+            "shared_A+",
+            "cross_minus_H1-"
+          ]
+        },
+        {
+          "op": "Intersect",
+          "id": "Y_H1-",
+          "objects": [
+            "shared_A-",
+            "cross_plus_H1-"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "polar_H1-",
+          "points": [
+            "X_H1-",
+            "Y_H1-"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "shared_C-",
+          "points": [
+            "C-",
+            "A+"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "secant_H2+",
+          "points": [
+            "H2+",
+            "A+"
+          ]
+        },
+        {
+          "op": "IntersectOther",
+          "id": "D_H2+",
+          "objects": [
+            "secant_H2+",
+            "Gamma3"
+          ],
+          "known": "A+"
+        },
+        {
+          "op": "Line",
+          "id": "cross_plus_H2+",
+          "points": [
+            "C+",
+            "D_H2+"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "cross_minus_H2+",
+          "points": [
+            "C-",
+            "D_H2+"
+          ]
+        },
+        {
+          "op": "Intersect",
+          "id": "X_H2+",
+          "objects": [
+            "shared_A+",
+            "cross_minus_H2+"
+          ]
+        },
+        {
+          "op": "Intersect",
+          "id": "Y_H2+",
+          "objects": [
+            "shared_C-",
+            "cross_plus_H2+"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "polar_H2+",
+          "points": [
+            "X_H2+",
+            "Y_H2+"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "secant_H2-",
+          "points": [
+            "H2-",
+            "A+"
+          ]
+        },
+        {
+          "op": "IntersectOther",
+          "id": "D_H2-",
+          "objects": [
+            "secant_H2-",
+            "Gamma3"
+          ],
+          "known": "A+"
+        },
+        {
+          "op": "Line",
+          "id": "cross_plus_H2-",
+          "points": [
+            "C+",
+            "D_H2-"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "cross_minus_H2-",
+          "points": [
+            "C-",
+            "D_H2-"
+          ]
+        },
+        {
+          "op": "Intersect",
+          "id": "X_H2-",
+          "objects": [
+            "shared_A+",
+            "cross_minus_H2-"
+          ]
+        },
+        {
+          "op": "Intersect",
+          "id": "Y_H2-",
+          "objects": [
+            "shared_C-",
+            "cross_plus_H2-"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "polar_H2-",
+          "points": [
+            "X_H2-",
+            "Y_H2-"
+          ]
+        },
+        {
+          "op": "Intersect",
+          "id": "pole_P0",
+          "objects": [
+            "polar_H1+",
+            "polar_H2+"
+          ]
+        },
+        {
+          "op": "Intersect",
+          "id": "pole_P1",
+          "objects": [
+            "polar_H1-",
+            "polar_H2-"
+          ]
+        },
+        {
+          "op": "Intersect",
+          "id": "pole_P2",
+          "objects": [
+            "polar_H1-",
+            "polar_H2+"
+          ]
+        },
+        {
+          "op": "Intersect",
+          "id": "pole_P3",
+          "objects": [
+            "polar_H1+",
+            "polar_H2-"
+          ]
+        }
+      ]
+    },
+    {
+      "centers": [
+        [
+          "7",
+          "-3"
+        ],
+        [
+          "7",
+          "12"
+        ],
+        [
+          "-13",
+          "-3"
+        ]
+      ],
+      "radii": [
+        "4",
+        "2",
+        "1"
+      ],
+      "inputs": [
+        "A+",
+        "A-",
+        "C+",
+        "C-",
+        "H1+",
+        "H1-",
+        "H2+",
+        "H2-"
+      ],
+      "input_objects": [
+        "Gamma3",
+        "diameter_A",
+        "diameter_C"
+      ],
+      "conditional_e": 19,
+      "full_ccc_score": false,
+      "poles": [
+        {
+          "profile": "P0",
+          "point": [
+            "-263/20",
+            "-43/15"
+          ]
+        },
+        {
+          "profile": "P1",
+          "point": [
+            "-51/4",
+            "-47/15"
+          ]
+        },
+        {
+          "profile": "P2",
+          "point": [
+            "-51/4",
+            "-17/5"
+          ]
+        },
+        {
+          "profile": "P3",
+          "point": [
+            "-263/20",
+            "-13/5"
+          ]
+        }
+      ],
+      "program": [
+        {
+          "op": "Line",
+          "id": "shared_A+",
+          "points": [
+            "A+",
+            "C+"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "shared_A-",
+          "points": [
+            "A-",
+            "C+"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "secant_H1+",
+          "points": [
+            "H1+",
+            "C+"
+          ]
+        },
+        {
+          "op": "IntersectOther",
+          "id": "D_H1+",
+          "objects": [
+            "secant_H1+",
+            "Gamma3"
+          ],
+          "known": "C+"
+        },
+        {
+          "op": "Line",
+          "id": "cross_plus_H1+",
+          "points": [
+            "A+",
+            "D_H1+"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "cross_minus_H1+",
+          "points": [
+            "A-",
+            "D_H1+"
+          ]
+        },
+        {
+          "op": "Intersect",
+          "id": "X_H1+",
+          "objects": [
+            "shared_A+",
+            "cross_minus_H1+"
+          ]
+        },
+        {
+          "op": "Intersect",
+          "id": "Y_H1+",
+          "objects": [
+            "shared_A-",
+            "cross_plus_H1+"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "polar_H1+",
+          "points": [
+            "X_H1+",
+            "Y_H1+"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "secant_H1-",
+          "points": [
+            "H1-",
+            "C+"
+          ]
+        },
+        {
+          "op": "IntersectOther",
+          "id": "D_H1-",
+          "objects": [
+            "secant_H1-",
+            "Gamma3"
+          ],
+          "known": "C+"
+        },
+        {
+          "op": "Line",
+          "id": "cross_plus_H1-",
+          "points": [
+            "A+",
+            "D_H1-"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "cross_minus_H1-",
+          "points": [
+            "A-",
+            "D_H1-"
+          ]
+        },
+        {
+          "op": "Intersect",
+          "id": "X_H1-",
+          "objects": [
+            "shared_A+",
+            "cross_minus_H1-"
+          ]
+        },
+        {
+          "op": "Intersect",
+          "id": "Y_H1-",
+          "objects": [
+            "shared_A-",
+            "cross_plus_H1-"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "polar_H1-",
+          "points": [
+            "X_H1-",
+            "Y_H1-"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "shared_C-",
+          "points": [
+            "C-",
+            "A+"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "secant_H2+",
+          "points": [
+            "H2+",
+            "A+"
+          ]
+        },
+        {
+          "op": "IntersectOther",
+          "id": "D_H2+",
+          "objects": [
+            "secant_H2+",
+            "Gamma3"
+          ],
+          "known": "A+"
+        },
+        {
+          "op": "Line",
+          "id": "cross_plus_H2+",
+          "points": [
+            "C+",
+            "D_H2+"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "cross_minus_H2+",
+          "points": [
+            "C-",
+            "D_H2+"
+          ]
+        },
+        {
+          "op": "Intersect",
+          "id": "X_H2+",
+          "objects": [
+            "shared_A+",
+            "cross_minus_H2+"
+          ]
+        },
+        {
+          "op": "Intersect",
+          "id": "Y_H2+",
+          "objects": [
+            "shared_C-",
+            "cross_plus_H2+"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "polar_H2+",
+          "points": [
+            "X_H2+",
+            "Y_H2+"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "secant_H2-",
+          "points": [
+            "H2-",
+            "A+"
+          ]
+        },
+        {
+          "op": "IntersectOther",
+          "id": "D_H2-",
+          "objects": [
+            "secant_H2-",
+            "Gamma3"
+          ],
+          "known": "A+"
+        },
+        {
+          "op": "Line",
+          "id": "cross_plus_H2-",
+          "points": [
+            "C+",
+            "D_H2-"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "cross_minus_H2-",
+          "points": [
+            "C-",
+            "D_H2-"
+          ]
+        },
+        {
+          "op": "Intersect",
+          "id": "X_H2-",
+          "objects": [
+            "shared_A+",
+            "cross_minus_H2-"
+          ]
+        },
+        {
+          "op": "Intersect",
+          "id": "Y_H2-",
+          "objects": [
+            "shared_C-",
+            "cross_plus_H2-"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "polar_H2-",
+          "points": [
+            "X_H2-",
+            "Y_H2-"
+          ]
+        },
+        {
+          "op": "Intersect",
+          "id": "pole_P0",
+          "objects": [
+            "polar_H1+",
+            "polar_H2+"
+          ]
+        },
+        {
+          "op": "Intersect",
+          "id": "pole_P1",
+          "objects": [
+            "polar_H1-",
+            "polar_H2-"
+          ]
+        },
+        {
+          "op": "Intersect",
+          "id": "pole_P2",
+          "objects": [
+            "polar_H1-",
+            "polar_H2+"
+          ]
+        },
+        {
+          "op": "Intersect",
+          "id": "pole_P3",
+          "objects": [
+            "polar_H1+",
+            "polar_H2-"
+          ]
+        }
+      ]
+    },
+    {
+      "centers": [
+        [
+          "1",
+          "5"
+        ],
+        [
+          "31",
+          "5"
+        ],
+        [
+          "1",
+          "45"
+        ]
+      ],
+      "radii": [
+        "8",
+        "4",
+        "2"
+      ],
+      "inputs": [
+        "A+",
+        "A-",
+        "C+",
+        "C-",
+        "H1+",
+        "H1-",
+        "H2+",
+        "H2-"
+      ],
+      "input_objects": [
+        "Gamma3",
+        "diameter_A",
+        "diameter_C"
+      ],
+      "conditional_e": 19,
+      "full_ccc_score": false,
+      "poles": [
+        {
+          "profile": "P0",
+          "point": [
+            "19/15",
+            "453/10"
+          ]
+        },
+        {
+          "profile": "P1",
+          "point": [
+            "11/15",
+            "89/2"
+          ]
+        },
+        {
+          "profile": "P2",
+          "point": [
+            "1/5",
+            "89/2"
+          ]
+        },
+        {
+          "profile": "P3",
+          "point": [
+            "9/5",
+            "453/10"
+          ]
+        }
+      ],
+      "program": [
+        {
+          "op": "Line",
+          "id": "shared_A+",
+          "points": [
+            "A+",
+            "C+"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "shared_A-",
+          "points": [
+            "A-",
+            "C+"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "secant_H1+",
+          "points": [
+            "H1+",
+            "C+"
+          ]
+        },
+        {
+          "op": "IntersectOther",
+          "id": "D_H1+",
+          "objects": [
+            "secant_H1+",
+            "Gamma3"
+          ],
+          "known": "C+"
+        },
+        {
+          "op": "Line",
+          "id": "cross_plus_H1+",
+          "points": [
+            "A+",
+            "D_H1+"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "cross_minus_H1+",
+          "points": [
+            "A-",
+            "D_H1+"
+          ]
+        },
+        {
+          "op": "Intersect",
+          "id": "X_H1+",
+          "objects": [
+            "shared_A+",
+            "cross_minus_H1+"
+          ]
+        },
+        {
+          "op": "Intersect",
+          "id": "Y_H1+",
+          "objects": [
+            "shared_A-",
+            "cross_plus_H1+"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "polar_H1+",
+          "points": [
+            "X_H1+",
+            "Y_H1+"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "secant_H1-",
+          "points": [
+            "H1-",
+            "C+"
+          ]
+        },
+        {
+          "op": "IntersectOther",
+          "id": "D_H1-",
+          "objects": [
+            "secant_H1-",
+            "Gamma3"
+          ],
+          "known": "C+"
+        },
+        {
+          "op": "Line",
+          "id": "cross_plus_H1-",
+          "points": [
+            "A+",
+            "D_H1-"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "cross_minus_H1-",
+          "points": [
+            "A-",
+            "D_H1-"
+          ]
+        },
+        {
+          "op": "Intersect",
+          "id": "X_H1-",
+          "objects": [
+            "shared_A+",
+            "cross_minus_H1-"
+          ]
+        },
+        {
+          "op": "Intersect",
+          "id": "Y_H1-",
+          "objects": [
+            "shared_A-",
+            "cross_plus_H1-"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "polar_H1-",
+          "points": [
+            "X_H1-",
+            "Y_H1-"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "shared_C-",
+          "points": [
+            "C-",
+            "A+"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "secant_H2+",
+          "points": [
+            "H2+",
+            "A+"
+          ]
+        },
+        {
+          "op": "IntersectOther",
+          "id": "D_H2+",
+          "objects": [
+            "secant_H2+",
+            "Gamma3"
+          ],
+          "known": "A+"
+        },
+        {
+          "op": "Line",
+          "id": "cross_plus_H2+",
+          "points": [
+            "C+",
+            "D_H2+"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "cross_minus_H2+",
+          "points": [
+            "C-",
+            "D_H2+"
+          ]
+        },
+        {
+          "op": "Intersect",
+          "id": "X_H2+",
+          "objects": [
+            "shared_A+",
+            "cross_minus_H2+"
+          ]
+        },
+        {
+          "op": "Intersect",
+          "id": "Y_H2+",
+          "objects": [
+            "shared_C-",
+            "cross_plus_H2+"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "polar_H2+",
+          "points": [
+            "X_H2+",
+            "Y_H2+"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "secant_H2-",
+          "points": [
+            "H2-",
+            "A+"
+          ]
+        },
+        {
+          "op": "IntersectOther",
+          "id": "D_H2-",
+          "objects": [
+            "secant_H2-",
+            "Gamma3"
+          ],
+          "known": "A+"
+        },
+        {
+          "op": "Line",
+          "id": "cross_plus_H2-",
+          "points": [
+            "C+",
+            "D_H2-"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "cross_minus_H2-",
+          "points": [
+            "C-",
+            "D_H2-"
+          ]
+        },
+        {
+          "op": "Intersect",
+          "id": "X_H2-",
+          "objects": [
+            "shared_A+",
+            "cross_minus_H2-"
+          ]
+        },
+        {
+          "op": "Intersect",
+          "id": "Y_H2-",
+          "objects": [
+            "shared_C-",
+            "cross_plus_H2-"
+          ]
+        },
+        {
+          "op": "Line",
+          "id": "polar_H2-",
+          "points": [
+            "X_H2-",
+            "Y_H2-"
+          ]
+        },
+        {
+          "op": "Intersect",
+          "id": "pole_P0",
+          "objects": [
+            "polar_H1+",
+            "polar_H2+"
+          ]
+        },
+        {
+          "op": "Intersect",
+          "id": "pole_P1",
+          "objects": [
+            "polar_H1-",
+            "polar_H2-"
+          ]
+        },
+        {
+          "op": "Intersect",
+          "id": "pole_P2",
+          "objects": [
+            "polar_H1-",
+            "polar_H2+"
+          ]
+        },
+        {
+          "op": "Intersect",
+          "id": "pole_P3",
+          "objects": [
+            "polar_H1+",
+            "polar_H2-"
+          ]
+        }
+      ]
+    }
+  ]
+}
