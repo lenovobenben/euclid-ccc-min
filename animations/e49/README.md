@@ -1,8 +1,8 @@
 # E49 Manim 演示动画
 
 [下载 4K60 成片](https://raw.githubusercontent.com/lenovobenben/euclid-ccc-min/main/animations/e49/media/E49Progress_4k60.mp4)
-（3840 × 2160，60 fps，约 1 分 39 秒）。仓库只跟踪这份正式播放版，
-其余渲染中间文件和预览仍由 `.gitignore` 排除。
+（3840 × 2160，60 fps，约 1 分 39 秒）。仓库跟踪这份正式播放版和
+README 使用的静态预览图，其余渲染中间文件和预览视频由 `.gitignore` 排除。
 
 本目录把已验证的 Mannheim 正规 49 E 八解程序制作成中文 Manim 动画。
 视觉风格与 Euclid-Min 的正十七边形动画一致：4K、60 fps、暗色全屏几何、
@@ -31,9 +31,19 @@
 - `STORYBOARD.md`：表述口径、画面规则和 49 E 分镜；
 - `export_geometry.py`：从正式精确重放导出动画快照；
 - `geometry.json`：提交到仓库的确定性动画输入；
+- `preview.png`：根目录中英文 README 共用的成片预览图；
 - `e49_progress.py`：Manim Community v0.21.0 场景；
 - `Dockerfile`：固定 Manim 镜像并安装中文字体；
 - `manim.cfg`：4K、60 fps 和输出目录。
+
+README 预览图截自正式成片第 98 秒的最终画面，可从仓库根目录用 FFmpeg 重新生成：
+
+```sh
+ffmpeg -n -ss 98 -i animations/e49/media/E49Progress_4k60.mp4 \
+  -frames:v 1 -vf scale=1280:-1 animations/e49/preview.png
+```
+
+`-n` 会保留已有预览图；明确要替换时改用 `-y`。
 
 ## 导出几何数据
 
