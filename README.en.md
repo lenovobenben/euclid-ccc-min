@@ -38,7 +38,7 @@ The project tracks two targets separately:
 | Generic `gen` | **18 E** | **49 E** |
 | Full-domain robust `rob` | **18 E** | **55 E** |
 
-`gen` requires validity on an open, dense, full-measure subset of the eight-solution domain $D_8$. `rob` requires validity for every input in $D_8$, including intermediate degeneracies such as merged auxiliary points or parallel defining lines. Both coverage classes require the same target circles.
+**Both 49 E and 55 E require the same eight target circles. Even when all eight exist, the intermediate steps of the 49 E program can fail at special configurations.** These exceptional inputs form a measure-zero subset of the eight-solution domain $D_8$. Generic coverage (`gen`) may exclude them; full-domain robust coverage (`rob`) must handle every one, with a current worst-case upper bound of 55 E. The distinction and a concrete example are explained below.
 
 Each column takes the best currently verified program for that target; the programs may differ. The table therefore does not imply that one 49 E program draws the external circle at move 18. Obtaining a center, radius, contact point, or defining equation alone does not complete a circle target.
 
@@ -63,6 +63,35 @@ $$
 The first relation is external tangency; the second means that the target encloses the input circle and is internally tangent to it. The external-circle target satisfies the first relation for all three inputs and is unique on $D_8$.
 
 Radius endpoints, center lines, coordinate axes, and unit lengths are not supplied for free. Relabeling is allowed, but creates no geometric objects. See [DESIGN, Section 3](docs/DESIGN.md#3-两个独立研究问题) for the full input domain and its exact characterization by four quadratic equations.
+
+### Why distinguish 49 E and 55 E when all eight circles exist?
+
+There are two different kinds of degeneracy: **degenerate targets** and **degenerate intermediate construction steps**.
+
+| Situation | Do all eight distinct finite target circles exist? | Coverage in this project |
+|---|---|---|
+| A solution degenerates into a common tangent line, or another target degeneracy occurs | No | Outside $D_8$; neither bound promises coverage |
+| All eight targets exist, but auxiliary points merge or auxiliary lines become parallel | Yes | Inside $D_8$; the regular 49 E program may fail, while the full program supplies repair branches |
+
+Disjoint input circles, distinct radii, and noncollinear centers do not ensure that every auxiliary object of a particular construction is well positioned. The 49 E program also relies on conditions such as distinct auxiliary points for line draws, nonparallel defining chords for intersections, finite auxiliary intersections $K'$, and a radical center $S$ off the chosen center line $O_1O_2$. The radical center has equal power with respect to all three input circles. These conditions restrict Mannheim's regular construction, rather than the existence of the eight targets.
+
+**A concrete input requiring a different branch.** Consider
+
+$$
+(O_1,r_1)=((0,0),3),\qquad
+(O_2,r_2)=((12,0),2),\qquad
+(O_3,r_3)=((3,9/2),1).
+$$
+
+This input belongs to $D_8$, but its radical center is $S=(149/24,0)$, exactly on $O_1O_2$. The regular program normally draws $O_3K'$, obtains $J=O_3K'\cap O_1O_2$, and joins $S$ to $J$ to locate the common center line of a target pair. For this input, $K'=S$ in each unmerged direction class, so $J=S$. The next step would use the same point twice to define a line and cannot be executed. All eight targets still exist; the current full program takes a legal alternative branch and uses exactly **55 E** here. See the [`root_on_ell` fixture](experiments/replay_mannheim_kp_center_locus_dependencies.py). These coordinates describe the example and supply no extra free inputs.
+
+**What does measure zero mean?** The regular 49 E program excludes zero sets of finitely many nonidentically-zero algebraic conditions. Its remaining domain is relatively open, dense, and of full measure in $D_8$. Under a continuous input distribution with a density, the probability of landing exactly on an exceptional configuration is zero. An explicitly chosen exact input can still lie there. Covering only an easy region of positive measure is insufficient; a difficult region with nonempty interior cannot be discarded.
+
+**The 55 E result is a deterministic algorithm with construction steps, branch conditions, and execution order specified in advance. The input determines the path; no construction method needs to be invented during execution. Its worst-case cost over the entire eight-solution domain $D_8$ is 55 E.** Branches use exact equality, coincidence, and parallelism tests on existing construction objects. Any extra draws needed for a decision must also count toward E. The algorithm does not execute the same 55 draws for every input.
+
+Ordinary inputs can still use 49 E; special inputs may cost more or become cheaper through additional reuse. Existing exact replays include a simple-merge fixture at 51 E, a double-pair merge at 46 E, and a double-$K'$-parallel fixture at 55 E. The difference of 6 E is therefore not a fixed repair surcharge for every exceptional input. [Mannheim, Section 8.16](docs/MANNHEIM.md#816-统一有序分支证书与-61-e-饱和夹具) gives the local branch conditions and ordered execution framework for the earlier 61 E version; Sections 8.18–8.19 optimize the full algorithm to the current 55 E bound.
+
+Failure of this 49 E program on an input does not prove that no other construction can solve that input within 49 E. Likewise, 55 E is not a lower bound for special inputs. Full coverage refers only to $D_8$, excluding equal radii, collinear centers, or fewer than eight finite solutions. See [DESIGN, Section 3.2](docs/DESIGN.md#32-输入域) for the domains and [Mannheim, Section 8.19](docs/MANNHEIM.md#819-有限-k-提前给出圆心线与完整-55-e-上界) for repairs and worst-case counting.
 
 ## What counts as an E move
 
