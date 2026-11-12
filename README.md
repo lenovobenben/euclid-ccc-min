@@ -228,6 +228,10 @@ Gergonne 路线已精确重放 19 E **条件模块**；87 E 完整展开仍只�
 
 八解主入口是 [KpCenterLocusReplay](experiments/replay_mannheim_kp_center_locus_dependencies.py)。[DependencyGraph](experiments/replay_mannheim_fixed.py)记录计费依赖，[ExactObjectGraph](experiments/replay_mannheim_three_block_dependencies.py)处理身份、别名和复用。旧版重放保留不同优化阶段的台账，其分数应按对应阶段解读。
 
+**Euclid 几何研究系列**
+
+[Euclid-Min](https://github.com/lenovobenben/euclid-min) · **Euclid-CCC-Min** · [Euclid-Equal-Angle-Min](https://github.com/lenovobenben/euclid-equal-angle-min) · [Euclid-Castillon-Min](https://github.com/lenovobenben/euclid-castillon-min) · [Euclid-Conic-Classification](https://github.com/lenovobenben/euclid-conic-classification) · [Euclid-Cubic-Trisection](https://github.com/lenovobenben/euclid-cubic-trisection) · [Euclid-Square-Reconstruction](https://github.com/lenovobenben/euclid-square-reconstruction) · [Euclid-Fermat-Point](https://github.com/lenovobenben/euclid-fermat-point) · [Euclid-Quadrilateral-Centroid](https://github.com/lenovobenben/euclid-quadrilateral-centroid) · [Euclid-Quadrature](https://github.com/lenovobenben/euclid-quadrature)
+
 ## 许可与引用
 
 代码、测试、构建脚本和配置采用 [Apache 2.0](LICENSE)；数学文档、构造记录、研究数据和动画采用 [CC BY 4.0](LICENSE-CONTENT)。第三方材料的权利不受本项目许可改变，详见[许可范围](LICENSE-SCOPE.md)。
