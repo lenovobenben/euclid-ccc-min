@@ -2,9 +2,11 @@
 
 [简体中文](README.md) · **English**
 
-**Draw the circle externally tangent to all three inputs in 18 E; draw all eight Apollonius circles in generic position with 39 lines and 10 circles.**
+**Given three pairwise strictly externally disjoint circles and their centers, use an unmarked straightedge and compass to construct a circle externally tangent to all three. When eight distinct finite tangent circles exist, construct all eight.**
 
-Given three circles and their centers, this project studies the CCC case of Apollonius' problem: circle–circle–circle. It provides step-by-step animations, exact construction replays, general-parameter proofs, and local searches. The current worst-case upper bound over the full eight-solution domain is 55 E. **18, 49, and 55 E are verified construction upper bounds; global minimality has not been proved.**
+The currently verified constructions use at most 18 E for the externally tangent circle; 39 lines and 10 circles, totaling 49 E, for all eight targets in generic position; and at most 55 E in the worst case over the full eight-solution domain. **These are construction upper bounds; global minimality has not been proved.**
+
+This project studies the CCC case of Apollonius' problem: circle–circle–circle. It seeks to reduce the number of straightedge-and-compass moves and provides step-by-step animations, exact construction replays, general-parameter proofs, and local searches.
 
 [Watch the 49 E animation](https://raw.githubusercontent.com/lenovobenben/euclid-ccc-min/main/animations/e49/media/E49Progress_4k60.mp4) · [18 E external-circle animation](https://raw.githubusercontent.com/lenovobenben/euclid-ccc-min/main/animations/e18/media/E18External_4k60.mp4) · [Construction proofs](docs/MANNHEIM.md) · [Exact replay](experiments/replay_mannheim_kp_center_locus_dependencies.py)
 

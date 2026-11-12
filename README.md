@@ -2,9 +2,11 @@
 
 **简体中文** · [English](README.en.md)
 
-**用 18 E 画出三重外切圆；在一般位置下，用 39 条直线和 10 个圆画出全部八个阿波罗尼乌斯圆。**
+**给定三个两两严格外离的圆及其圆心，用无刻度直尺和圆规，作一个与三圆都外切的圆；当八个不同的有限相切圆全部存在时，作出全部八个圆。**
 
-给定三个圆及其圆心，本项目研究阿波罗尼乌斯问题的 CCC 情形（圆—圆—圆），提供逐步动画、精确构造重放、一般参数证明与局部搜索。完整八解域上的当前最坏上界为 55 E。**18、49、55 E 都是已验证的构造上界，尚未证明全局最小。**
+当前已验证构造：三重外切单解至多 18 E；一般位置下，全部八解用 39 条直线和 10 个圆，共 49 E；覆盖完整八解域的最坏上界为 55 E。**这些都是构造上界，尚未证明全局最小。**
+
+本项目研究阿波罗尼乌斯问题的 CCC 情形（圆—圆—圆），以减少尺规作图步数为目标，提供逐步动画、精确构造重放、一般参数证明与局部搜索。
 
 [观看 49 E 八解动画](https://raw.githubusercontent.com/lenovobenben/euclid-ccc-min/main/animations/e49/media/E49Progress_4k60.mp4) · [18 E 外切动画](https://raw.githubusercontent.com/lenovobenben/euclid-ccc-min/main/animations/e18/media/E18External_4k60.mp4) · [构造证明](docs/MANNHEIM.md) · [精确重放](experiments/replay_mannheim_kp_center_locus_dependencies.py)
 
